@@ -8,6 +8,10 @@ const routes = [{
   children: [{
     path: '',
     component: () => import('pages/Index.vue')
+  },
+  {
+    path: '/spaceslist',
+    component: () => import('pages/SpacesList.vue')
   }]
 }
 ]
