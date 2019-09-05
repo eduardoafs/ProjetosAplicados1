@@ -17,13 +17,12 @@
     <q-drawer v-model="leftDrawerOpen" bordered content-class="bg-grey-2">
       <q-list>
         <q-item-label header>Menu</q-item-label>
-        <q-item clickable tag="a" target="_blank" href="https://github.com/eduardoafs/ProjetosAplicados1">
+        <q-item v-for="item in menus" :key="item.label" @click="goTo(item.path)" clickable tag="a">
           <q-item-section avatar>
-            <q-icon name="code" />
+            <q-icon :name="item.icon" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>Github</q-item-label>
-            <q-item-label caption>github.com/quasarframework</q-item-label>
+            <q-item-label>{{item.label}}</q-item-label>
           </q-item-section>
         </q-item>
       </q-list>
@@ -36,17 +35,37 @@
 </template>
 
 <script>
-import { openURL } from 'quasar'
-
 export default {
   name: 'MyLayout',
   data () {
     return {
-      leftDrawerOpen: this.$q.platform.is.desktop
+      leftDrawerOpen: this.$q.platform.is.desktop,
+      menus: [
+        {
+          label: 'Home',
+          icon: 'home',
+          path: '/'
+        },
+        {
+          label: 'Espaços',
+          icon: 'check_box_outline_blank',
+          path: '/spaceslist'
+        },
+        {
+          label: 'Reserva',
+          icon: 'calendar_today'
+        },
+        {
+          label: 'Reserva especial',
+          icon: 'perm_contact_calendar'
+        }
+      ]
     }
   },
   methods: {
-    openURL
+    goTo (path) {
+      this.$router.push(path)
+    }
   }
 }
 </script>
