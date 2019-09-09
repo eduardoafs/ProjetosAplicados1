@@ -10,7 +10,7 @@
           GES
         </q-toolbar-title>
 
-        <div></div>
+        <q-btn @click="$router.push('/login')" label="Sair" flat dense icon="exit_to_app" />
       </q-toolbar>
     </q-header>
 
