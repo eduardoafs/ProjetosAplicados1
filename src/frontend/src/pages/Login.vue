@@ -1,5 +1,5 @@
 <template>
-  <q-layout>
+  <q-layout class="login">
     <q-page class="login flex flex-center full-heigth">
       <q-page-container>
         <div>
@@ -20,13 +20,8 @@
                 <div class="q-gutter-sm">
                   <q-checkbox v-model="remeber" label="Lembrar-se" />
                 </div>
-                <q-btn rounded icon="check_circle" color="green" label="Entrar" class="full-width" />
+                <q-btn @click="$router.push('/')" rounded icon="check_circle" color="primary" label="Entrar" class="full-width" />
                 <p></p>
-                <!-- <div class="flex flex-center ">
-                  <p>Não tem uma conta?
-                    <q-btn color="primary" type="submit" flat>Cadastre-se.</q-btn>
-                  </p>
-                </div> -->
               </form>
             </q-card-section>
           </q-card>
@@ -54,3 +49,14 @@ export default {
   }
 }
 </script>
+
+<style>
+.login {
+  background: rgb(34, 193, 195);
+  background: linear-gradient(
+    210deg,
+    rgba(34, 193, 195, 1) 0%,
+    rgba(192, 253, 45, 1) 100%
+  );
+}
+</style>
