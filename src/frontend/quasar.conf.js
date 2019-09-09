@@ -57,7 +57,7 @@ module.exports = function (ctx) {
         'QTr',
         'QTd',
         'QDate',
-        'QForm'
+        'QForm',
         'QScrollArea'
       ],
 

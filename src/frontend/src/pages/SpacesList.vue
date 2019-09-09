@@ -34,6 +34,7 @@
                       <q-btn
                         color="primary"
                         label="Ver Disponibilidade"
+                        @click="$/routes/vieAv"
                       />
                       <q-btn
                         color="white"
