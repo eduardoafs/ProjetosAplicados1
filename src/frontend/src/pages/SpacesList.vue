@@ -1,6 +1,6 @@
 <template>
   <q-page>
-    <div class="flex flex-left justify-evenly">
+    <div class="flex flex-center justify-evenly">
       <div
         class="q-pa-md"
         style="max-width: 500px"
@@ -13,7 +13,7 @@
           label="Expanded"
           class="q-mb-md"
         />
-        <q-scroll-area style="height: 500px; max-width: 500px;">
+        <q-scroll-area style="height: 650px; max-width: 500px;">
           <div>
             <div>
               <q-expansion-item
