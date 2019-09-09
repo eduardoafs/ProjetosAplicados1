@@ -1,6 +1,6 @@
 <template>
   <q-page class="flex flex-center">
-    <h1>Ges</h1>
+    <h3>Bem vindo, -User-</h3>
   </q-page>
 </template>
 
