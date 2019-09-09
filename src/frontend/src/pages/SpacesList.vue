@@ -34,7 +34,7 @@
                       <q-btn
                         color="primary"
                         label="Ver Disponibilidade"
-                        @click="$/routes/vieAv"
+                        @click="$router.push('/viewavailability')"
                       />
                       <q-btn
                         color="white"
