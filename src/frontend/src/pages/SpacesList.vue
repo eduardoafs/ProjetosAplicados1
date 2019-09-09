@@ -1,36 +1,47 @@
 <template>
   <q-page padding>
-    <div class="flex flex-center justify-evenly">
-      <div class="q-pa-md">
-        <div class="text-center flex-center text-h2">
-          Lista de Espaços
-        </div>
-        <br>
-        <form>
+    <div class="text-h5">Lista de espaços</div>
+    <div class="q-pa-md">
+      <form class="row q-gutter-md">
+        <div class="col">
           <q-select v-model="model" :options="['30 Pessoas', '40 Pessoas', '50 Pessoas']" label="Pessoas" />
           <q-select v-model="model" :options="['Disponível', 'Ocupado', 'Fechado']" label="Disponibilidade" />
+        </div>
+        <div class="col">
           <q-select v-model="model" :options="['Informatica', 'Graduação']" label="Setor" />
           <q-select v-model="model" :options="['Sim', 'Não']" label="Computadores" />
-        </form>
-        <br>
-        <q-scroll-area style="height: 650px;">
-          <div>
-            <div>
-              <q-expansion-item icon="location_city" :label="space.name" caption="Prédio de Informática" v-for="space in spaces" :key="space.name">
-                <q-card>
-                  <q-card-section>
-                    <div class="q-gutter-sm">
-                      <q-btn color="secondary" label="Reservar" />
-                      <q-btn color="primary" label="Ver Disponibilidade" @click="$router.push('/viewavailability')" />
-                      <q-btn @click="showDetail = true" color="white" text-color="black" label="Detalhes" />
-                    </div>
-                  </q-card-section>
-                </q-card>
-              </q-expansion-item>
-            </div>
-          </div>
-        </q-scroll-area>
-      </div>
+        </div>
+      </form>
+      <br>
+      <q-list>
+        <q-item v-for="space in spaces" :key="space.name">
+          <q-item-section avatar>
+            <q-icon name="location_city" />
+          </q-item-section>
+          <q-item-section>
+            {{space.name}}
+          </q-item-section>
+          <q-item-section side>
+            <q-btn color="primary" flat icon="more_vert">
+              <q-menu>
+                <q-list style="min-width: 100px">
+                  <q-item-label header>{{space.name}}</q-item-label>
+                  <q-item clickable v-close-popup>
+                    <q-item-section>Reservar</q-item-section>
+                  </q-item>
+                  <q-item @click="$router.push('/viewavailability')" clickable v-close-popup>
+                    <q-item-section>Ver disponibilidade</q-item-section>
+                  </q-item>
+                  <q-separator />
+                  <q-item @click="showDetail = true" clickable v-close-popup>
+                    <q-item-section>Detalhes</q-item-section>
+                  </q-item>
+                </q-list>
+              </q-menu>
+            </q-btn>
+          </q-item-section>
+        </q-item>
+      </q-list>
     </div>
     <q-dialog v-model="showDetail">
       <q-card style="width: 700px; max-width: 80vw;">

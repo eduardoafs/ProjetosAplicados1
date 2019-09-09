@@ -1,9 +1,9 @@
 <template>
   <q-page padding>
-
+    <div class="text-h5">Ver disponibilidade</div>
+    <br>
     <center>
       <div class="disp-form">
-        <h6>Ver Disponibilidade: </h6>
         <cc-form> </cc-form>
       </div>
     </center>
@@ -166,7 +166,7 @@ export default {
 
 <style scoped>
 .disp-form {
-  width: 50%;
+  width: 80%;
   color: #1a2633;
   border-radius: 10px;
   font-size: 16px;

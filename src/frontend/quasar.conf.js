@@ -62,11 +62,13 @@ module.exports = function (ctx) {
         'QDialog',
         'QDate',
         'QSelect',
-        'QPopupProxy'
+        'QPopupProxy',
+        'QMenu'
       ],
 
       directives: [
-        'Ripple'
+        'Ripple',
+        'ClosePopup'
       ],
 
       // Quasar plugins
