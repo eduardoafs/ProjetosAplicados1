@@ -1,12 +1,19 @@
 <template>
-  <q-page>
+  <q-page padding>
     <div class="flex flex-center justify-evenly">
-      <div class="q-pa-md" style="max-width: 500px">
+      <div class="q-pa-md">
         <div class="text-center flex-center text-h2">
-          <b>Lista de Espaços</b>
-          <p />
+          Lista de Espaços
         </div>
-        <q-scroll-area style="height: 650px; max-width: 500px;">
+        <br>
+        <form>
+          <q-select v-model="model" :options="['30 Pessoas', '40 Pessoas', '50 Pessoas']" label="Pessoas" />
+          <q-select v-model="model" :options="['Disponível', 'Ocupado', 'Fechado']" label="Disponibilidade" />
+          <q-select v-model="model" :options="['Informatica', 'Graduação']" label="Setor" />
+          <q-select v-model="model" :options="['Sim', 'Não']" label="Computadores" />
+        </form>
+        <br>
+        <q-scroll-area style="height: 650px;">
           <div>
             <div>
               <q-expansion-item icon="location_city" :label="space.name" caption="Prédio de Informática" v-for="space in spaces" :key="space.name">
