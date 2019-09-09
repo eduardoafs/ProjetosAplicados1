@@ -12,7 +12,12 @@ const routes = [{
   {
     path: '/spaceslist',
     component: () => import('pages/SpacesList.vue')
-  }]
+  },
+  {
+    path: '/viewavailability',
+    component: () => import('pages/ViewAvailability.vue')
+  }
+  ]
 }
 ]
 
