@@ -52,6 +52,12 @@ module.exports = function (ctx) {
         'QInput',
         'QCheckbox',
         'QExpansionItem',
+        'QTable',
+        'QTh',
+        'QTr',
+        'QTd',
+        'QDate',
+        'QForm'
         'QScrollArea'
       ],
 
