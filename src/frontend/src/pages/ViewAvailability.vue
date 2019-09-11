@@ -14,7 +14,7 @@
 
     <center>
       <div class="disp-form-two">
-        <q-btn color="secondary" label="Criar Reservar" />
+        <q-btn @click="$router.push('/create-reserve')" color="secondary" label="Criar Reservar" />
       </div>
     </center>
 

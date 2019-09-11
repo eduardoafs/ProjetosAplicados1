@@ -16,6 +16,10 @@ const routes = [{
   {
     path: '/viewavailability',
     component: () => import('pages/ViewAvailability.vue')
+  },
+  {
+    path: '/create-reserve',
+    component: () => import('pages/CreateReserve.vue')
   }
   ]
 }
