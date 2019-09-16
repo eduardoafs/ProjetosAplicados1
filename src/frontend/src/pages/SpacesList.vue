@@ -15,12 +15,6 @@
       <br>
       <q-list>
         <q-item v-for="space in spaces" :key="space.name">
-          <q-item-section avatar>
-            <q-icon name="location_city" />
-          </q-item-section>
-          <q-item-section>
-            {{space.name}}
-          </q-item-section>
           <q-item-section side>
             <q-btn color="primary" flat icon="more_vert">
               <q-menu>
@@ -40,6 +34,10 @@
               </q-menu>
             </q-btn>
           </q-item-section>
+          <q-item-section>
+            {{space.name}}
+          </q-item-section>
+
         </q-item>
       </q-list>
     </div>
