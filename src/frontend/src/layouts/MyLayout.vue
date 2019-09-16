@@ -2,7 +2,13 @@
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
       <q-toolbar>
-        <q-btn flat dense round @click="leftDrawerOpen = !leftDrawerOpen" aria-label="Menu">
+        <q-btn
+          flat
+          dense
+          round
+          @click="leftDrawerOpen = !leftDrawerOpen"
+          aria-label="Menu"
+        >
           <q-icon name="menu" />
         </q-btn>
 
@@ -10,14 +16,30 @@
           GES
         </q-toolbar-title>
 
-        <q-btn @click="$router.push('/login')" label="Sair" flat dense icon="exit_to_app" />
+        <q-btn
+          @click="$router.push('/login')"
+          label="Sair"
+          flat
+          dense
+          icon="exit_to_app"
+        />
       </q-toolbar>
     </q-header>
 
-    <q-drawer v-model="leftDrawerOpen" bordered content-class="bg-grey-2">
+    <q-drawer
+      v-model="leftDrawerOpen"
+      bordered
+      content-class="bg-grey-2"
+    >
       <q-list>
         <q-item-label header>Menu</q-item-label>
-        <q-item v-for="item in menus" :key="item.label" @click="goTo(item.path)" clickable tag="a">
+        <q-item
+          v-for="item in menus"
+          :key="item.label"
+          @click="goTo(item.path)"
+          clickable
+          tag="a"
+        >
           <q-item-section avatar>
             <q-icon :name="item.icon" />
           </q-item-section>
@@ -53,7 +75,8 @@ export default {
         },
         {
           label: 'Reserva',
-          icon: 'calendar_today'
+          icon: 'calendar_today',
+          path: '/create-reserve'
         },
         {
           label: 'Reserva especial',
