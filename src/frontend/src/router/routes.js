@@ -24,6 +24,10 @@ const routes = [{
   {
     path: '/registerspaces',
     component: () => import('pages/RegisterSpaces.vue')
+  },
+  {
+    path: '/current-recurrence',
+    component: () => import('pages/CurrentRecurrence.vue')
   }
   ]
 }
