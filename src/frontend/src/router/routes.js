@@ -20,6 +20,10 @@ const routes = [{
   {
     path: '/create-reserve',
     component: () => import('pages/CreateReserve.vue')
+  },
+  {
+    path: '/registerspaces',
+    component: () => import('pages/RegisterSpaces.vue')
   }
   ]
 }
