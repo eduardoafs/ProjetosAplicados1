@@ -20,6 +20,10 @@ const routes = [{
   {
     path: '/create-reserve',
     component: () => import('pages/CreateReserve.vue')
+  },
+  {
+    path: '/current-recurrence',
+    component: () => import('pages/CurrentRecurrence.vue')
   }
   ]
 }
