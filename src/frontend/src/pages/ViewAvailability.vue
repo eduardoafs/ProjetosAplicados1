@@ -9,12 +9,21 @@
     </center>
 
     <div class="q-pa-md table-result">
-      <q-table title="Horários" :data="data" :columns="columns" row-key="name" />
+      <q-table
+        title="Horários"
+        :data="data"
+        :columns="columns"
+        row-key="name"
+      />
     </div>
 
     <center>
       <div class="disp-form-two">
-        <q-btn @click="$router.push('/create-reserve')" color="secondary" label="Criar Reservar" />
+        <q-btn
+          @click="$router.push('/create-reserve')"
+          color="secondary"
+          label="Criar Reservar"
+        />
       </div>
     </center>
 

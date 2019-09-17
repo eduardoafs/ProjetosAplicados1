@@ -7,20 +7,37 @@
             <q-card-section>
               <div class="text-h6">Realizar Login</div>
               <form @submit.prevent="login">
-                <q-input v-model="username" label="Usuário">
+                <q-input
+                  v-model="username"
+                  label="Usuário"
+                >
                   <template v-slot:prepend>
                     <q-icon name="account_circle" />
                   </template>
                 </q-input>
-                <q-input v-model="password" type="password" label="Senha">
+                <q-input
+                  v-model="password"
+                  type="password"
+                  label="Senha"
+                >
                   <template v-slot:prepend>
                     <q-icon name="lock" />
                   </template>
                 </q-input>
                 <div class="q-gutter-sm">
-                  <q-checkbox v-model="remeber" label="Lembrar-se" />
+                  <q-checkbox
+                    v-model="remeber"
+                    label="Lembrar-se"
+                  />
                 </div>
-                <q-btn @click="$router.push('/')" rounded icon="check_circle" color="primary" label="Entrar" class="full-width" />
+                <q-btn
+                  @click="$router.push('/')"
+                  rounded
+                  icon="check_circle"
+                  color="primary"
+                  label="Entrar"
+                  class="full-width"
+                />
                 <p></p>
               </form>
             </q-card-section>
