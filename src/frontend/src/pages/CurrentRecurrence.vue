@@ -67,6 +67,12 @@
                 v-model="nome"
               />
             </div>
+            <div class="q-pa-md q-gutter-md row justify-end">
+              <q-btn
+                label="Limpar Campos"
+                color="blue"
+              />
+            </div>
           </div>
         </q-card>
       </div>
@@ -93,10 +99,46 @@
                   </q-item-section>
                 </q-item>
               </q-list>
+              <div class="q-pa-md q-gutter-md row justify-end">
+                <q-btn
+                  label="Adicionar"
+                  color="green"
+                />
+              </div>
             </div>
           </div>
         </q-card>
       </div>
+    </div>
+    <br />
+    <div class="col">
+      <q-card class="my-card">
+        <q-card-section class="bg-primary text-white">
+          <div class="text-h6">Selecionandos</div>
+        </q-card-section>
+        <div class="q-pa-md q-gutter-md border">
+          <q-list>
+            <q-item
+              v-for="space in spaces"
+              :key="space.name"
+            >
+              <q-item-section>
+                {{space.name}}
+              </q-item-section>
+            </q-item>
+          </q-list>
+          <div class="q-pa-md q-gutter-md row justify-end">
+            <q-btn
+              label="Cancelar"
+              color="red"
+            />
+            <q-btn
+              label="Finalizar"
+              color="green"
+            />
+          </div>
+        </div>
+      </q-card>
     </div>
   </q-page>
 </template>
