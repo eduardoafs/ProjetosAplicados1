@@ -1,5 +1,13 @@
 import axios from 'axios'
 
-export default async ({ Vue }) => {
-  Vue.prototype.$axios = axios
+const config = {
+  baseURL: process.env.baseURL || 'http://localhost:8080/'
+}
+
+const _axios = axios.create(config)
+
+export default async ({
+  Vue
+}) => {
+  Vue.$axios = _axios
 }

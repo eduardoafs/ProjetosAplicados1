@@ -2,6 +2,7 @@ import Vue from 'vue'
 
 const ApiService = {
   query (resource, params) {
+    console.log(Vue.$axios)
     return Vue.$axios.get(resource, params).catch(error => {
       throw new Error(`[GESAPI] ApiService erro ${error}`)
     })
@@ -30,3 +31,11 @@ const ApiService = {
 }
 
 export default ApiService
+
+export const SpaceService = {
+  query (params) {
+    return ApiService.query('espacos', {
+      params
+    })
+  }
+}

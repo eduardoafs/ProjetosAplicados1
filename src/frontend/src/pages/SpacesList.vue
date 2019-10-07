@@ -32,7 +32,7 @@
       <q-list>
         <q-item
           v-for="space in spaces"
-          :key="space.name"
+          :key="space.id"
         >
           <q-item-section side>
             <q-btn
@@ -42,7 +42,7 @@
             >
               <q-menu>
                 <q-list style="min-width: 100px">
-                  <q-item-label header>{{space.name}}</q-item-label>
+                  <q-item-label header>{{space.espacoDescricao}}</q-item-label>
                   <q-item
                     @click="$router.push('/create-reserve')"
                     clickable
@@ -70,7 +70,7 @@
             </q-btn>
           </q-item-section>
           <q-item-section>
-            {{space.name}}
+            {{space.espacoDescricao }}
           </q-item-section>
 
         </q-item>
@@ -103,30 +103,27 @@
 </style>
 
 <script>
+import { mapActions, mapState } from 'vuex'
+
 export default {
+  created () {
+    this.getSpaces()
+  },
+  computed: {
+    ...mapState({
+      spaces: state => state.spaces.list
+    })
+  },
   data: () => ({
     showDetail: false,
     date: null,
-    spaces: [{
-      name: 'Laboratório 1'
-    }, {
-      name: 'Laboratório 2'
-    }, {
-      name: 'Laboratório 3'
-    }, {
-      name: 'Laboratório de Redes'
-    }, {
-      name: 'Laboratório de Eletrônica'
-    }, {
-      name: 'Monitoria'
-    }, {
-      name: 'Sala de Aula Teoríca'
-    }, {
-      name: 'Sala de Estudos'
-    }],
+    model: '',
     building: [{
       name: 'Prédio de Informática'
     }]
-  })
+  }),
+  methods: {
+    ...mapActions(['getSpaces'])
+  }
 }
 </script>
