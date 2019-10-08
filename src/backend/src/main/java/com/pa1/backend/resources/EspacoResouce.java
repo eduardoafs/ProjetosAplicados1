@@ -21,6 +21,7 @@ import com.pa1.backend.services.EspacoService;
 @RequestMapping(value = "/espacos") // vai responder por este endPoint
 public class EspacoResouce {
 
+
 	@Autowired
 	private EspacoService service;
 
@@ -33,6 +34,9 @@ public class EspacoResouce {
 		return ResponseEntity.ok().body(obj);
 	}
 
+
+
+
 	@ApiOperation("Listar todos os Espaços")
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<Espaco>> findAll() {
@@ -40,10 +44,6 @@ public class EspacoResouce {
 		return ResponseEntity.ok().body(list);
 
 	}
-
-
-
-
 
 	@ApiOperation("Cadastrar um Espaço")
 	@RequestMapping(method = RequestMethod.POST)
@@ -58,23 +58,18 @@ public class EspacoResouce {
 
 
 	//Marcar espaco como especial
-	@RequestMapping(path = "/espacoUp", method = RequestMethod.POST)
-	public ResponseEntity<?> updateEspaco(
-			@ApiParam("Objeto Json com o status de especial ja atualizado ")
-			@RequestBody Espaco obj) {
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	public ResponseEntity<Void> updateEspaco(@PathVariable Integer id) {
+
+		Espaco obj=service.buscar(id);
+		obj.setEspacoEsopecial(true);
+		obj = service.update(obj);
+		return ResponseEntity.noContent().build();
 
 
-
-		if(obj == null) {
-			return ResponseEntity.notFound().build();
-		}else {
-			obj = service.buscar(obj.getIdEspaco());
-			service.insert(obj);
-
-			return ResponseEntity.noContent().build();
-		}
 	}
-/*
+
+	/*
 	//Fazendo update com POST
 	@RequestMapping(path = {"/id"}, method = RequestMethod.POST)
 	public ResponseEntity<Void> updateEspaco(@RequestBody EspacoDTO objDto, @PathVariable Integer id) {
@@ -85,4 +80,5 @@ public class EspacoResouce {
 		return ResponseEntity.created(uri).build();
 	}
 	*/
+
 }
