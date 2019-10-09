@@ -1,0 +1,42 @@
+FUNCTION_BLOCK break
+
+VAR_INPUT
+	pressao : REAL;
+	velocidade : REAL;
+END_VAR
+
+VAR_OUTPUT
+	freio : REAL;
+END_VAR
+
+FUZZIFY pressao
+	TERM baixa := (0,1) (50,0);
+	TERM media := (30,0) (50,1) (70,0);
+	TERM alta := (50,0) (100,1);
+END_FUZZIFY
+
+FUZZIFY velocidade
+	TERM baixa := (0,1) (60,0);
+    TERM media := (20,0) (50,1) (80,0);
+    TERM alta := (40,0) (100,1);
+END_FUZZIFY
+
+DEFUZZIFY freio
+	TERM apertar := (0,0) (100,1);
+	TERM liberar := (0,1) (100,0);
+	METHOD : COG;
+	DEFAULT := 0;
+END_DEFUZZIFY
+
+RULEBLOCK No1
+	AND : MIN;
+	ACT : MIN;
+	ACCU : MAX;
+
+	RULE 1 : IF pressao IS media THEN freio IS apertar;
+	RULE 2 : IF pressao IS alta AND velocidade IS alta THEN freio IS apertar;
+	RULE 3 : IF pressao IS alta AND velocidade IS baixa THEN freio IS liberar;
+	RULE 4 : IF pressao IS baixa THEN freio IS liberar;
+END_RULEBLOCK
+
+END_FUNCTION_BLOCK
