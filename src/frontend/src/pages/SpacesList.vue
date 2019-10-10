@@ -5,24 +5,24 @@
       <form class="row q-gutter-md">
         <div class="col">
           <q-select
-            v-model="model"
+            v-model="filters.pessoas"
             :options="['30 Pessoas', '40 Pessoas', '50 Pessoas']"
             label="Pessoas"
           />
           <q-select
-            v-model="model"
+            v-model="filters.disponibilidade"
             :options="['Disponível', 'Ocupado', 'Fechado']"
             label="Disponibilidade"
           />
         </div>
         <div class="col">
           <q-select
-            v-model="model"
+            v-model="filters.setor"
             :options="['Informatica', 'Graduação']"
             label="Setor"
           />
           <q-select
-            v-model="model"
+            v-model="filters.computadores"
             :options="['Sim', 'Não']"
             label="Computadores"
           />
@@ -117,7 +117,12 @@ export default {
   data: () => ({
     showDetail: false,
     date: null,
-    model: '',
+    filters: {
+      pessoas: '',
+      disponibilidade: '',
+      computadores: '',
+      setor: ''
+    },
     building: [{
       name: 'Prédio de Informática'
     }]
