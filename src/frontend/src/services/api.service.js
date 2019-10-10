@@ -37,5 +37,37 @@ export const SpaceService = {
     return ApiService.query('espacos', {
       params
     })
+  },
+  get (id) {
+    return ApiService.get('espacos', id)
+  },
+  create (params) {
+    return ApiService.post('espacos', params)
+  },
+  update (id, params) {
+    return ApiService.update('espacos', id, params)
+  },
+  delete (id) {
+    return ApiService.delete('espacos', id)
+  }
+}
+
+export const ReserveService = {
+  query (params) {
+    return ApiService.query('reserva', {
+      params
+    })
+  },
+  get (id) {
+    return ApiService.get('reserva', id)
+  },
+  create (params) {
+    return ApiService.post('reserva', params)
+  },
+  update (id, params) {
+    return ApiService.update('reserva', id, params)
+  },
+  delete (id) {
+    return ApiService.delete('reserva', id)
   }
 }
