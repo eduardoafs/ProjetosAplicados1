@@ -81,6 +81,11 @@ export default {
         {
           label: 'Reserva especial',
           icon: 'perm_contact_calendar'
+        },
+        {
+          label: 'Cadastrar Espaço',
+          icon: 'meeting_room',
+          path: '/register-spaces'
         }
       ]
     }

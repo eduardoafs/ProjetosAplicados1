@@ -24,6 +24,12 @@
               :options="options"
               label="Tipo de local"
             />
+            <q-input
+              v-model="space.justificativa"
+              filled
+              type="textarea"
+              label="Justificativa"
+            />
           </div>
           <div class="col">
             <q-input
@@ -37,16 +43,12 @@
             />
             <q-input
               v-model="space.descricao"
+              type="textarea"
               label="Descrição"
             />
           </div>
         </div>
-        <q-input
-          v-model="space.justificativa"
-          filled
-          type="textarea"
-          label="Justificativa"
-        />
+
         <div class="q-pa-md q-gutter-md row justify-end">
           <q-btn
             label="Cancelar"
