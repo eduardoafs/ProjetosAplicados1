@@ -32,6 +32,10 @@ const routes = [{
   {
     path: '/register-spaces',
     component: () => import('pages/RegisterSpaces.vue')
+  },
+  {
+    path: '/edit-reserves',
+    component: () => import('pages/EditReserve.vue')
   }
   ]
 }

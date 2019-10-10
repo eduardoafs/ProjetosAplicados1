@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 import spaces from './spaces.module'
+import reserves from './reserves.module'
 
 Vue.use(Vuex)
 
@@ -13,7 +14,8 @@ Vue.use(Vuex)
 export default function (/* { ssrContext } */) {
   const Store = new Vuex.Store({
     modules: {
-      spaces
+      spaces,
+      reserves
     },
 
     // enable strict mode (adds overhead!)
