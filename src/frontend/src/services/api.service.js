@@ -54,20 +54,20 @@ export const SpaceService = {
 
 export const ReserveService = {
   query (params) {
-    return ApiService.query('reserva', {
+    return ApiService.query('reservas', {
       params
     })
   },
   get (id) {
-    return ApiService.get('reserva', id)
+    return ApiService.get('reservas', id)
   },
   create (params) {
-    return ApiService.post('reserva', params)
+    return ApiService.post('reservas', params)
   },
   update (id, params) {
-    return ApiService.update('reserva', id, params)
+    return ApiService.update('reservas', id, params)
   },
   delete (id) {
-    return ApiService.delete('reserva', id)
+    return ApiService.delete('reservas', id)
   }
 }
