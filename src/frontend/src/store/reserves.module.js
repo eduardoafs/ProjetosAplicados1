@@ -12,7 +12,7 @@ export default {
     }
   },
   actions: {
-    async getSpaces ({
+    async getReserves ({
       commit
     }) {
       console.log('GETRESERVES')

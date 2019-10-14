@@ -23,7 +23,7 @@
                 >
                   <q-menu>
                     <q-list style="min-width: 100px">
-                      <q-item-label header>{{reserve.name}}</q-item-label>
+                      <q-item-label header>{{reserve.responsavel}}</q-item-label>
                       <q-item
                         @click="$router.push('/create-reserve')"
                         clickable
@@ -44,7 +44,7 @@
                 </q-btn>
               </q-item-section>
               <q-item-section>
-                {{reserve.name}}
+                {{reserve.idReserva}}
               </q-item-section>
 
             </q-item>
@@ -79,11 +79,22 @@
 </template>
 
 <script>
+
+import { mapActions, mapState } from 'vuex'
+
 export default {
+  created () {
+    this.getReserves()
+  },
+  computed: {
+    ...mapState({
+      reserves: state => state.reserves.list
+    })
+  },
   data () {
     return {
       showDetail: false,
-      search: '',
+      search: ''/*,
       reserves: [
         {
           id: 1,
@@ -101,8 +112,12 @@ export default {
           id: 4,
           name: 'monitoria'
         }
-      ]
+      ] */
     }
+  },
+  methods: {
+    ...mapActions(['getReserves'])
   }
+
 }
 </script>
