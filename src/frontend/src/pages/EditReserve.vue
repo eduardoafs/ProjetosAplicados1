@@ -8,11 +8,61 @@
             v-model="search"
             label="Busque pelo nome da reserva"
           />
-        </div>
-        <div class="col">
+          <br>
+          <br>
+          <q-list>
+            <q-item
+              v-for="reserve in reserves"
+              :key="reserve.id"
+            >
+              <q-item-section side>
+                <q-btn
+                  color="primary"
+                  flat
+                  icon="more_vert"
+                >
+                  <q-menu>
+                    <q-list style="min-width: 100px">
+                      <q-item-label header>{{reserve.name}}</q-item-label>
+                      <q-item
+                        @click="$router.push('/create-reserve')"
+                        clickable
+                        v-close-popup
+                      >
+                        <q-item-section>Editar reserva</q-item-section>
+                      </q-item>
+                      <q-item
+                        @click="showDetail = true"
+                        clickable
+                        v-close-popup
+                      >
+                        <q-item-section>excluir</q-item-section>
+                      </q-item>
+                      <q-separator />
+                    </q-list>
+                  </q-menu>
+                </q-btn>
+              </q-item-section>
+              <q-item-section>
+                {{reserve.name}}
+              </q-item-section>
+
+            </q-item>
+          </q-list>
         </div>
       </form>
     </div>
+
+    <q-dialog v-model="showDetail">
+      <q-card style="width: 700px; max-width: 80vw;">
+        <q-card-section>
+          <div class="flex">
+            <h5>Tem certeza que deseja excluir esta reserva?</h5>
+
+          </div>
+        </q-card-section>
+      </q-card>
+    </q-dialog>
   </q-page>
 </template>
 
@@ -20,7 +70,26 @@
 export default {
   data () {
     return {
-      search: ''
+      showDetail: false,
+      search: '',
+      reserves: [
+        {
+          id: 1,
+          name: 'lab1'
+        },
+        {
+          id: 2,
+          name: 'lab2'
+        },
+        {
+          id: 3,
+          name: 'informatica'
+        },
+        {
+          id: 4,
+          name: 'monitoria'
+        }
+      ]
     }
   }
 }
