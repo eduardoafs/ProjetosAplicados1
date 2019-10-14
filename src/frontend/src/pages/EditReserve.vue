@@ -56,9 +56,21 @@
     <q-dialog v-model="showDetail">
       <q-card style="width: 700px; max-width: 80vw;">
         <q-card-section>
-          <div class="flex">
-            <h5>Tem certeza que deseja excluir esta reserva?</h5>
-
+          <div class="col">
+            <center>
+              <h5>Tem certeza que deseja excluir esta reserva?</h5>
+            </center>
+            <br>
+            <div class="q-pa-md q-gutter-md row justify-end">
+              <q-btn
+                label="cancelar"
+                color="red"
+              />
+              <q-btn
+                label="confimar"
+                color="green"
+              />
+            </div>
           </div>
         </q-card-section>
       </q-card>
