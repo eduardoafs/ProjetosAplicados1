@@ -47,6 +47,19 @@
             <q-item-label>{{item.label}}</q-item-label>
           </q-item-section>
         </q-item>
+          <q-expansion-item
+            expand-separator
+            icon="calendar_today"
+            label="Reserva"
+          >
+          <div
+            v-for="item in reserves"
+            :key="item.label"
+            @click="goTo(item.path)">
+            <q-btn qm-pad-row flat style="color: #000000" icon="calendar_view_day" label="Realizar Reserva" />
+
+          </div>
+      </q-expansion-item>
       </q-list>
     </q-drawer>
 
@@ -74,11 +87,6 @@ export default {
           path: '/spaceslist'
         },
         {
-          label: 'Reserva',
-          icon: 'calendar_today',
-          path: '/create-reserve'
-        },
-        {
           label: 'Reserva especial',
           icon: 'perm_contact_calendar'
         },
@@ -86,6 +94,13 @@ export default {
           label: 'Cadastrar Espaço',
           icon: 'meeting_room',
           path: '/register-spaces'
+        }
+      ],
+      reserves: [
+        {
+          label: 'Reserva',
+          icon: 'calendar_today',
+          path: '/create-reserve'
         }
       ]
     }
