@@ -57,6 +57,8 @@
             :key="item.label"
             @click="goTo(item.path)"
             clickable
+            col-md-3
+            offset-md-3
           >
             <q-item-section avatar>
               <q-icon :name="item.icon" />
@@ -100,12 +102,12 @@ export default {
       reserves: [
         {
           label: 'Reserva',
-          icon: 'calendar_today',
+          icon: 'today',
           path: '/create-reserve'
         },
         {
           label: 'Reserva Recorrente',
-          icon: 'today',
+          icon: 'date_range',
           path: '/current-recurrence'
         }
       ]
