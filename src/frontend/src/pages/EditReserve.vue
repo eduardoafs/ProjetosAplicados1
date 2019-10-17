@@ -61,6 +61,12 @@
               <h5>Tem certeza que deseja excluir esta reserva?</h5>
             </center>
             <br>
+            <q-input
+              v-model="justificativa"
+              filled
+              type="textarea"
+              label="Justificativa"
+            />
             <div class="q-pa-md q-gutter-md row justify-end">
               <q-btn
                 label="cancelar"
@@ -93,6 +99,7 @@ export default {
   },
   data () {
     return {
+      justificativa: '',
       showDetail: false,
       search: ''/*,
       reserves: [

@@ -99,7 +99,7 @@ export default {
       ],
       reserves: [
         {
-          label: 'Criar Reserva',
+          label: 'Criar',
           icon: 'today',
           path: '/create-reserve'
         },
@@ -107,6 +107,11 @@ export default {
           label: 'Reserva Recorrente',
           icon: 'date_range',
           path: '/current-recurrence'
+        },
+        {
+          label: 'Editar',
+          icon: 'date_range',
+          path: '/edit-reserves'
         }
       ]
     }
