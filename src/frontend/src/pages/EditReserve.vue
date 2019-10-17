@@ -94,7 +94,7 @@ export default {
   data () {
     return {
       showDetail: false,
-      search: ''/*,
+      search: '',
       reserves: [
         {
           id: 1,
@@ -112,7 +112,7 @@ export default {
           id: 4,
           name: 'monitoria'
         }
-      ] */
+      ]
     }
   },
   methods: {

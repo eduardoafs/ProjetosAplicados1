@@ -57,8 +57,6 @@
             :key="item.label"
             @click="goTo(item.path)"
             clickable
-            col-md-3
-            offset-md-3
           >
             <q-item-section avatar>
               <q-icon :name="item.icon" />
@@ -101,7 +99,7 @@ export default {
       ],
       reserves: [
         {
-          label: 'Reserva',
+          label: 'Criar Reserva',
           icon: 'today',
           path: '/create-reserve'
         },
