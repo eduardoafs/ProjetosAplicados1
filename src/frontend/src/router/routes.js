@@ -32,7 +32,11 @@ const routes = [{
   {
     path: '/edit-reserves',
     component: () => import('pages/EditReserve.vue')
+  }, {
+    path: 'process-reserve',
+    component: () => import('pages/ReserveProcess.vue')
   }
+
   ]
 }
 ]
