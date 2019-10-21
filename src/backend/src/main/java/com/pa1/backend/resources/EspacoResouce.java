@@ -33,7 +33,7 @@ public class EspacoResouce {
 		Espaco obj = service.buscar(id);
 		return ResponseEntity.ok().body(obj);
 	}
-
+	
 
 
 
@@ -60,12 +60,12 @@ public class EspacoResouce {
 	//Marcar espaco como especial
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Void> updateEspaco(@PathVariable Integer id) {
-
+		
 		Espaco obj=service.buscar(id);
 		obj.setEspacoEsopecial(true);
-		obj = service.update(obj);
+	    obj = service.update(obj);
 		return ResponseEntity.noContent().build();
-
+	
 
 	}
 
@@ -80,5 +80,4 @@ public class EspacoResouce {
 		return ResponseEntity.created(uri).build();
 	}
 	*/
-
 }
