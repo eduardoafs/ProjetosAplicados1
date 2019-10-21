@@ -1,12 +1,10 @@
-package com.pa1.backend;
+package com.pa1.backend.services;
 
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.stereotype.Service;
 
 import com.pa1.backend.domain.Espaco;
 import com.pa1.backend.domain.Reserva;
@@ -14,9 +12,14 @@ import com.pa1.backend.domain.Usuario;
 import com.pa1.backend.repositories.EspacoRepository;
 import com.pa1.backend.repositories.ReservaRepository;
 import com.pa1.backend.repositories.UsuarioRepository;
+import java.text.ParseException;
 
-@SpringBootApplication
-public class StartApplication implements CommandLineRunner {
+
+
+
+@Service
+public class DBService {
+	
 	
 	@Autowired
 	private EspacoRepository espacoRepository;
@@ -27,14 +30,7 @@ public class StartApplication implements CommandLineRunner {
 	private UsuarioRepository usuarioRepository; 
 	
 	
-
-	public static void main(String[] args) {
-		SpringApplication.run(StartApplication.class, args);
-	}
-
-	@Override
-	public void run(String... args) throws Exception {
-		
+	public void instantiateTestDatabase() throws ParseException {
 		Usuario user1 = new Usuario(null, "Luiz fernando","luizFermando@gmail.com","99928989",1,"admin");
 		Usuario user2 = new Usuario(null, "Laura Emmanuella","lauraEmmanuella@gmail.com","99928989",1,"laura");
 		Usuario user3 = new Usuario(null, "Weslley Leocadio","silvawesley@gmail.com","99928989",3,"wesley");
@@ -63,5 +59,4 @@ public class StartApplication implements CommandLineRunner {
 		
 		
 	}
-
 }
