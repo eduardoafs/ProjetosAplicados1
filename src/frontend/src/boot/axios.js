@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const config = {
-  baseURL: process.env.baseURL || 'http://localhost:8080/'
+  baseURL: process.env.baseURL || 'https://ges-pa-i.herokuapp.com/'
 }
 
 const _axios = axios.create(config)

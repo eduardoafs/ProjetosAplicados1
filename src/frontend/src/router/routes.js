@@ -10,20 +10,16 @@ const routes = [{
     component: () => import('pages/Index.vue')
   },
   {
-    path: '/spaceslist',
+    path: '/spaces-list',
     component: () => import('pages/SpacesList.vue')
   },
   {
-    path: '/viewavailability',
+    path: '/view-availability',
     component: () => import('pages/ViewAvailability.vue')
   },
   {
     path: '/create-reserve',
     component: () => import('pages/CreateReserve.vue')
-  },
-  {
-    path: '/registerspaces',
-    component: () => import('pages/RegisterSpaces.vue')
   },
   {
     path: '/current-recurrence',
@@ -32,7 +28,16 @@ const routes = [{
   {
     path: '/register-spaces',
     component: () => import('pages/RegisterSpaces.vue')
+  },
+  {
+    path: '/edit-reserves',
+    component: () => import('pages/EditReserve.vue')
+  },
+  {
+    path: '/process-reserves',
+    component: () => import('pages/ReserveProcess.vue')
   }
+
   ]
 }
 ]

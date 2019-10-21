@@ -1,7 +1,7 @@
 <template>
   <q-page padding>
     <div>
-      <div class="text-h5">Criar reserva</div>
+      <div class="text-h5">Realizar reserva</div>
       <br>
       <div class="q-pa-md row q-gutter-md">
         <div class="col">

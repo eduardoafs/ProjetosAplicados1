@@ -22,7 +22,7 @@
             <q-select
               v-model="optionEscolhida"
               :options="options"
-              label="Tipo de local"
+              label="Tipo de uso"
             />
             <q-input
               v-model="space.justificativa"
@@ -74,7 +74,7 @@ export default {
       name: 'RegisterSpaces',
       optionEscolhida: '',
       options: [
-        'normal', 'especial'
+        'normal', 'restrito'
       ],
       space: {
         nomeSala: '',
