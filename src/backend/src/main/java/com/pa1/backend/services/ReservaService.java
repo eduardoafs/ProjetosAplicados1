@@ -40,16 +40,29 @@ public class ReservaService {
 		return obj;
 	}
 
+	public void delete(Integer id){
+		Reserva obj = repo.findOne(id);
+		repo.delete(obj);
+	}
+
 	public Reserva insert(Reserva obj) {
 		obj.setIdReserva(null);
 		return repo.save(obj);
 	}
-	
+
 	public Reserva fromDTO(ReservaDTO objDto) {
-		Reserva r1 = new Reserva(null,objDto.getDataReserva(),objDto.getHorarios(),
-				objDto.getResponsavel(),objDto.getEspaco());
+		Reserva r1 = new Reserva(null,objDto.getDataReservaInicio(), objDto.getDataReservaFim(),objDto.getHorarios(),objDto.getEspaco(),objDto.getUsuario());
 		return r1;
 		
+		
+	}
+	//Editar Reserva
+	public Reserva update(Reserva obj){
+		return  repo.save(obj);
+	}
+
+	public List<Reserva> findByReserva(Integer idEspaco, Date d){
+		return repo.findByReserva(idEspaco,d);
 	}
 
 }
