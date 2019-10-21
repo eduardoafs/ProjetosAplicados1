@@ -110,8 +110,13 @@ export default {
         },
         {
           label: 'Editar',
-          icon: 'date_range',
+          icon: 'edit',
           path: '/edit-reserves'
+        },
+        {
+          label: 'Processar Reservas',
+          icon: 'done_outline',
+          path: '/process-reserves'
         }
       ]
     }
