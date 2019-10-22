@@ -50,14 +50,14 @@
                 </q-btn>
               </q-item-section>
               <q-item-section>
-                {{reserve.idReserva}}
+                {{reserve.espaco.espacoNome}}
               </q-item-section>
             </q-item>
           </q-list>
         </div>
       </form>
     </div>
-     <q-dialog v-model="showApproved">
+    <q-dialog v-model="showApproved">
       <q-card style="width: 700px; max-width: 80vw;">
         <q-card-section>
           <div class="col">
@@ -117,7 +117,7 @@
         </q-card-section>
       </q-card>
     </q-dialog>
-      <q-dialog v-model="showDetail">
+    <q-dialog v-model="showDetail">
       <q-card style="width: 700px; max-width: 80vw;">
         <q-card-section>
           <center>
@@ -131,7 +131,7 @@
             <div class="q-pa-md">
               <p>
                 <b>Local:</b> <br>
-                <b>responsável:</b>  <br>
+                <b>responsável:</b> <br>
                 <b>Horário de Reserva:</b> <br>
                 <b>Justificativa para reserva:</b> <br>
               </p>
@@ -162,7 +162,7 @@ export default {
       showApproved: false,
       showDenied: false,
       showDetail: false,
-      search: '',
+      search: ''/*,
       reserves: [
         {
           id: 1,
@@ -180,7 +180,7 @@ export default {
           id: 4,
           name: 'monitoria'
         }
-      ]
+      ] */
     }
   },
   methods: {

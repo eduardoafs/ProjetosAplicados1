@@ -44,7 +44,9 @@
                 </q-btn>
               </q-item-section>
               <q-item-section>
-                {{reserve.idReserva}}
+                {{reserve.espaco.espacoNome}} -
+                {{reserve.responsavel}} -
+                {{reserve.dataReservaInicio}}
               </q-item-section>
 
             </q-item>
