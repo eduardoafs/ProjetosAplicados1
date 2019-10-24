@@ -17,16 +17,17 @@
               <br>
               <q-list separator>
                 <q-item
-                  v-for="i in 3"
-                  :key="i"
+                  v-for="space in spaces"
+                  :key="space.idEspaco"
                   clickable
                   v-ripple
+                  @click="selectedSpaceId = space.idEspaco"
                 >
                   <q-item-section>
-                    Lab {{i}}
+                    {{space.espacoDescricao}}
                   </q-item-section>
                   <q-item-section
-                    v-if="i == 2"
+                    v-if="selectedSpaceId == space.idEspaco"
                     avatar
                   >
                     <q-icon
@@ -47,22 +48,23 @@
             </q-card-section>
             <q-card-section>
               <q-input
-                v-model="searchUser"
+                v-model="seila"
                 label="Procurar resposável..."
               />
               <br>
               <q-list separator>
                 <q-item
-                  v-for="u in 3"
-                  :key="u"
+                  v-for="user in searchUser"
+                  :key="user.idUsuario"
                   clickable
                   v-ripple
+                  @click="userSelected = user.idUsuario"
                 >
                   <q-item-section>
-                    Usuário {{u}}
+                    {{user.nome}}
                   </q-item-section>
                   <q-item-section
-                    v-if="u == 2"
+                    v-if="user.idUsuario == userSelected"
                     avatar
                   >
                     <q-icon
@@ -79,7 +81,7 @@
       <div class="q-pa-md q-gutter-md row items-start">
         <div class="col">
           <q-input
-            v-model="dateInit"
+            v-model="reserve.dataReservaInicio"
             mask="##/##/####"
             stack-label
             label="Data - Início"
@@ -87,7 +89,7 @@
         </div>
         <div class="col">
           <q-input
-            v-model="timeInit"
+            v-model="reserve.timeInit"
             mask="##:##"
             stack-label
             label="Hora - Início"
@@ -95,7 +97,7 @@
         </div>
         <div class="col">
           <q-input
-            v-model="dataEnd"
+            v-model="reserve.dataEnd"
             mask="##/##/####"
             stack-label
             label="Data - Término"
@@ -103,7 +105,7 @@
         </div>
         <div class="col">
           <q-input
-            v-model="timeEnd"
+            v-model="reserve.timeEnd"
             mask="##:##"
             stack-label
             label="Hora - Término"
@@ -113,7 +115,7 @@
       <div class="q-pa-md row">
         <div class="col-md-12">
           <q-input
-            v-model="justification"
+            v-model="reserve.justification"
             filled
             type="textarea"
             label="Justificativa"
@@ -130,6 +132,7 @@
           color="red"
         />
         <q-btn
+          @click="save()"
           label="Criar reserva"
           color="green"
         />
@@ -145,18 +148,39 @@
 </style>
 
 <script>
+import { mapActions, mapState } from 'vuex'
+
 export default {
   name: 'CreateReserve',
+  created () {
+    this.getUsers()
+  },
+  computed: {
+    ...mapState({
+      spaces: state => state.spaces.list,
+      searchUser: state => state.users.list
+    })
+  },
   data: () => ({
     reserve: {
-      dateInit: '',
-      dateEnd: '',
-      timeInit: '',
-      timeEnd: ''
+      dataReservaInicio: '',
+      dataReservaFim: '',
+      horarios: [],
+      justification: ''
     },
+    userSelected: 0,
+    selectedSpaceId: 0,
     searchSpace: '',
-    searchUser: '',
-    justification: ''
-  })
+    seila: ''
+  }),
+  methods: {
+    ...mapActions(['createReserve', 'getUsers']
+    ),
+    save () {
+      this.reserve.espaco = this.selectedSpaceId
+      this.createReserve(this.reserve)
+    }
+
+  }
 }
 </script>

@@ -71,3 +71,23 @@ export const ReserveService = {
     return ApiService.delete('reservas', id)
   }
 }
+
+export const UsersService = {
+  query (params) {
+    return ApiService.query('usuarios', {
+      params
+    })
+  },
+  get (id) {
+    return ApiService.get('usuarios', id)
+  },
+  create (params) {
+    return ApiService.post('usuarios', params)
+  },
+  update (id, params) {
+    return ApiService.update('usuarios', id, params)
+  },
+  delete (id) {
+    return ApiService.delete('usuarios', id)
+  }
+}
