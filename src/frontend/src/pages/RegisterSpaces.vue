@@ -20,7 +20,7 @@
               label="Local"
             />
             <q-select
-              v-model="optionEscolhida"
+              v-model="space.espacoEspecial"
               :options="options"
               label="Tipo de uso"
             />
@@ -57,6 +57,7 @@
           <q-btn
             label="Finalizar"
             color="green"
+            @click="save()"
           />
         </div>
       </q-card-section>
@@ -68,24 +69,31 @@
 </style>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   data () {
     return {
       name: 'RegisterSpaces',
       optionEscolhida: '',
       options: [
-        'normal', 'restrito'
+        { label: 'normal', value: false }, { label: 'restrito', value: true }
       ],
       space: {
-        nomeSala: '',
-        capacidade: '',
-        local: '',
-        responsavel: '',
-        ramal: '',
-        descricao: '',
-        justificativa: ''
+        espacoNome: '',
+        espacoDescricao: '',
+        espacoLocalizacao: '',
+        espacoEspecial: null,
+        espacoResponsavel: ''
       }
 
+    }
+  },
+  methods: {
+    ...mapActions(['createSpace']
+    ),
+    save () {
+      this.createSpace(this.space)
     }
   }
 }

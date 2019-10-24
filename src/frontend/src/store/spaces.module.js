@@ -18,6 +18,17 @@ export default {
       console.log('GETSPACES')
       const result = await SpaceService.query()
       commit('setSpaces', result.data)
+    },
+    async createSpace ({
+      commit
+    }, space) {
+      try {
+        console.log('CREATESPACE')
+        const result = await SpaceService.create(space)
+        return result
+      } catch (error) {
+        console.log('Error ao criar reserva: ' + error)
+      }
     }
   }
 }
