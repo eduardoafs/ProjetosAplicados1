@@ -64,7 +64,8 @@ module.exports = function (ctx) {
         'QSelect',
         'QPopupProxy',
         'QMenu',
-        'QRadio'
+        'QRadio',
+        'QSeparator'
       ],
 
       directives: [

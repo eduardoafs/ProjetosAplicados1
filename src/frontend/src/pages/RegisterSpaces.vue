@@ -7,7 +7,7 @@
         <div class="q-pa-md row q-gutter-md">
           <div class="col">
             <q-input
-              v-model="space.nomeSala"
+              v-model="space.espacoNome"
               label="Nome da sala"
             />
             <q-input
@@ -16,7 +16,7 @@
               type="number"
             />
             <q-input
-              v-model="space.local"
+              v-model="space.espacoLocalizacao"
               label="Local"
             />
             <q-select
@@ -33,7 +33,7 @@
           </div>
           <div class="col">
             <q-input
-              v-model="space.responsavel"
+              v-model="space.espacoResponsavel"
               label="Responsável"
             />
             <q-input
@@ -42,7 +42,7 @@
               type="number"
             />
             <q-input
-              v-model="space.descricao"
+              v-model="space.espacoDescricao"
               type="textarea"
               label="Descrição"
             />
@@ -93,6 +93,7 @@ export default {
     ...mapActions(['createSpace']
     ),
     save () {
+      this.space.espacoEspecial = false
       this.createSpace(this.space)
     }
   }
