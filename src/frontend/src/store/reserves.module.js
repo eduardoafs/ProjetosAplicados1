@@ -28,6 +28,14 @@ export default {
       } catch (error) {
         console.log(error)
       }
+    },
+    async getReservesPendences ({
+      commit
+    }) {
+      console.log('GETRESERVESPENDENCES')
+      const result = await ReserveService.query('/aprovadas')
+      return result
     }
+
   }
 }

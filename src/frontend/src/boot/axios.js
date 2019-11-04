@@ -1,13 +1,11 @@
 import axios from 'axios'
 
 const config = {
-  baseURL: process.env.baseURL || 'http://localhost:8080/'
+  baseURL: process.env.baseURL || 'https://ges-pai.herokuapp.com/'
 }
 
 const _axios = axios.create(config)
 
-export default async ({
-  Vue
-}) => {
+export default async ({ Vue }) => {
   Vue.$axios = _axios
 }

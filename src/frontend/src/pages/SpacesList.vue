@@ -42,7 +42,7 @@
             >
               <q-menu>
                 <q-list style="min-width: 100px">
-                  <q-item-label header>{{space.espacoDescricao}}</q-item-label>
+                  <q-item-label header>{{space.espacoNome}}</q-item-label>
                   <q-item
                     @click="$router.push('/create-reserve')"
                     clickable
@@ -70,7 +70,7 @@
             </q-btn>
           </q-item-section>
           <q-item-section>
-            {{space.espacoDescricao }}
+            {{space.espacoNome }}
           </q-item-section>
 
         </q-item>

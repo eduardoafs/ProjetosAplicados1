@@ -1,3 +1,4 @@
+getReservesPendences()
 <template>
   <q-page padding>
     <div class="text-h5">Processar Reservas</div>
@@ -12,7 +13,7 @@
           <br>
           <q-list>
             <q-item
-              v-for="reserve in reserves"
+              v-for="reserve in reservesPendences"
               :key="reserve.id"
             >
               <q-item-section side>
@@ -50,7 +51,8 @@
                 </q-btn>
               </q-item-section>
               <q-item-section>
-                {{reserve.espaco.espacoNome}}
+                {{reserve.espaco.espacoNome}}-
+                {{reserve.id}}
               </q-item-section>
             </q-item>
           </q-list>
@@ -145,24 +147,21 @@
 
 <script>
 
-import { mapActions, mapState } from 'vuex'
+import { mapActions } from 'vuex'
 
 export default {
   created () {
-    this.getReserves()
-  },
-  computed: {
-    ...mapState({
-      reserves: state => state.reserves.list
-    })
+    this.reservesPendences = this.getReservesPendences()
   },
   data () {
     return {
+      reservesPendences: {},
       justificativa: '',
       showApproved: false,
       showDenied: false,
       showDetail: false,
-      search: ''/*,
+      search: '',
+      date: ''/*,
       reserves: [
         {
           id: 1,
@@ -184,7 +183,11 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getReserves'])
+    ...mapActions(['getReservesPendences']
+    ),
+    listarReservasPendentes () {
+      this.reservesPendences = this.getReservesPendences()
+    }
   }
 
 }
