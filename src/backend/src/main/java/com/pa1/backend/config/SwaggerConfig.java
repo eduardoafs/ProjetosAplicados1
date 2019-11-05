@@ -25,10 +25,15 @@ public class SwaggerConfig {
     }
 
     private ApiInfo apiEndPointsInfo(){
-        return new ApiInfoBuilder().title("Interface da API")
-                .description("Detalhes:")
-                .contact(new Contact("Link Projeto", "https://github.com/WesleyLeocadio/PA1-BACKEND", ""))
-                .license("Apache 2.0")
+        return new ApiInfoBuilder().title("API REST GEs")
+                .description("API REST para Gerenciamento de Espaços\n" +
+                        "\n**Developers:**\n"
+                                + "* Ana Bheatriz Chacon - https://github.com/BiaChacon\n" +
+                                "* Weslley Leocadio - https://github.com/WesleyLeocadio\n" +
+                                "* João Paulo - https://github.com/ashouy\n" +
+                                "* Thiago Dantas - https://github.com/thiagodantas90"
+                        )
+                .license("Apache License Version 2.0")
                 .licenseUrl("https://www.apache.org/licenses/LICENSE-2.0")
                 .version("1.0.0")
                 .build();
