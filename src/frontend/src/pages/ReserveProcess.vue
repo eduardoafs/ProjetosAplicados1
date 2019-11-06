@@ -184,17 +184,18 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getReservesPendences', 'updateReserve']
+    ...mapActions(['getReservesPendences', 'approveReserve']
     ),
     approveReservation () {
-      const r = { ...this.reservaEscolhida }
-      r.aprovada = true
-      this.updateReserve(this.reservaEscolhida.idReserva, r)
+      // const r = { ...this.reservaEscolhida }
+      // r.aprovada = true
+      this.approveReserve(this.reservaEscolhida.idReserva)
     },
     aprovar (reserve) {
       this.showApproved = true
       this.reservaEscolhida = reserve
-      console.log('reserva escolhida = ' + this.reservaEscolhida)
+      console.log(typeof (this.reservaEscolhida.idReserva))
+      console.log('reserva escolhida = ' + this.reservaEscolhida.idReserva)
     }
   }
 

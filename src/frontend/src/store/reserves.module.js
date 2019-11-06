@@ -43,11 +43,13 @@ export default {
       const result = await ReserveService.getReservesApproved()
       commit('setReserves', result.data)
     },
-    async updateReserve ({
+    async approveReserve ({
       commit
-    }, id, reserve) {
+    }, id) {
       console.log('UPDATERESERVE')
-      const result = await ReserveService.update(id, reserve)
+      const result = await ReserveService.approveReserve({
+        id
+      })
       return result
     }
 

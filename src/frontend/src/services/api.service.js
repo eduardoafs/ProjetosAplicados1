@@ -19,7 +19,7 @@ const ApiService = {
   },
 
   update (resource, id, params) {
-    return Vue.$axios.put(`/${resource}}`, params)
+    return Vue.$axios.put(`/${resource}`, params)
   },
 
   delete (resource, id) {
@@ -75,6 +75,10 @@ export const ReserveService = {
   },
   getReservesApproved () {
     return ApiService.query('reservas/aprovadas')
+  },
+  approveReserve (params) {
+    return ApiService.update('reservas/aprovar/?id=' +
+      params.id, params)
   }
 }
 
