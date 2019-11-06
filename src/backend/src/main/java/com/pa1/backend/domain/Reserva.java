@@ -15,6 +15,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Reserva implements Serializable{
+
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -24,6 +25,7 @@ public class Reserva implements Serializable{
 	private Date dataReservaFim;
 	private Integer horarios[] = new Integer[16];
 	private Boolean aprovada;
+	private Boolean cancelada;
 	
     @JsonManagedReference
 	@ManyToOne
@@ -37,14 +39,23 @@ public class Reserva implements Serializable{
 	
 	public Reserva() {}
 
-	public Reserva(Integer idReserva, Date dataReservaInicio, Date dataReservaFim, Integer[] horarios, Espaco espaco, Usuario user, Boolean aprovada) {
+	public Reserva(Integer idReserva, Date dataReservaInicio, Date dataReservaFim, Integer[] horarios, Espaco espaco, Usuario user, Boolean aprovada, Boolean cancelada) {
 		this.idReserva = idReserva;
 		this.dataReservaInicio = dataReservaInicio;
 		this.dataReservaFim = dataReservaFim;
 		this.horarios = horarios;
 		this.espaco = espaco;
-		this.usuario=user;
-		this.aprovada=aprovada;
+		this.usuario = user;
+		this.aprovada = aprovada;
+		this.cancelada = cancelada;
+	}
+
+	public Boolean getCancelada() {
+		return cancelada;
+	}
+
+	public void setCancelada(Boolean cancelada) {
+		this.cancelada = cancelada;
 	}
 
 	public Boolean getAprovada() {
@@ -95,7 +106,6 @@ public class Reserva implements Serializable{
 		this.horarios = horarios;
 	}
 
-
 	public Espaco getEspaco() {
 		return espaco;
 	}
@@ -103,8 +113,6 @@ public class Reserva implements Serializable{
 	public void setEspaco(Espaco espaco) {
 		this.espaco = espaco;
 	}
-	
-	
 
 	public Usuario getUsuario() {
 		return usuario;
@@ -138,7 +146,5 @@ public class Reserva implements Serializable{
 			return false;
 		return true;
 	}
-	
-	
-	
+
 }

@@ -47,8 +47,8 @@ public class DBService {
 
 		Integer horarios[] = {1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 
-		Reserva r1 = new Reserva(null,sdf.parse("30-09-2019"),sdf.parse("30-10-2019"),horarios,esp1,user1, false);
-		Reserva r2 = new Reserva(null,sdf.parse("20-09-2019"),sdf.parse("30-09-2019"),horarios,esp2,user2, false);
+		Reserva r1 = new Reserva(null,sdf.parse("30-09-2019"),sdf.parse("30-10-2019"),horarios,esp1,user1, false, false);
+		Reserva r2 = new Reserva(null,sdf.parse("20-09-2019"),sdf.parse("30-09-2019"),horarios,esp2,user2, false, false);
 		
 		
 		
