@@ -69,6 +69,12 @@ export const ReserveService = {
   },
   delete (id) {
     return ApiService.delete('reservas', id)
+  },
+  getReservesPendences () {
+    return ApiService.query('reservas/pendentes')
+  },
+  getReservesApproved () {
+    return ApiService.query('reservas/aprovadas')
   }
 }
 

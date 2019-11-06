@@ -33,8 +33,15 @@ export default {
       commit
     }) {
       console.log('GETRESERVESPENDENCES')
-      const result = await ReserveService.query('/aprovadas')
-      return result
+      const result = await ReserveService.getReservesPendences()
+      commit('setReserves', result.data)
+    },
+    async getReservesApproved ({
+      commit
+    }) {
+      console.log('GETRESERVESAPPROVED')
+      const result = await ReserveService.getReservesApproved()
+      commit('setReserves', result.data)
     }
 
   }

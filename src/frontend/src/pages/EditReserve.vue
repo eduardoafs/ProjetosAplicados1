@@ -92,7 +92,7 @@ import { mapActions, mapState } from 'vuex'
 
 export default {
   created () {
-    this.getReserves()
+    this.getReservesApproved()
   },
   computed: {
     ...mapState({
@@ -103,29 +103,11 @@ export default {
     return {
       justificativa: '',
       showDetail: false,
-      search: ''/*,
-      reserves: [
-        {
-          id: 1,
-          name: 'lab1'
-        },
-        {
-          id: 2,
-          name: 'lab2'
-        },
-        {
-          id: 3,
-          name: 'informatica'
-        },
-        {
-          id: 4,
-          name: 'monitoria'
-        }
-      ] */
+      search: ''
     }
   },
   methods: {
-    ...mapActions(['getReserves'])
+    ...mapActions(['getReservesApproved'])
   }
 
 }

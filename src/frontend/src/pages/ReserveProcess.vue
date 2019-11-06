@@ -147,15 +147,19 @@ getReservesPendences()
 
 <script>
 
-import { mapActions } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 
 export default {
   created () {
-    this.reservesPendences = this.getReservesPendences()
+    this.getReservesPendences()
+  },
+  computed: {
+    ...mapState({
+      reservesPendences: state => state.reserves.list
+    })
   },
   data () {
     return {
-      reservesPendences: {},
       justificativa: '',
       showApproved: false,
       showDenied: false,
