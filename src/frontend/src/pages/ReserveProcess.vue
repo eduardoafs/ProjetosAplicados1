@@ -26,14 +26,14 @@ getReservesPendences()
                     <q-list style="min-width: 100px">
                       <q-item-label header>{{reserve.responsavel}}</q-item-label>
                       <q-item
-                        @click="showApproved = true"
+                        @click="aprovar(reserve)"
                         clickable
                         v-close-popup
                       >
                         <q-item-section>Aprovar Reserva</q-item-section>
                       </q-item>
                       <q-item
-                        @click="showDenied = true"
+                        @click="aprovar(reserve)"
                         clickable
                         v-close-popup
                       >
@@ -67,12 +67,6 @@ getReservesPendences()
               <h5>Deseja aprovar a reserva?</h5>
             </center>
             <br>
-            <q-input
-              v-model="justificativa"
-              filled
-              type="textarea"
-              label="Justificativa"
-            />
             <div class="q-pa-md q-gutter-md row justify-end">
               <q-btn
                 label="cancelar"
@@ -81,6 +75,7 @@ getReservesPendences()
                 clickable
               />
               <q-btn
+                @click="approveReservation()"
                 label="confirmar"
                 color="green"
               />
@@ -113,6 +108,7 @@ getReservesPendences()
               <q-btn
                 label="confirmar"
                 color="green"
+                clickable
               />
             </div>
           </div>
@@ -165,7 +161,8 @@ export default {
       showDenied: false,
       showDetail: false,
       search: '',
-      date: ''/*,
+      date: '',
+      reservaEscolhida: {}/*,
       reserves: [
         {
           id: 1,
@@ -187,10 +184,17 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getReservesPendences']
+    ...mapActions(['getReservesPendences', 'updateReserve']
     ),
-    listarReservasPendentes () {
-      this.reservesPendences = this.getReservesPendences()
+    approveReservation () {
+      const r = { ...this.reservaEscolhida }
+      r.aprovada = true
+      this.updateReserve(this.reservaEscolhida.idReserva, r)
+    },
+    aprovar (reserve) {
+      this.showApproved = true
+      this.reservaEscolhida = reserve
+      console.log('reserva escolhida = ' + this.reservaEscolhida)
     }
   }
 

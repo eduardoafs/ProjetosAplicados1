@@ -42,6 +42,13 @@ export default {
       console.log('GETRESERVESAPPROVED')
       const result = await ReserveService.getReservesApproved()
       commit('setReserves', result.data)
+    },
+    async updateReserve ({
+      commit
+    }, id, reserve) {
+      console.log('UPDATERESERVE')
+      const result = await ReserveService.update(id, reserve)
+      return result
     }
 
   }
