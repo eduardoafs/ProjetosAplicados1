@@ -186,10 +186,12 @@ export default {
   methods: {
     ...mapActions(['getReservesPendences', 'approveReserve']
     ),
-    approveReservation () {
+    async approveReservation () {
       // const r = { ...this.reservaEscolhida }
       // r.aprovada = true
-      this.approveReserve(this.reservaEscolhida.idReserva)
+      await this.approveReserve(this.reservaEscolhida.idReserva)
+      this.showApproved = false
+      this.getReservesPendences()
     },
     aprovar (reserve) {
       this.showApproved = true

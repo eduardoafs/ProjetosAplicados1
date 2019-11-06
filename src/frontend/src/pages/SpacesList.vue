@@ -51,7 +51,7 @@
                     <q-item-section>Reservar</q-item-section>
                   </q-item>
                   <q-item
-                    @click="$router.push('/viewavailability')"
+                    @click="$router.push('/view-availability')"
                     clickable
                     v-close-popup
                   >

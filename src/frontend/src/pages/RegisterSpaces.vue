@@ -92,9 +92,10 @@ export default {
   methods: {
     ...mapActions(['createSpace']
     ),
-    save () {
+    async save () {
       this.space.espacoEspecial = false
-      this.createSpace(this.space)
+      await this.createSpace(this.space)
+      this.space = {}
     }
   }
 }
