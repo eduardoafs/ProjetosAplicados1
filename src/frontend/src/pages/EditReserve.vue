@@ -32,7 +32,7 @@
                         <q-item-section>Editar reserva</q-item-section>
                       </q-item>
                       <q-item
-                        @click="confirmaExcluir(reserve.id)"
+                        @click="confirmaExcluir(reserve)"
                         clickable
                         v-close-popup
                       >
@@ -111,9 +111,9 @@ export default {
   },
   methods: {
     ...mapActions(['getReservesApproved', 'cancelReserve']),
-    confirmaExcluir (id) {
+    confirmaExcluir (reserva) {
       this.showDetail = true
-      this.reservaSelect.idReserva = id
+      this.reservaSelect = reserva
     },
     async cancelarReserva () {
       await this.cancelReserve(this.reservaSelect.idReserva)
