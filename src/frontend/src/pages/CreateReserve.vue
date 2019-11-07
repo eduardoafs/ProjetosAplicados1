@@ -190,12 +190,16 @@ export default {
   methods: {
     ...mapActions(['createReserve', 'getUsers']
     ),
-    save () {
-      this.reserve.espaco = this.selectedSpace
-      this.selectedUser.perfis = [0]
-      this.reserve.usuario = this.selectedUser
-      this.createReserve(this.reserve)
-      console.log(this.reserve)
+    async save () {
+      let space = { ...this.selectedSpace }
+      let user = { ...this.selectedUser }
+
+      this.reserve.espaco = space
+      user.perfis = 1
+      this.reserve.usuario = user
+
+      await this.createReserve(this.reserve)
+      console.log('a reserva foi criada :' + this.reserve)
       this.reserve = {}
     },
     selectSpace (space) {
