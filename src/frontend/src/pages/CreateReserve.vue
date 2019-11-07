@@ -24,7 +24,7 @@
                   @click="selectedSpaceId = space.idEspaco"
                 >
                   <q-item-section>
-                    {{space.espacoDescricao}}
+                    {{space.espacoNome}}
                   </q-item-section>
                   <q-item-section
                     v-if="selectedSpaceId == space.idEspaco"
@@ -169,7 +169,10 @@ export default {
       dataReservaInicio: '',
       dataReservaFim: '',
       horarios: [],
-      justification: ''
+      espaco: {},
+      usuario: {},
+      aprovada: false,
+      cancelada: false
     },
     userSelected: 0,
     selectedSpaceId: 0,
@@ -183,8 +186,8 @@ export default {
     ...mapActions(['createReserve', 'getUsers']
     ),
     save () {
-      this.reserve.espaco = this.selectedSpaceId
       this.createReserve(this.reserve)
+      this.reserve = {}
     }
 
   }

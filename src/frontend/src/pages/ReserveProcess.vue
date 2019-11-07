@@ -162,25 +162,7 @@ export default {
       showDetail: false,
       search: '',
       date: '',
-      reservaEscolhida: {}/*,
-      reserves: [
-        {
-          id: 1,
-          name: 'lab1'
-        },
-        {
-          id: 2,
-          name: 'lab2'
-        },
-        {
-          id: 3,
-          name: 'informatica'
-        },
-        {
-          id: 4,
-          name: 'monitoria'
-        }
-      ] */
+      reservaEscolhida: {}
     }
   },
   methods: {
@@ -196,8 +178,6 @@ export default {
     aprovar (reserve) {
       this.showApproved = true
       this.reservaEscolhida = reserve
-      console.log(typeof (this.reservaEscolhida.idReserva))
-      console.log('reserva escolhida = ' + this.reservaEscolhida.idReserva)
     }
   }
 

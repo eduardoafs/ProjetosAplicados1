@@ -79,6 +79,10 @@ export const ReserveService = {
   approveReserve (params) {
     return ApiService.update('reservas/aprovar/?id=' +
       params.id, params)
+  },
+  cancelReserve (params) {
+    return ApiService.update('reservas/cancelar/?id=' +
+      params.id, params)
   }
 }
 

@@ -46,8 +46,17 @@ export default {
     async approveReserve ({
       commit
     }, id) {
-      console.log('UPDATERESERVE')
+      console.log('APPROVERESERVE')
       const result = await ReserveService.approveReserve({
+        id
+      })
+      return result
+    },
+    async cancelReserve ({
+      commit
+    }, id) {
+      console.log('CANCELRESERVA')
+      const result = await ReserveService.cancelReserve({
         id
       })
       return result

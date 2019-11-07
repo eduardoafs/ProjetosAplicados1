@@ -32,7 +32,7 @@
                         <q-item-section>Editar reserva</q-item-section>
                       </q-item>
                       <q-item
-                        @click="showDetail = true"
+                        @click="confirmaExcluir(reserve.id)"
                         clickable
                         v-close-popup
                       >
@@ -45,7 +45,7 @@
               </q-item-section>
               <q-item-section>
                 {{reserve.espaco.espacoNome}} -
-                {{reserve.responsavel}} -
+                {{reserve.espaco.espacoResponsavel}} -
                 {{reserve.dataReservaInicio}}
               </q-item-section>
 
@@ -73,10 +73,12 @@
               <q-btn
                 label="cancelar"
                 color="red"
+                @click="showDetail = false"
               />
               <q-btn
                 label="confimar"
                 color="green"
+                @click="cancelarReserva()"
               />
             </div>
           </div>
@@ -103,11 +105,21 @@ export default {
     return {
       justificativa: '',
       showDetail: false,
-      search: ''
+      search: '',
+      reservaSelect: {}
     }
   },
   methods: {
-    ...mapActions(['getReservesApproved'])
+    ...mapActions(['getReservesApproved', 'cancelReserve']),
+    confirmaExcluir (id) {
+      this.showDetail = true
+      this.reservaSelect.idReserva = id
+    },
+    async cancelarReserva () {
+      await this.cancelReserve(this.reservaSelect.idReserva)
+      this.showDetail = false
+      this.getReservesApproved()
+    }
   }
 
 }
