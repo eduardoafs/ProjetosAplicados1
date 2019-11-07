@@ -30,23 +30,22 @@
             </div>
             <br />
             <div class="text-h7">Selecionar horários: </div>
-            <div class="row justify-around">
+            <div class="row q-pb-lg justify-around">
               <div class="row">
-                <q-input
-                  v-model="timeInit"
-                  mask="##:##"
-                  stack-label
+                <q-select
+                  class="component"
+                  v-model="startTime"
+                  :options="time1"
                   label="Hora - Início"
                 />
-                <br />
               </div>
 
               <div class="row">
-                <q-input
-                  v-model="timeEnd"
-                  mask="##:##"
-                  stack-label
-                  label="Hora - Término"
+                <q-select
+                  class="component"
+                  v-model="endTime"
+                  :options="time2"
+                  label="Hora - Fim"
                 />
               </div>
             </div>
@@ -143,6 +142,12 @@
   </q-page>
 </template>
 
+<style scoped>
+.component {
+  width: 190px;
+}
+</style>
+
 <script>
 export default {
   name: 'CurrentRecurrence',
@@ -172,6 +177,10 @@ export default {
     {
       name: 'Sala de Estudos'
     }],
+    startTime: null,
+    endTime: null,
+    time1: ['07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00'],
+    time2: ['07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00'],
     building: [{
       name: 'Prédio de Informática'
     }],
@@ -181,6 +190,3 @@ export default {
   })
 }
 </script>
-
-<style scoped>
-</style>

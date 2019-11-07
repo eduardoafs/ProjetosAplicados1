@@ -88,10 +88,10 @@
           />
         </div>
         <div class="col">
-          <q-input
+          <q-select
+            class="component"
             v-model="reserve.timeInit"
-            mask="##:##"
-            stack-label
+            :options="time1"
             label="Hora - Início"
           />
         </div>
@@ -104,11 +104,11 @@
           />
         </div>
         <div class="col">
-          <q-input
+          <q-select
+            class="component"
             v-model="reserve.timeEnd"
-            mask="##:##"
-            stack-label
-            label="Hora - Término"
+            :options="time2"
+            label="Hora - Fim"
           />
         </div>
       </div>
@@ -145,6 +145,9 @@
 .home {
   width: 60%;
 }
+.component {
+  width: 190px;
+}
 </style>
 
 <script>
@@ -171,7 +174,10 @@ export default {
     userSelected: 0,
     selectedSpaceId: 0,
     searchSpace: '',
-    seila: ''
+    seila: '', // Rever com o grupo
+    time1: ['07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00'],
+    time2: ['07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00']
+
   }),
   methods: {
     ...mapActions(['createReserve', 'getUsers']
