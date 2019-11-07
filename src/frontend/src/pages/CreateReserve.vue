@@ -21,7 +21,7 @@
                   :key="space.idEspaco"
                   clickable
                   v-ripple
-                  @click="selectedSpaceId = space.idEspaco"
+                  @click="selectSpace(space)"
                 >
                   <q-item-section>
                     {{space.espacoNome}}
@@ -58,13 +58,13 @@
                   :key="user.idUsuario"
                   clickable
                   v-ripple
-                  @click="userSelected = user.idUsuario"
+                  @click="selectUser(user)"
                 >
                   <q-item-section>
                     {{user.nome}}
                   </q-item-section>
                   <q-item-section
-                    v-if="user.idUsuario == userSelected"
+                    v-if="user.idUsuario == selectedUserId"
                     avatar
                   >
                     <q-icon
@@ -90,14 +90,14 @@
         <div class="col">
           <q-select
             class="component"
-            v-model="reserve.timeInit"
+            v-model="timeInit"
             :options="time1"
             label="Hora - Início"
           />
         </div>
         <div class="col">
           <q-input
-            v-model="reserve.dataEnd"
+            v-model="reserve.dataReservaFim"
             mask="##/##/####"
             stack-label
             label="Data - Término"
@@ -106,7 +106,7 @@
         <div class="col">
           <q-select
             class="component"
-            v-model="reserve.timeEnd"
+            v-model="timeEnd"
             :options="time2"
             label="Hora - Fim"
           />
@@ -115,7 +115,7 @@
       <div class="q-pa-md row">
         <div class="col-md-12">
           <q-input
-            v-model="reserve.justification"
+            v-model="justification"
             filled
             type="textarea"
             label="Justificativa"
@@ -168,14 +168,19 @@ export default {
     reserve: {
       dataReservaInicio: '',
       dataReservaFim: '',
-      horarios: [],
+      horarios: [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       espaco: {},
       usuario: {},
       aprovada: false,
       cancelada: false
     },
-    userSelected: 0,
+    justification: '',
+    timeInit: 0,
+    timeEnd: 0,
     selectedSpaceId: 0,
+    selectedSpace: {},
+    selectedUserId: 0,
+    selectedUser: {},
     searchSpace: '',
     seila: '', // Rever com o grupo
     time1: ['07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00'],
@@ -186,8 +191,19 @@ export default {
     ...mapActions(['createReserve', 'getUsers']
     ),
     save () {
+      this.reserve.espaco = this.selectedSpace
+      this.reserve.usuario = this.selectedUser
       this.createReserve(this.reserve)
+      console.log(this.reserve)
       this.reserve = {}
+    },
+    selectSpace (space) {
+      this.selectedSpaceId = space.idEspaco
+      this.selectedSpace = space
+    },
+    selectUser (user) {
+      this.selectedUserId = user.idUsuario
+      this.selectedUser = user
     }
 
   }
