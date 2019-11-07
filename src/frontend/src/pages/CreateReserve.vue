@@ -192,6 +192,7 @@ export default {
     ),
     save () {
       this.reserve.espaco = this.selectedSpace
+      this.selectedUser.perfis = [0]
       this.reserve.usuario = this.selectedUser
       this.createReserve(this.reserve)
       console.log(this.reserve)
