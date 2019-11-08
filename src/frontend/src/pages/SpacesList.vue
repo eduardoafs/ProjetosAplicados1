@@ -42,7 +42,8 @@
               <div class="q-gutter-sm">
                 <q-btn
                   color="secondary"
-                  label="Reservar"
+                  label="Reservarf"
+
                 />
                 <q-btn
                   color="primary"
