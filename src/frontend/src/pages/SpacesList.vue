@@ -52,6 +52,9 @@
                   color="white"
                   text-color="black"
                   label="Detalhes"
+                   @click="showDetail = true"
+                    clickable
+                    v-close-popup
                 />
               </div>
 
