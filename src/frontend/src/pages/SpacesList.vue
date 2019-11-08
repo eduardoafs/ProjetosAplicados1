@@ -29,6 +29,37 @@
         </div>
       </form>
       <br>
+
+<q-expansion-item
+          v-model="expanded"
+          icon="business"
+          v-for="space in spaces"
+          :key="space.id"
+          :label="space.espacoNome"
+        >
+          <q-card>
+            <q-card-section>
+              <div class="q-gutter-sm">
+                <q-btn
+                  color="secondary"
+                  label="Reservar"
+                />
+                <q-btn
+                  color="primary"
+                  label="Ver Disponibilidade"
+                />
+                <q-btn
+                  color="white"
+                  text-color="black"
+                  label="Detalhes"
+                />
+              </div>
+
+            </q-card-section>
+          </q-card>
+        </q-expansion-item>
+
+      <!--
       <q-list>
         <q-item
           v-for="space in spaces"
@@ -75,6 +106,8 @@
 
         </q-item>
       </q-list>
+
+      -->
     </div>
     <q-dialog v-model="showDetail">
       <q-card style="width: 700px; max-width: 80vw;">
@@ -122,10 +155,7 @@ export default {
       disponibilidade: '',
       computadores: '',
       setor: ''
-    },
-    building: [{
-      name: 'Prédio de Informática'
-    }]
+    }
   }),
   methods: {
     ...mapActions(['getSpaces'])
