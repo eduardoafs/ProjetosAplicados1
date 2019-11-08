@@ -42,12 +42,17 @@
               <div class="q-gutter-sm">
                 <q-btn
                   color="secondary"
-                  label="Reservarf"
-
+                  label="Reservar"
+                  @click="$router.push('/create-reserve')"
+                    clickable
+                    v-close-popup
                 />
                 <q-btn
                   color="primary"
                   label="Ver Disponibilidade"
+                  @click="$router.push('/view-availability')"
+                    clickable
+                    v-close-popup
                 />
                 <q-btn
                   color="white"

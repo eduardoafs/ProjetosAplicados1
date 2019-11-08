@@ -25,6 +25,7 @@
               label="Tipo de uso"
             />
             <q-input
+              v-if="space.espacoEspecial.value"
               v-model="space.justificativa"
               filled
               type="textarea"
@@ -83,7 +84,7 @@ export default {
         espacoNome: '',
         espacoDescricao: '',
         espacoLocalizacao: '',
-        espacoEspecial: null,
+        espacoEspecial: { label: 'normal', value: false },
         espacoResponsavel: ''
       }
 

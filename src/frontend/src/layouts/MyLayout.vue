@@ -47,11 +47,11 @@
             <q-item-label>{{item.label}}</q-item-label>
           </q-item-section>
         </q-item>
-        <q-expansion-item
+        <!--<q-expansion-item
           expand-separator
           icon="calendar_today"
           label="Reserva"
-        >
+        >-->
           <q-item
             v-for="item in reserves"
             :key="item.label"
@@ -65,7 +65,7 @@
               <q-item-label>{{item.label}}</q-item-label>
             </q-item-section>
           </q-item>
-        </q-expansion-item>
+       <!-- </q-expansion-item> -->
       </q-list>
     </q-drawer>
     <q-page-container>
@@ -99,19 +99,9 @@ export default {
       ],
       reserves: [
         {
-          label: 'Criar',
-          icon: 'today',
-          path: '/create-reserve'
-        },
-        {
           label: 'Reserva Recorrente',
           icon: 'date_range',
           path: '/current-recurrence'
-        },
-        {
-          label: 'Editar',
-          icon: 'edit',
-          path: '/edit-reserves'
         },
         {
           label: 'Processar Reservas',

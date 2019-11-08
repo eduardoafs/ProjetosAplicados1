@@ -69,11 +69,11 @@ export default {
 
 <style>
 .login {
-  background: rgb(75, 174, 255);
+  background: rgb(88, 180, 255);
   background: linear-gradient(
     210deg,
-    rgb(72, 162, 246) 0%,
-    rgb(82, 255, 232) 100%
+    rgb(106, 182, 253) 0%,
+    rgb(139, 222, 255) 100%
   );
 }
 </style>
