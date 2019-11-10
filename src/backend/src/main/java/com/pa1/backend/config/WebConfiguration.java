@@ -25,6 +25,7 @@ import org.springframework.web.servlet.config.annotation.*;
 
 import com.pa1.backend.security.JWTAuthenticationFilter;
 import com.pa1.backend.security.JWTUtil;
+import com.pa1.backend.security.JWTauthorizationFilter;
 
 import org.springframework.core.env.Environment;
 import java.util.Arrays;
@@ -82,6 +83,8 @@ public class WebConfiguration  extends WebSecurityConfigurerAdapter{
 			.antMatchers(PUBLIC_MATCHERS_H2).permitAll()
 			.anyRequest().authenticated();
 		http.addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtUtil));
+		http.addFilter(new JWTauthorizationFilter(authenticationManager(), jwtUtil, userDetailsService));
+
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 	}
 
