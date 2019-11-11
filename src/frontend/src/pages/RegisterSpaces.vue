@@ -103,7 +103,7 @@ export default {
         localizacao: '',
         nome: '',
         qtdPessoas: 0,
-        ramal: 0,
+        ramal: 4005,
         responsavel: ''
 
       }
