@@ -11,10 +11,11 @@
               label="Nome da sala"
             />
             <q-input
-              v-model="space.capacidade"
+              v-model="space.qtdPessoas"
               label="Capacidade"
               type="number"
             />
+
             <q-input
               v-model="space.localizacao"
               label="Local"
@@ -25,7 +26,7 @@
               label="Tipo de uso"
             />
             <q-input
-              v-if="space.especial.value == true"
+              v-if="space.especial == true"
               v-model="space.justificativa"
               filled
               type="textarea"
@@ -37,10 +38,20 @@
               v-model="space.responsavel"
               label="Responsável"
             />
+            <q-select
+              v-model="space.computadores"
+              :options="options2"
+              label="Computadores"
+            />
             <q-input
               v-model="space.ramal"
               label="Ramal/número"
               type="number"
+            />
+            <q-select
+              v-model="space.desabilitado"
+              :options="options2"
+              label="Desabilitado "
             />
             <q-input
               v-model="space.descricao"
@@ -78,16 +89,23 @@ export default {
       name: 'RegisterSpaces',
       optionEscolhida: '',
       options: [
-        { label: 'normal', value: false }, { label: 'restrito', value: true }
+        { label: 'Normal', value: false }, { label: 'Restrito', value: true }
+      ],
+      options2: [
+        { label: 'Não', value: false }, { label: 'Sim', value: true }
       ],
       space: {
-        mome: '',
+        computadores: { label: 'Não', value: false },
+        desabilitado: { label: 'Não', value: false },
         descricao: '',
-        localizacao: '',
-        especial: { label: 'normal', value: false },
-        responsavel: '',
+        especial: { label: 'Normal', value: false },
         justificativa: '',
-        desabilitado: false
+        localizacao: '',
+        nome: '',
+        qtdPessoas: 0,
+        ramal: 4005,
+        responsavel: ''
+
       }
 
     }

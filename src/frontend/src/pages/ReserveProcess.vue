@@ -33,7 +33,7 @@ getReservesPendences()
                         <q-item-section>Aprovar Reserva</q-item-section>
                       </q-item>
                       <q-item
-                        @click="negar(reserve)"
+                        @click="aprovar(reserve)"
                         clickable
                         v-close-popup
                       >
@@ -52,7 +52,7 @@ getReservesPendences()
               </q-item-section>
               <q-item-section>
                 {{reserve.espaco.nome}} -
-                {{reserve.id}}
+                {{reserve.responsavel}}
               </q-item-section>
             </q-item>
           </q-list>
@@ -106,7 +106,6 @@ getReservesPendences()
                 clickable
               />
               <q-btn
-                @click="cancelReservation()"
                 label="confirmar"
                 color="green"
                 clickable
@@ -167,7 +166,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getReservesPendences', 'approveReserve', 'cancelReserve']
+    ...mapActions(['getReservesPendences', 'approveReserve']
     ),
     async approveReservation () {
       await this.approveReserve(this.reservaEscolhida.id)
