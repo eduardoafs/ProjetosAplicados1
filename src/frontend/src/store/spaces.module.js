@@ -27,7 +27,7 @@ export default {
         const result = await SpaceService.create(space)
         return result
       } catch (error) {
-        console.log('Error ao criar reserva: ' + error)
+        console.log('Error ao criar espaco: ' + error)
       }
     }
   }

@@ -26,7 +26,7 @@ export default {
         const result = await ReserveService.create(reserve)
         return result
       } catch (error) {
-        console.log(error)
+        console.log('Error ao criar reserva: ' + error)
       }
     },
     async getReservesPendences ({
