@@ -24,7 +24,7 @@
                   @click="selectSpace(space)"
                 >
                   <q-item-section>
-                    {{space.espacoNome}}
+                    {{space.nome}}
                   </q-item-section>
                   <q-item-section
                     v-if="selectedSpaceId == space.idEspaco"

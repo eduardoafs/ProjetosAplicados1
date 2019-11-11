@@ -35,7 +35,7 @@
           icon="business"
           v-for="space in spaces"
           :key="space.id"
-          :label="space.espacoNome"
+          :label="space.nome"
         >
           <q-card>
             <q-card-section>
