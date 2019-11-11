@@ -170,9 +170,7 @@ export default {
     ...mapActions(['getReservesPendences', 'approveReserve', 'cancelReserve']
     ),
     async approveReservation () {
-      // const r = { ...this.reservaEscolhida }
-      // r.aprovada = true
-      await this.approveReserve(this.reservaEscolhida.idReserva)
+      await this.approveReserve(this.reservaEscolhida.id)
       this.showApproved = false
       this.getReservesPendences()
     },
@@ -185,6 +183,7 @@ export default {
       this.reservaEscolhida = reserve
     },
     async cancelReservation () {
+      this.reservaEscolhida.justificativa = this.justificativa
       await this.cancelReserve(this.reservaEscolhida.id)
       this.showDenied = false
       this.getReservesPendences()

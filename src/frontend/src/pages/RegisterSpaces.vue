@@ -96,7 +96,7 @@ export default {
     ...mapActions(['createSpace']
     ),
     async save () {
-      this.space.especial = false
+      // this.space.especial = false
       await this.createSpace(this.space)
       this.space = {}
     }
