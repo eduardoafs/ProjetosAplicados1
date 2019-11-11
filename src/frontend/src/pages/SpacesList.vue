@@ -22,9 +22,9 @@
       <br>
 
 <q-expansion-item
-          v-model="expanded"
           icon="business"
           v-for="space in spaces"
+          v-model="space.id"
           :key="space.id"
           :label="space.nome"
         >

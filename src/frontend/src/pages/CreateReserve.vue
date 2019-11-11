@@ -194,11 +194,20 @@ export default {
     async save () {
       let space = { ...this.selectedSpace }
       let user = { ...this.selectedUser }
-
       this.reserve.espaco = space
-      user.perfis = 1
+      space.id = space.id + 0
+      user.perfis = user.perfis.map((it) => {
+        switch (it) {
+          case 'FUNCIONARIO':
+            return 1
+          case 'ADMIN':
+            return 2
+          default:
+            return 3
+        }
+      })
+      console.log('valor do perfil do usuario: ' + user.perfis)
       this.reserve.usuario = user
-
       await this.createReserve(this.reserve)
       console.log('a reserva foi criada :' + this.reserve)
       this.reserve = {}
