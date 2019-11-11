@@ -61,6 +61,5 @@ export default {
       })
       return result
     }
-
   }
 }
