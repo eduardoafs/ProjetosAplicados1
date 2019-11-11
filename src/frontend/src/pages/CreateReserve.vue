@@ -115,7 +115,7 @@
       <div class="q-pa-md row">
         <div class="col-md-12">
           <q-input
-            v-model="justification"
+            v-model="reserve.justificativa"
             filled
             type="textarea"
             label="Justificativa"
@@ -154,7 +154,6 @@
 import { mapActions, mapState } from 'vuex'
 
 export default {
-  name: 'CreateReserve',
   created () {
     this.getUsers()
   },
@@ -169,7 +168,7 @@ export default {
       aprovada: false,
       cancelada: false,
       data: '',
-      diaSemana: [],
+      diaSemana: [0, 0, 0, 0, 0, 0, 1],
       espaco: {},
       horarios: [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       justificativa: '',
@@ -198,9 +197,9 @@ export default {
       space.id = space.id + 0
       user.perfis = user.perfis.map((it) => {
         switch (it) {
-          case 'FUNCIONARIO':
-            return 1
           case 'ADMIN':
+            return 1
+          case 'FUNCIONARIO':
             return 2
           default:
             return 3
@@ -209,7 +208,6 @@ export default {
       console.log('valor do perfil do usuario: ' + user.perfis)
       this.reserve.usuario = user
       await this.createReserve(this.reserve)
-      console.log('a reserva foi criada :' + this.reserve)
       this.reserve = {}
     },
     selectSpace (space) {

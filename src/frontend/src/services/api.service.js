@@ -62,6 +62,7 @@ export const ReserveService = {
     return ApiService.get('reservas', id)
   },
   create (params) {
+    console.log('reserva = ' + params)
     return ApiService.post('reservas', params)
   },
   update (id, params) {
