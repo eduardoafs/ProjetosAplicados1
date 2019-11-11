@@ -50,7 +50,7 @@
             />
             <q-select
               v-model="space.desabilitado"
-              :options="options2"
+              :options="options3"
               label="Desabilitado "
             />
             <q-input
@@ -94,16 +94,19 @@ export default {
       options2: [
         { label: 'Não', value: false }, { label: 'Sim', value: true }
       ],
+      options3: [
+        { label: 'Não', value: false }, { label: 'Sim', value: true }
+      ],
       space: {
-        computadores: { label: 'Não', value: false },
-        desabilitado: { label: 'Não', value: false },
+        computadores: true,
+        desabilitado: true,
         descricao: '',
-        especial: { label: 'Normal', value: false },
+        especial: true,
         justificativa: '',
         localizacao: '',
         nome: '',
         qtdPessoas: 0,
-        ramal: 4005,
+        ramal: 0,
         responsavel: ''
 
       }
@@ -114,7 +117,9 @@ export default {
     ...mapActions(['createSpace']
     ),
     async save () {
-      // this.space.especial = false
+      this.space.especial = this.options.value
+      this.space.computadores = this.options2.value
+      this.space.desabilitado = this.options3.value
       await this.createSpace(this.space)
       this.space = {}
     }
