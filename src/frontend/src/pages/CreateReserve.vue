@@ -18,7 +18,7 @@
               <q-list separator>
                 <q-item
                   v-for="space in spaces"
-                  :key="space.idEspaco"
+                  :key="space.id"
                   clickable
                   v-ripple
                   @click="selectSpace(space)"
@@ -27,7 +27,7 @@
                     {{space.nome}}
                   </q-item-section>
                   <q-item-section
-                    v-if="selectedSpaceId == space.idEspaco"
+                    v-if="selectedSpaceId == space.id"
                     avatar
                   >
                     <q-icon
@@ -44,7 +44,7 @@
         <div class="col">
           <q-card>
             <q-card-section class="bg-primary text-white">
-              <div class="text-h6">Resposável</div>
+              <div class="text-h6">Responsável</div>
             </q-card-section>
             <q-card-section>
               <q-input
@@ -81,7 +81,7 @@
       <div class="q-pa-md q-gutter-md row items-start">
         <div class="col">
           <q-input
-            v-model="reserve.dataReservaInicio"
+            v-model="reserve.data"
             mask="##/##/####"
             stack-label
             label="Data - Início"
@@ -166,13 +166,14 @@ export default {
   },
   data: () => ({
     reserve: {
-      dataReservaInicio: '',
-      dataReservaFim: '',
-      horarios: [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      espaco: {},
-      usuario: {},
       aprovada: false,
-      cancelada: false
+      cancelada: false,
+      data: '',
+      diaSemana: [],
+      espaco: {},
+      horarios: [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      justificativa: '',
+      usuario: {}
     },
     justification: '',
     timeInit: 0,
@@ -203,7 +204,7 @@ export default {
       this.reserve = {}
     },
     selectSpace (space) {
-      this.selectedSpaceId = space.idEspaco
+      this.selectedSpaceId = space.id
       this.selectedSpace = space
     },
     selectUser (user) {

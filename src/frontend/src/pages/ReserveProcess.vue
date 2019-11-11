@@ -51,8 +51,8 @@ getReservesPendences()
                 </q-btn>
               </q-item-section>
               <q-item-section>
-                {{reserve.espaco.espacoNome}}-
-                {{reserve.id}}
+                {{reserve.espaco.nome}} -
+                {{reserve.responsavel}}
               </q-item-section>
             </q-item>
           </q-list>
@@ -171,7 +171,7 @@ export default {
     async approveReservation () {
       // const r = { ...this.reservaEscolhida }
       // r.aprovada = true
-      await this.approveReserve(this.reservaEscolhida.idReserva)
+      await this.approveReserve(this.reservaEscolhida.id)
       this.showApproved = false
       this.getReservesPendences()
     },

@@ -9,18 +9,8 @@
             :options="['30 Pessoas', '40 Pessoas', '50 Pessoas']"
             label="Pessoas"
           />
-          <q-select
-            v-model="filters.disponibilidade"
-            :options="['Disponível', 'Ocupado', 'Fechado']"
-            label="Disponibilidade"
-          />
         </div>
         <div class="col">
-          <q-select
-            v-model="filters.setor"
-            :options="['Informatica', 'Graduação']"
-            label="Setor"
-          />
           <q-select
             v-model="filters.computadores"
             :options="['Sim', 'Não']"
@@ -28,6 +18,7 @@
           />
         </div>
       </form>
+      <br>
       <br>
 
 <q-expansion-item

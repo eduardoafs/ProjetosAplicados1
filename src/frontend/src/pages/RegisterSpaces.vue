@@ -7,7 +7,7 @@
         <div class="q-pa-md row q-gutter-md">
           <div class="col">
             <q-input
-              v-model="space.espacoNome"
+              v-model="space.nome"
               label="Nome da sala"
             />
             <q-input
@@ -16,16 +16,16 @@
               type="number"
             />
             <q-input
-              v-model="space.espacoLocalizacao"
+              v-model="space.localizacao"
               label="Local"
             />
             <q-select
-              v-model="space.espacoEspecial"
+              v-model="space.especial"
               :options="options"
               label="Tipo de uso"
             />
             <q-input
-              v-if="space.espacoEspecial.value"
+              v-if="space.especial.value == true"
               v-model="space.justificativa"
               filled
               type="textarea"
@@ -34,7 +34,7 @@
           </div>
           <div class="col">
             <q-input
-              v-model="space.espacoResponsavel"
+              v-model="space.responsavel"
               label="Responsável"
             />
             <q-input
@@ -43,7 +43,7 @@
               type="number"
             />
             <q-input
-              v-model="space.espacoDescricao"
+              v-model="space.descricao"
               type="textarea"
               label="Descrição"
             />
@@ -81,11 +81,13 @@ export default {
         { label: 'normal', value: false }, { label: 'restrito', value: true }
       ],
       space: {
-        espacoNome: '',
-        espacoDescricao: '',
-        espacoLocalizacao: '',
-        espacoEspecial: { label: 'normal', value: false },
-        espacoResponsavel: ''
+        mome: '',
+        descricao: '',
+        localizacao: '',
+        especial: { label: 'normal', value: false },
+        responsavel: '',
+        justificativa: '',
+        desabilitado: false
       }
 
     }
@@ -94,7 +96,7 @@ export default {
     ...mapActions(['createSpace']
     ),
     async save () {
-      this.space.espacoEspecial = false
+      this.space.especial = false
       await this.createSpace(this.space)
       this.space = {}
     }
