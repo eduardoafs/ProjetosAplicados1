@@ -82,7 +82,7 @@
         <div class="col">
           <q-input
             v-model="reserve.data"
-            mask="##/##/####"
+            mask="##-##-####"
             stack-label
             label="Data - Início"
           />
