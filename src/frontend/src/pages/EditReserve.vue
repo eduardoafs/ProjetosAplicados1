@@ -112,11 +112,12 @@ export default {
   methods: {
     ...mapActions(['getReservesApproved', 'cancelReserve']),
     confirmaExcluir (reserva) {
+      this.reservaSelect = { ...reserva }
+      this.reservaSelect.justificativa = this.justificativa
       this.showDetail = true
-      this.reservaSelect = reserva
     },
     async cancelarReserva () {
-      await this.cancelReserve(this.reservaSelect.id)
+      await this.cancelReserve(this.reservaSelect)
       this.showDetail = false
       this.getReservesApproved()
     }

@@ -83,7 +83,7 @@ export const ReserveService = {
   },
   cancelReserve (params) {
     return ApiService.update('reservas/cancelar/?id=' +
-      params.id, params)
+      params.id + '&justificativa=' + params.justificativa, params)
   }
 }
 

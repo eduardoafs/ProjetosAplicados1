@@ -54,11 +54,11 @@ export default {
     },
     async cancelReserve ({
       commit
-    }, id) {
+    }, reserve) {
       console.log('CANCELRESERVA')
-      const result = await ReserveService.cancelReserve({
-        id
-      })
+      const result = await ReserveService.cancelReserve(
+        reserve
+      )
       return result
     }
 
