@@ -1,24 +1,37 @@
 package com.pa1.backend.dto;
 
-import java.io.Serializable;
-import java.util.Date;
-
 import com.pa1.backend.domain.Espaco;
 import com.pa1.backend.domain.Usuario;
+import java.io.Serializable;
 
 public class ReservaDTO  implements Serializable{
+
 	private static final long serialVersionUID = 1L;
 
 	private Integer id;
-	private Date dataReservaInicio;
-	private Date dataReservaFim;
+	private String data;
+	private String justificativa;
 	private Integer horarios[] = new Integer[16];
-	private Usuario usuario;
-	
+	private Integer diaSemana[] = new Integer[7];
+	private Boolean aprovada;
+	private Boolean cancelada;
 	private Espaco espaco;
+	private Usuario usuario;
 
 	public ReservaDTO() {
 		
+	}
+
+	public ReservaDTO(Integer id, String data, String justificativa, Integer[] horarios, Integer[] diaSemana, Boolean aprovada, Boolean cancelada, Espaco espaco, Usuario usuario) {
+		this.id = id;
+		this.data = data;
+		this.justificativa = justificativa;
+		this.horarios = horarios;
+		this.diaSemana = diaSemana;
+		this.aprovada = aprovada;
+		this.cancelada = cancelada;
+		this.espaco = espaco;
+		this.usuario = usuario;
 	}
 
 	public Integer getId() {
@@ -29,20 +42,20 @@ public class ReservaDTO  implements Serializable{
 		this.id = id;
 	}
 
-	public Date getDataReservaInicio() {
-		return dataReservaInicio;
+	public String getData() {
+		return data;
 	}
 
-	public void setDataReservaInicio(Date dataReservaInicio) {
-		this.dataReservaInicio = dataReservaInicio;
+	public void setData(String data) {
+		this.data = data;
 	}
 
-	public Date getDataReservaFim() {
-		return dataReservaFim;
+	public String getJustificativa() {
+		return justificativa;
 	}
 
-	public void setDataReservaFim(Date dataReservaFim) {
-		this.dataReservaFim = dataReservaFim;
+	public void setJustificativa(String justificativa) {
+		this.justificativa = justificativa;
 	}
 
 	public Integer[] getHorarios() {
@@ -53,14 +66,28 @@ public class ReservaDTO  implements Serializable{
 		this.horarios = horarios;
 	}
 
-	
-
-	public Usuario getUsuario() {
-		return usuario;
+	public Integer[] getDiaSemana() {
+		return diaSemana;
 	}
 
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
+	public void setDiaSemana(Integer[] diaSemana) {
+		this.diaSemana = diaSemana;
+	}
+
+	public Boolean getAprovada() {
+		return aprovada;
+	}
+
+	public void setAprovada(Boolean aprovada) {
+		this.aprovada = aprovada;
+	}
+
+	public Boolean getCancelada() {
+		return cancelada;
+	}
+
+	public void setCancelada(Boolean cancelada) {
+		this.cancelada = cancelada;
 	}
 
 	public Espaco getEspaco() {
@@ -69,6 +96,14 @@ public class ReservaDTO  implements Serializable{
 
 	public void setEspaco(Espaco espaco) {
 		this.espaco = espaco;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 }

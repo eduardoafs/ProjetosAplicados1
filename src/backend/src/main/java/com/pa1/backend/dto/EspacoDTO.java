@@ -3,65 +3,116 @@ package com.pa1.backend.dto;
 import java.io.Serializable;
 
 public class EspacoDTO implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
-    private String espacoNome;
-    private String espacoDescricao;
-    private String espacoLocalizacao;
-    private boolean espacoEspecial;
-    private String espacoResponsavel;
-    private boolean espacoDesabilitado;
+    private String nome;
+    private String descricao;
+    private String localizacao;
+    private String responsavel;
+    private boolean especial;
+    private String justificativa;
+    private boolean desabilitado;
+    private boolean computadores;
+    private Integer qtdPessoas;
+    private Integer ramal;
+
 
     public EspacoDTO() {
 
     }
 
-    public String getEspacoNome() {
-        return espacoNome;
+    public EspacoDTO(String nome, String descricao, String localizacao, String responsavel, boolean especial, String justificativa, boolean desabilitado, boolean computadores, Integer qtdPessoas, Integer ramal) {
+        this.nome = nome;
+        this.descricao = descricao;
+        this.localizacao = localizacao;
+        this.responsavel = responsavel;
+        this.especial = especial;
+        this.justificativa = justificativa;
+        this.desabilitado = desabilitado;
+        this.computadores = computadores;
+        this.qtdPessoas = qtdPessoas;
+        this.ramal = ramal;
     }
 
-    public void setEspacoNome(String espacoNome) {
-        this.espacoNome = espacoNome;
+    public String getJustificativa() {
+        return justificativa;
     }
 
-    public String getEspacoDescricao() {
-        return espacoDescricao;
+    public void setJustificativa(String justificativa) {
+        this.justificativa = justificativa;
     }
 
-    public void setEspacoDescricao(String espacoDescricao) {
-        this.espacoDescricao = espacoDescricao;
+    public boolean isComputadores() {
+        return computadores;
     }
 
-    public String getEspacoLocalizacao() {
-        return espacoLocalizacao;
+    public void setComputadores(boolean computadores) {
+        this.computadores = computadores;
     }
 
-    public void setEspacoLocalizacao(String espacoLocalizacao) {
-        this.espacoLocalizacao = espacoLocalizacao;
+    public Integer getQtdPessoas() {
+        return qtdPessoas;
     }
 
-    public boolean isEspacoEspecial() {
-        return espacoEspecial;
+    public void setQtdPessoas(Integer qtdPessoas) {
+        this.qtdPessoas = qtdPessoas;
     }
 
-    public void setEspacoEspecial(boolean espacoEspecial) {
-        this.espacoEspecial = espacoEspecial;
+    public Integer getRamal() {
+        return ramal;
     }
 
-    public String getEspacoResponsavel() {
-        return espacoResponsavel;
+    public void setRamal(Integer ramal) {
+        this.ramal = ramal;
     }
 
-    public void setEspacoResponsavel(String espacoResponsavel) {
-        this.espacoResponsavel = espacoResponsavel;
+    public String getNome() {
+        return nome;
     }
 
-    public boolean isEspacoDesabilitado() {
-        return espacoDesabilitado;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public void setEspacoDesabilitado(boolean espacoDesabilitado) {
-        this.espacoDesabilitado = espacoDesabilitado;
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public String getLocalizacao() {
+        return localizacao;
+    }
+
+    public void setLocalizacao(String localizacao) {
+        this.localizacao = localizacao;
+    }
+
+    public String getResponsavel() {
+        return responsavel;
+    }
+
+    public void setResponsavel(String responsavel) {
+        this.responsavel = responsavel;
+    }
+
+    public boolean isEspecial() {
+        return especial;
+    }
+
+    public void setEspecial(boolean especial) {
+        this.especial = especial;
+    }
+
+    public boolean isDesabilitado() {
+        return desabilitado;
+    }
+
+    public void setDesabilitado(boolean desabilitado) {
+        this.desabilitado = desabilitado;
     }
 
 }

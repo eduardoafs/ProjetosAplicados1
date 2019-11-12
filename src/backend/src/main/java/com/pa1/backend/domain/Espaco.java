@@ -1,119 +1,141 @@
 package com.pa1.backend.domain;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-//implementando a interface serializable( os objetos sao convertidos em uma sequencia de bytes) pra ser gravados em arquivos, trafegar em rede...
 @Entity
 public class Espaco implements Serializable {
+
 	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer idEspaco;
-	private String espacoNome;
-	private String espacoDescricao;
-    private String espacoLocalizacao;
-    private boolean espacoEspecial;
-    private String espacoResponsavel;
-    private boolean espacoDesabilitado;
-    
+	private Integer id;
+	private String nome;
+	private String descricao;
+	private String localizacao;
+	private String responsavel;
+	private boolean especial;
+	private String justificativa;
+	private boolean desabilitado;
+	private boolean computadores;
+	private Integer qtdPessoas;
+	private Integer ramal;
+
 	@JsonBackReference
-    @OneToMany(mappedBy = "espaco")
-    private List<Reserva> reservas = new ArrayList<>();
-   
-    
-    public Espaco() {}
+	@OneToMany(mappedBy = "espaco")
+	private List<Reserva> reservas = new ArrayList<>();
 
-	public Espaco(Integer idEspaco, String espacoNome, String espacoDescricao, String espacoLocalizacao,
-			boolean espacoEspecial, String espacoResponsavel, boolean espacoDesabilitado) {
+	public Espaco() {
+
+	}
+
+	public Espaco(Integer id, String nome, String descricao, String localizacao, String responsavel, boolean especial, String justificativa, boolean desabilitado, boolean computadores, Integer qtdPessoas, Integer ramal) {
 		super();
-		this.idEspaco = idEspaco;
-		this.espacoNome = espacoNome;
-		this.espacoDescricao = espacoDescricao;
-		this.espacoLocalizacao = espacoLocalizacao;
-		this.espacoEspecial = espacoEspecial;
-		this.espacoResponsavel = espacoResponsavel;
-		this.espacoDesabilitado = espacoDesabilitado;
+		this.id = id;
+		this.nome = nome;
+		this.descricao = descricao;
+		this.localizacao = localizacao;
+		this.responsavel = responsavel;
+		this.especial = especial;
+		this.justificativa = justificativa;
+		this.desabilitado = desabilitado;
+		this.computadores = computadores;
+		this.qtdPessoas = qtdPessoas;
+		this.ramal = ramal;
 	}
 
-	public Espaco(String espacoNome, String espacoDescricao, String espacoLocalizacao, boolean espacoEspecial,
-			String espacoResponsavel, boolean espacoDesabilitado, List<Reserva> reservas) {
-		super();
-		this.espacoNome = espacoNome;
-		this.espacoDescricao = espacoDescricao;
-		this.espacoLocalizacao = espacoLocalizacao;
-		this.espacoEspecial = espacoEspecial;
-		this.espacoResponsavel = espacoResponsavel;
-		this.espacoDesabilitado = espacoDesabilitado;
-		this.reservas = reservas;
+	public String getJustificativa() {
+		return justificativa;
 	}
 
-	public Integer getIdEspaco() {
-		return idEspaco;
+	public void setJustificativa(String justificativa) {
+		this.justificativa = justificativa;
 	}
 
-	public void setIdEspaco(Integer idEspaco) {
-		this.idEspaco = idEspaco;
+	public boolean isComputadores() {
+		return computadores;
 	}
 
-	public String getEspacoNome() {
-		return espacoNome;
+	public void setComputadores(boolean computadores) {
+		this.computadores = computadores;
 	}
 
-	public void setEspacoNome(String espacoNome) {
-		this.espacoNome = espacoNome;
+	public Integer getQtdPessoas() {
+		return qtdPessoas;
 	}
 
-	public String getEspacoDescricao() {
-		return espacoDescricao;
+	public void setQtdPessoas(Integer qtdPessoas) {
+		this.qtdPessoas = qtdPessoas;
 	}
 
-	public void setEspacoDescricao(String espacoDescricao) {
-		this.espacoDescricao = espacoDescricao;
+	public Integer getRamal() {
+		return ramal;
 	}
 
-	public String getEspacoLocalizacao() {
-		return espacoLocalizacao;
+	public void setRamal(Integer ramal) {
+		this.ramal = ramal;
 	}
 
-	public void setEspacoLocalizacao(String espacoLocalizacao) {
-		this.espacoLocalizacao = espacoLocalizacao;
+	public Integer getId() {
+		return id;
 	}
 
-	public boolean isEspacoEsopecial() {
-		return espacoEspecial;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
-	public void setEspacoEsopecial(boolean espacoEsopecial) {
-		this.espacoEspecial = espacoEsopecial;
+	public String getNome() {
+		return nome;
 	}
 
-	public String getEspacoResponsavel() {
-		return espacoResponsavel;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
-	public void setEspacoResponsavel(String espacoResponsavel) {
-		this.espacoResponsavel = espacoResponsavel;
+	public String getDescricao() {
+		return descricao;
 	}
 
-	public boolean isEspacoDesabilitado() {
-		return espacoDesabilitado;
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 
-	public void setEspacoDesabilitado(boolean espacoDesabilitado) {
-		this.espacoDesabilitado = espacoDesabilitado;
+	public String getLocalizacao() {
+		return localizacao;
 	}
 
-	
-	
+	public void setLocalizacao(String localizacao) {
+		this.localizacao = localizacao;
+	}
+
+	public String getResponsavel() {
+		return responsavel;
+	}
+
+	public void setResponsavel(String responsavel) {
+		this.responsavel = responsavel;
+	}
+
+	public boolean isEspecial() {
+		return especial;
+	}
+
+	public void setEspecial(boolean especial) {
+		this.especial = especial;
+	}
+
+	public boolean isDesabilitado() {
+		return desabilitado;
+	}
+
+	public void setDesabilitado(boolean desabilitado) {
+		this.desabilitado = desabilitado;
+	}
+
 	public List<Reserva> getReservas() {
 		return reservas;
 	}
@@ -122,19 +144,11 @@ public class Espaco implements Serializable {
 		this.reservas = reservas;
 	}
 
-	public boolean isEspacoEspecial() {
-		return espacoEspecial;
-	}
-
-	public void setEspacoEspecial(boolean espacoEspecial) {
-		this.espacoEspecial = espacoEspecial;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((idEspaco == null) ? 0 : idEspaco.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
 
@@ -147,17 +161,12 @@ public class Espaco implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Espaco other = (Espaco) obj;
-		if (idEspaco == null) {
-			if (other.idEspaco != null)
+		if (id == null) {
+			if (other.id != null)
 				return false;
-		} else if (!idEspaco.equals(other.idEspaco))
+		} else if (!id.equals(other.id))
 			return false;
 		return true;
 	}
-
-	
-    //Para que os objetos seram comparados pelos seus conteudos (nao pelos ponteiros de memoria) tem que implementar os metodos hash e equals
-	
-    
 
 }
