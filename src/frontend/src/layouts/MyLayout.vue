@@ -107,6 +107,11 @@ export default {
           label: 'Processar Reservas',
           icon: 'done_outline',
           path: '/process-reserves'
+        },
+        {
+          label: 'Editar Reservas',
+          icon: 'done_outline',
+          path: '/edit-reserves'
         }
       ]
     }
