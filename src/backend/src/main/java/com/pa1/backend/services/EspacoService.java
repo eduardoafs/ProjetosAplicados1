@@ -20,7 +20,11 @@ public class EspacoService {
 				objDto.getLocalizacao(),
 				objDto.getResponsavel(),
 				objDto.isEspecial(),
-				objDto.isDesabilitado()
+				objDto.getJustificativa(),
+				objDto.isDesabilitado(),
+				objDto.isComputadores(),
+				objDto.getQtdPessoas(),
+				objDto.getRamal()
 		);
 		return e;
 	}
@@ -53,6 +57,14 @@ public class EspacoService {
 
 	public List<Espaco> findByLocalizacao(String local){
 		return repo.findByLocalizacao(local);
+	}
+
+	public List<Espaco> findByComputadores() {
+		return repo.findByComputadores();
+	}
+
+	public List<Espaco> findByNComputadores() {
+		return repo.findByNComputadores();
 	}
 
 }
