@@ -44,9 +44,9 @@
                 </q-btn>
               </q-item-section>
               <q-item-section>
-                {{reserve.espaco.espacoNome}} -
-                {{reserve.espaco.espacoResponsavel}} -
-                {{reserve.dataReservaInicio}}
+                {{reserve.espaco.nome}} -
+                {{reserve.espaco.responsavel}} -
+                {{reserve.data}}
               </q-item-section>
 
             </q-item>
@@ -112,11 +112,12 @@ export default {
   methods: {
     ...mapActions(['getReservesApproved', 'cancelReserve']),
     confirmaExcluir (reserva) {
+      this.reservaSelect = { ...reserva }
+      this.reservaSelect.justificativa = this.justificativa
       this.showDetail = true
-      this.reservaSelect = reserva
     },
     async cancelarReserva () {
-      await this.cancelReserve(this.reservaSelect.idReserva)
+      await this.cancelReserve(this.reservaSelect)
       this.showDetail = false
       this.getReservesApproved()
     }

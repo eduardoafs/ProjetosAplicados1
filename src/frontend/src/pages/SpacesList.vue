@@ -21,43 +21,43 @@
       <br>
       <br>
 
-<q-expansion-item
-          icon="business"
-          v-for="space in spaces"
-          v-model="space.id"
-          :key="space.id"
-          :label="space.nome"
-        >
-          <q-card>
-            <q-card-section>
-              <div class="q-gutter-sm">
-                <q-btn
-                  color="secondary"
-                  label="Reservar"
-                  @click="$router.push('/create-reserve')"
-                    clickable
-                    v-close-popup
-                />
-                <q-btn
-                  color="primary"
-                  label="Ver Disponibilidade"
-                  @click="$router.push('/view-availability')"
-                    clickable
-                    v-close-popup
-                />
-                <q-btn
-                  color="white"
-                  text-color="black"
-                  label="Detalhes"
-                   @click="showDetail = true"
-                    clickable
-                    v-close-popup
-                />
-              </div>
+      <q-expansion-item
+        icon="business"
+        v-for="space in spaces"
+        v-model="space.id"
+        :key="space.id"
+        :label="space.nome"
+      >
+        <q-card>
+          <q-card-section>
+            <div class="q-gutter-sm">
+              <q-btn
+                color="secondary"
+                label="Reservar"
+                @click="$router.push('/create-reserve')"
+                clickable
+                v-close-popup
+              />
+              <q-btn
+                color="primary"
+                label="Ver Disponibilidade"
+                @click="$router.push('/view-availability')"
+                clickable
+                v-close-popup
+              />
+              <q-btn
+                color="white"
+                text-color="black"
+                label="Detalhes"
+                @click="showDetail = true, atual = space"
+                clickable
+                v-close-popup
+              />
+            </div>
 
-            </q-card-section>
-          </q-card>
-        </q-expansion-item>
+          </q-card-section>
+        </q-card>
+      </q-expansion-item>
 
       <!--
       <q-list>
@@ -119,10 +119,11 @@
             />
             <div class="q-pa-md">
               <p>
-                <b>Capacidade:</b> 50 <br>
-                <b>Projetores:</b> 0 <br>
-                <b>Computadores:</b> 0 <br>
-                <b>Disponibilidade:</b> Conferir calendário <br>
+                <b>Capacidade: </b> {{atual.qtdPessoas}} <br>
+                <b>Descrição: </b> {{atual.descricao}} <br>
+                <b>Computadores: </b><span v-if="atual.computadores"> Sim </span>
+                <span v-esle> Não </span><br />
+                <b>Responsável: </b> {{atual.responsavel}} <br>
               </p>
             </div>
           </div>
@@ -150,6 +151,7 @@ export default {
   data: () => ({
     showDetail: false,
     date: null,
+    atual: {},
     filters: {
       pessoas: '',
       disponibilidade: '',

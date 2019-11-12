@@ -3,49 +3,68 @@ package com.pa1.backend.services;
 import com.pa1.backend.dto.EspacoDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.pa1.backend.domain.Espaco;
 import com.pa1.backend.repositories.EspacoRepository;
-
 import java.util.List;
 
 @Service
 public class EspacoService {
-	@Autowired //vai ser instanciado autmatico
+
+	@Autowired
 	private EspacoRepository repo;
 
-	//listar espacos
-	public List<Espaco> findAll() {
-		return repo.findAll();
+	public Espaco fromDTO(EspacoDTO objDto) {
+		Espaco e = new Espaco(null,
+				objDto.getNome(),
+				objDto.getDescricao(),
+				objDto.getLocalizacao(),
+				objDto.getResponsavel(),
+				objDto.isEspecial(),
+				objDto.getJustificativa(),
+				objDto.isDesabilitado(),
+				objDto.isComputadores(),
+				objDto.getQtdPessoas(),
+				objDto.getRamal()
+		);
+		return e;
 	}
 
-	//uma operacao q buscar um  espaco por codigo
-	public Espaco buscar(Integer id) {
-		Espaco obj = repo.findOne(id);
-		return obj;
+	public Espaco insert(Espaco obj) {
+		obj.setId(null);
+		return repo.save(obj);
 	}
 
-	//mudar especial de espaco
 	public Espaco update(Espaco obj) {
 		return repo.save(obj);
 	}
 
-	//cadastrar espaco
-	public Espaco insert(Espaco obj) {
-		obj.setIdEspaco(null);
-		return repo.save(obj);
+	public Espaco buscar(Espaco e) {
+		Espaco obj = repo.findOne(e.getId());
+		return obj;
 	}
 
-	//Obj DTO de Espaco
-	public Espaco fromDTO(EspacoDTO objDto) {
-		Espaco e = new Espaco(null,objDto.getEspacoNome(),objDto.getEspacoDescricao(),
-				objDto.getEspacoLocalizacao(),objDto.isEspacoEspecial(),objDto.getEspacoResponsavel(),objDto.isEspacoDesabilitado());
-		return e;
+	public List<Espaco> findAll() {
+		return repo.findAll();
 	}
 
-	//busca localizacao
+	public List<Espaco> findByHabilitado() {
+		return repo.findByHabilitado();
+	}
+
+	public List<Espaco> findByDesabilitado() {
+		return repo.findByDesabilitado();
+	}
+
 	public List<Espaco> findByLocalizacao(String local){
 		return repo.findByLocalizacao(local);
+	}
+
+	public List<Espaco> findByComputadores() {
+		return repo.findByComputadores();
+	}
+
+	public List<Espaco> findByNComputadores() {
+		return repo.findByNComputadores();
 	}
 
 }
