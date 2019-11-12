@@ -1,11 +1,13 @@
 package com.pa1.backend.services;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-
+import com.pa1.backend.resources.EspacoResouce;
+import com.pa1.backend.resources.UsuarioResouce;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.pa1.backend.domain.Espaco;
 import com.pa1.backend.domain.Reserva;
 import com.pa1.backend.dto.ReservaDTO;
@@ -17,21 +19,30 @@ public class ReservaService {
 	@Autowired
 	private ReservaRepository repo;
 
-	public Reserva fromDTO(ReservaDTO objDto) {
+	@Autowired
+	private UsuarioResouce uso;
+
+	@Autowired
+	private EspacoResouce espaco;
+
+	SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+
+	public Reserva fromDTO(ReservaDTO objDto) throws ParseException {
 		Reserva r1 = new Reserva(null,
-				objDto.getDataReservaInicio(),
-				objDto.getDataReservaFim(),
+				sdf.parse(objDto.getData()),
+				objDto.getJustificativa(),
 				objDto.getHorarios(),
-				objDto.getEspaco(),
-				objDto.getUsuario(),
+				objDto.getDiaSemana(),
 				objDto.getAprovada(),
-				objDto.getCancelada()
+				objDto.getCancelada(),
+				espaco.findByIdTeste(objDto.getEspaco()),
+				uso.findByIdTeste(objDto.getUsuario())
 		);
 		return r1;
 	}
 
 	public Reserva insert(Reserva obj) {
-		obj.setIdReserva(null);
+		obj.setId(null);
 		return repo.save(obj);
 	}
 
@@ -54,6 +65,10 @@ public class ReservaService {
 	public Reserva buscar(Integer id) {
 		Reserva obj = repo.findOne(id);
 		return obj;
+	}
+
+	public List<Reserva> findByCanceladas(){
+		return repo.findByCanceladas();
 	}
 
 	public List<Reserva> findByAprovadas(){
