@@ -175,27 +175,28 @@ export default {
     ...mapActions(['reservesByDate']),
     filter (date) {
       console.log(date)
+      let dataNova = this.stringToDate('11/11/2001', 'dd/MM/yyyy', '/')
+      console.log(dataNova)
+      /*
       console.log('antes = ' + date)
       let dataFormat = this.dataFormatada(date)
       console.log('depois = ' + dataFormat)
       date = dataFormat.replace('/', '-').replace('/', '-')
       console.log('vai mandar no formato: ' + date)
       let reservas = this.reservesByDate(date)
-      console.log(reservas)
+      console.log(reservas) */
     },
-    dataFormatada (date) {
-      var data = new Date(date)
-      var dia = data.getDate()
-      if (dia.toString().length === 1) {
-        dia = '0' + dia
-      }
-      var mes = data.getMonth() + 1
-      if (mes.toString().length === 1) {
-        mes = '0' + mes
-      }
-      var ano = data.getFullYear()
-
-      return dia + '/' + mes + '/' + ano
+    stringToDate (_date, _format, _delimiter) {
+      var formatLowerCase = _format.toLowerCase()
+      var formatItems = formatLowerCase.split(_delimiter)
+      var dateItems = _date.split(_delimiter)
+      var monthIndex = formatItems.indexOf('mm')
+      var dayIndex = formatItems.indexOf('dd')
+      var yearIndex = formatItems.indexOf('yyyy')
+      var month = parseInt(dateItems[monthIndex])
+      month -= 1
+      var formatedDate = new Date(dateItems[yearIndex], month, dateItems[dayIndex])
+      return formatedDate
     }
   }
 }
