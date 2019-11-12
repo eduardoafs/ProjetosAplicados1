@@ -175,11 +175,31 @@ export default {
     ...mapActions(['reservesByDate']),
     filter (date) {
       console.log(date)
+      console.log('antes = ' + date)
+      let dataFormat = this.dataFormatada(date)
+      console.log('depois = ' + dataFormat)
+      date = dataFormat.replace('/', '-').replace('/', '-')
+      console.log('vai mandar no formato: ' + date)
       let reservas = this.reservesByDate(date)
       console.log(reservas)
+    },
+    dataFormatada (date) {
+      var data = new Date(date)
+      var dia = data.getDate()
+      if (dia.toString().length === 1) {
+        dia = '0' + dia
+      }
+      var mes = data.getMonth() + 1
+      if (mes.toString().length === 1) {
+        mes = '0' + mes
+      }
+      var ano = data.getFullYear()
+
+      return dia + '/' + mes + '/' + ano
     }
   }
 }
+
 </script>
 
 <style scoped>
