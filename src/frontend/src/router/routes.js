@@ -18,7 +18,7 @@ const routes = [{
     component: () => import('pages/ViewAvailability.vue')
   },
   {
-    path: '/create-reserve',
+    path: '/create-reserve/:id?',
     component: () => import('pages/CreateReserve.vue')
   },
   {

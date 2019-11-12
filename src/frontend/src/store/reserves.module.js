@@ -60,6 +60,15 @@ export default {
         reserve
       )
       return result
+    },
+    async reservesByDate ({
+      commit
+    }, date) {
+      console.log('RESERVASBYDATE')
+      const result = await ReserveService.reservesByDate({
+        date
+      })
+      return result.data
     }
 
   }

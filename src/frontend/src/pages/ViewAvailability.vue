@@ -4,7 +4,7 @@
     <br>
     <center>
       <div class="disp-form">
-        <cc-form> </cc-form>
+        <cc-form @filter="filter"> </cc-form>
       </div>
     </center>
 
@@ -33,6 +33,7 @@
 <script>
 
 import CcForm from '../components/FormDisp.vue'
+import { mapActions } from 'vuex'
 
 export default {
   components: { CcForm },
@@ -168,6 +169,14 @@ export default {
           domingo: ''
         }
       ]
+    }
+  },
+  methods: {
+    ...mapActions(['reservesByDate']),
+    filter (date) {
+      console.log(date)
+      let reservas = this.reservesByDate(date)
+      console.log(reservas)
     }
   }
 }

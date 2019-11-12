@@ -156,9 +156,13 @@ import { mapActions, mapState } from 'vuex'
 export default {
   created () {
     this.getUsers()
+    if (this.$route.params.id) {
+      this.reserve = this.reserves.find(r => r.id === parseInt(this.$route.params.id))
+    }
   },
   computed: {
     ...mapState({
+      reserves: state => state.reserves.list,
       spaces: state => state.spaces.list,
       searchUser: state => state.users.list
     })

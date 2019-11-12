@@ -25,7 +25,7 @@
                     <q-list style="min-width: 100px">
                       <q-item-label header>{{reserve.responsavel}}</q-item-label>
                       <q-item
-                        @click="$router.push('/create-reserve')"
+                        @click="$router.push('/create-reserve/'+reserve.id)"
                         clickable
                         v-close-popup
                       >

@@ -31,6 +31,7 @@
       </q-input>
     </div>
     <q-btn
+      type="submit"
       color="secondary"
       label="Confirmar"
     />
@@ -41,12 +42,12 @@
 export default {
   data () {
     return {
-      date: '2019/02/01'
+      date: '2019-02-01'
     }
   },
   methods: {
     submit () {
-
+      this.$emit('filter', this.date)
     }
   }
 }
