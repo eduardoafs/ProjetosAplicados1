@@ -174,7 +174,7 @@ export default {
       data: '',
       diaSemana: [0, 0, 0, 0, 0, 0, 1],
       espaco: {},
-      horarios: [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      horarios: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       justificativa: '',
       usuario: {}
     },
@@ -195,7 +195,7 @@ export default {
     ...mapActions(['createReserve', 'getUsers']
     ),
     async save () {
-      this.horarios()
+      this.selectHorarios()
       let space = { ...this.selectedSpace }
       let user = { ...this.selectedUser }
       this.reserve.espaco = space
@@ -213,7 +213,7 @@ export default {
       console.log('valor do perfil do usuario: ' + user.perfis)
       this.reserve.usuario = user
       await this.createReserve(this.reserve)
-      this.reserve = {}
+      // this.reserve = {}
     },
     selectSpace (space) {
       this.selectedSpaceId = space.id
@@ -223,25 +223,26 @@ export default {
       this.selectedUserId = user.idUsuario
       this.selectedUser = user
     },
-    selectData () {
-      // pecorrendo horário manhã
-      for (let i = 0; i < this.time1.length; i++) {
-        if (this.timeInit !== this.time1[i]) {
-          this.reserve.horarios[i] = 0
-        } else {
-          this.reserve.horarios[i] = 1
+    selectHorarios () {
+      this.reserve.horarios[this.mapp(this.timeInit)] = 1
+      this.reserve.horarios[this.mapp(this.timeEnd)] = 1
+      // this.fill()
+    },
+    fill () {
+      for (let i = 0; i < this.reserve.horarios.length; i++) {
+        if (this.reserve.horarios[i] === 1 && this.reserve.horarios[i + 1] === 0) {
+          this.reserve.horarios[i + 1] = 1
         }
       }
-      // pecorrendo horario tarde
-      for (let i = 0, j = 6; i < this.time1.length; i++, j++) {
-        if (this.timeEnd !== this.time2[i]) {
-          this.reserve.horarios[j] = 0
-        } else {
-          this.reserve.horarios[i] = 1
+      console.log(this.reserve.horarios)
+    },
+    mapp (horario) {
+      for (let i = 0; i < 12; i++) {
+        if (horario === this.time1[i] || horario === this.time2[i]) {
+          return i
         }
       }
     }
-
   }
 }
 </script>
