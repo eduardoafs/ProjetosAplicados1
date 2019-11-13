@@ -225,16 +225,17 @@ export default {
     },
     selectHorarios () {
       this.reserve.horarios[this.mapp(this.timeInit)] = 1
-      this.reserve.horarios[this.mapp(this.timeEnd)] = 1
-      // this.fill()
+      this.reserve.horarios[this.mapp(this.timeEnd)] = 2
+      this.fill()
+      this.reserve.horarios[this.mapp(this.timeEnd)] = 1 // colocando 1 novamente
+      console.log(this.reserve.horarios)
     },
     fill () {
       for (let i = 0; i < this.reserve.horarios.length; i++) {
-        if (this.reserve.horarios[i] === 1 && this.reserve.horarios[i + 1] === 0) {
+        if (this.reserve.horarios[i] === 1 && this.reserve.horarios[i + 1] !== 2) {
           this.reserve.horarios[i + 1] = 1
         }
       }
-      console.log(this.reserve.horarios)
     },
     mapp (horario) {
       for (let i = 0; i < 12; i++) {
