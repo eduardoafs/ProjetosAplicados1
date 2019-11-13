@@ -174,33 +174,22 @@ export default {
   methods: {
     ...mapActions(['reservesByDate']),
     filter (date) {
-      console.log(date)
-      let dataNova = this.stringToDate('11/11/2001', 'dd/MM/yyyy', '/')
-      console.log(dataNova)
-      /*
-      console.log('antes = ' + date)
-      let dataFormat = this.dataFormatada(date)
-      console.log('depois = ' + dataFormat)
-      date = dataFormat.replace('/', '-').replace('/', '-')
-      console.log('vai mandar no formato: ' + date)
+      date = date.replace('/', '-').replace('/', '-')
+      console.log('data antes: ' + date)
+      date = this.dataFormatada(date)
+      console.log('data depois: ' + date)
       let reservas = this.reservesByDate(date)
-      console.log(reservas) */
+      console.log('reservas = ' + reservas)
     },
-    stringToDate (_date, _format, _delimiter) {
-      var formatLowerCase = _format.toLowerCase()
-      var formatItems = formatLowerCase.split(_delimiter)
-      var dateItems = _date.split(_delimiter)
-      var monthIndex = formatItems.indexOf('mm')
-      var dayIndex = formatItems.indexOf('dd')
-      var yearIndex = formatItems.indexOf('yyyy')
-      var month = parseInt(dateItems[monthIndex])
-      month -= 1
-      var formatedDate = new Date(dateItems[yearIndex], month, dateItems[dayIndex])
-      return formatedDate
+    dataFormatada (dataRecebida) {
+      var data = new Date(dataRecebida),
+        dia = data.getDate().toString().padStart(2, '0'),
+        mes = (data.getMonth() + 1).toString().padStart(2, '0'), // +1 pois no getMonth Janeiro começa com zero.
+        ano = data.getFullYear()
+      return dia + '-' + mes + '-' + ano
     }
   }
 }
-
 </script>
 
 <style scoped>
