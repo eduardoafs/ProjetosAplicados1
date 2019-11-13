@@ -6,6 +6,8 @@ const config = {
 
 const _axios = axios.create(config)
 
-export default async ({ Vue }) => {
+export default async ({
+  Vue
+}) => {
   Vue.$axios = _axios
 }

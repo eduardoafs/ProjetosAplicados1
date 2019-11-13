@@ -81,7 +81,7 @@
       <div class="q-pa-md q-gutter-md row items-start">
         <div class="col">
           <q-input
-            v-model="reserve.data"
+            v-model="reserve.dataReserva"
             mask="##-##-####"
             stack-label
             label="Data - Início"
@@ -171,7 +171,7 @@ export default {
     reserve: {
       aprovada: false,
       cancelada: false,
-      data: '',
+      dataReserva: '',
       diaSemana: [0, 0, 0, 0, 0, 0, 1],
       espaco: {},
       horarios: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],

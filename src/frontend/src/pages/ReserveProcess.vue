@@ -52,7 +52,7 @@ getReservesPendences()
               </q-item-section>
               <q-item-section>
                 {{reserve.espaco.nome}} -
-                {{reserve.responsavel}}
+                {{reserve.espaco.responsavel}}
               </q-item-section>
             </q-item>
           </q-list>
