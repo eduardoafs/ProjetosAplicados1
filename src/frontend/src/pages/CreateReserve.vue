@@ -187,14 +187,15 @@ export default {
     selectedUser: {},
     searchSpace: '',
     seila: '', // Rever com o grupo
-    time1: ['07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00'],
-    time2: ['07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00']
+    time1: ['07:00', '07:50', '08:55', '09:45', '10:50', '11:40', '13:00', '13:50', '14:55', '15:45', '16:50', '17:40'],
+    time2: ['07:50', '08:40', '09:45', '10:35', '11:40', '12:30', '13:50', '14:40', '15:45', '16:35', '17:40', '18:30']
 
   }),
   methods: {
     ...mapActions(['createReserve', 'getUsers']
     ),
     async save () {
+      this.horarios()
       let space = { ...this.selectedSpace }
       let user = { ...this.selectedUser }
       this.reserve.espaco = space
@@ -221,6 +222,24 @@ export default {
     selectUser (user) {
       this.selectedUserId = user.idUsuario
       this.selectedUser = user
+    },
+    selectData () {
+      // pecorrendo horário manhã
+      for (let i = 0; i < this.time1.length; i++) {
+        if (this.timeInit !== this.time1[i]) {
+          this.reserve.horarios[i] = 0
+        } else {
+          this.reserve.horarios[i] = 1
+        }
+      }
+      // pecorrendo horario tarde
+      for (let i = 0, j = 6; i < this.time1.length; i++, j++) {
+        if (this.timeEnd !== this.time2[i]) {
+          this.reserve.horarios[j] = 0
+        } else {
+          this.reserve.horarios[i] = 1
+        }
+      }
     }
 
   }
