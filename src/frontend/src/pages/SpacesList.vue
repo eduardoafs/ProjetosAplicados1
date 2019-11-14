@@ -58,56 +58,6 @@
           </q-card-section>
         </q-card>
       </q-expansion-item>
-
-      <!--
-      <q-list>
-        <q-item
-          v-for="space in spaces"
-          :key="space.id"
-        >
-          <q-item-section side>
-            <q-btn
-              color="primary"
-              flat
-              icon="more_vert"
-            >
-              <q-menu>
-                <q-list style="min-width: 100px">
-                  <q-item-label header>{{space.espacoNome}}</q-item-label>
-                  <q-item
-                    @click="$router.push('/create-reserve')"
-                    clickable
-                    v-close-popup
-                  >
-                    <q-item-section>Reservar</q-item-section>
-                  </q-item>
-                  <q-item
-                    @click="$router.push('/view-availability')"
-                    clickable
-                    v-close-popup
-                  >
-                    <q-item-section>Ver disponibilidade</q-item-section>
-                  </q-item>
-                  <q-separator />
-                  <q-item
-                    @click="showDetail = true"
-                    clickable
-                    v-close-popup
-                  >
-                    <q-item-section>Detalhes</q-item-section>
-                  </q-item>
-                </q-list>
-              </q-menu>
-            </q-btn>
-          </q-item-section>
-          <q-item-section>
-            {{space.espacoNome }}
-          </q-item-section>
-
-        </q-item>
-      </q-list>
-
-      -->
     </div>
     <q-dialog v-model="showDetail">
       <q-card style="width: 700px; max-width: 80vw;">

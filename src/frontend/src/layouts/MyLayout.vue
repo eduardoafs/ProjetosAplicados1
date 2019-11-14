@@ -52,20 +52,20 @@
           icon="calendar_today"
           label="Reserva"
         >-->
-          <q-item
-            v-for="item in reserves"
-            :key="item.label"
-            @click="goTo(item.path)"
-            clickable
-          >
-            <q-item-section avatar>
-              <q-icon :name="item.icon" />
-            </q-item-section>
-            <q-item-section>
-              <q-item-label>{{item.label}}</q-item-label>
-            </q-item-section>
-          </q-item>
-       <!-- </q-expansion-item> -->
+        <q-item
+          v-for="item in reserves"
+          :key="item.label"
+          @click="goTo(item.path)"
+          clickable
+        >
+          <q-item-section avatar>
+            <q-icon :name="item.icon" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>{{item.label}}</q-item-label>
+          </q-item-section>
+        </q-item>
+        <!-- </q-expansion-item> -->
       </q-list>
     </q-drawer>
     <q-page-container>
@@ -85,6 +85,11 @@ export default {
           label: 'Home',
           icon: 'home',
           path: '/'
+        },
+        {
+          label: 'Realizar Reserva',
+          icon: 'create',
+          path: '/create-reserve'
         },
         {
           label: 'Espaços',
