@@ -1,4 +1,3 @@
-getReservesPendences()
 <template>
   <q-page padding>
     <div class="text-h5">Processar Reservas</div>
@@ -13,7 +12,7 @@ getReservesPendences()
           <br>
           <q-list>
             <q-item
-              v-for="reserve in reserves"
+              v-for="reserve in reservesPendences"
               :key="reserve.id"
             >
               <q-item-section side>
@@ -30,7 +29,7 @@ getReservesPendences()
                     round
                     color="red"
                     icon="close"
-                    @click="showDetail = true"
+                    @click="negar(reserve)"
                     clickable
                   />
                 </div>
@@ -95,6 +94,7 @@ getReservesPendences()
                 clickable
               />
               <q-btn
+                @click="cancelReservation()"
                 label="confirmar"
                 color="green"
                 clickable
@@ -157,7 +157,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getReservesPendences', 'approveReserve']
+    ...mapActions(['getReservesPendences', 'approveReserve', 'cancelReserve']
     ),
     async approveReservation () {
       await this.approveReserve(this.reservaEscolhida.id)
@@ -174,7 +174,7 @@ export default {
     },
     async cancelReservation () {
       this.reservaEscolhida.justificativa = this.justificativa
-      await this.cancelReserve(this.reservaEscolhida.id)
+      await this.cancelReserve(this.reservaEscolhida)
       this.showDenied = false
       this.getReservesPendences()
     },
