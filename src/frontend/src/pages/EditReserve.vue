@@ -128,14 +128,15 @@ export default {
     },
     getHours (vetor) {
       let timeInit, timeFinal
-      for (let i = 0; i < vetor.length; i++) {
-        if (vetor[i] === 1) {
-          timeInit = this.time1[i]
-        } else if (vetor[i] === 2) {
-          timeFinal = this.time2[i]
-          break
-        }
+      let i = 0
+      while (vetor[i] !== 1 && i !== vetor.length) {
+        i++
       }
+      timeInit = this.time1[i]
+      while (vetor[i] !== 0 && i !== vetor.length) {
+        i++
+      }
+      timeFinal = this.time2[i - 1]
       return `${timeInit} - ${timeFinal}`
     }
   }
