@@ -44,9 +44,12 @@
                 </q-btn>
               </q-item-section>
               <q-item-section>
+                <b>
+                  {{new Date(reserve.data)}} -
+                  {{getHours(reserve.horarios)}}
+                </b>
                 {{reserve.espaco.nome}} -
-                {{reserve.espaco.responsavel}} -
-                {{reserve.data}}
+                {{reserve.usuario.nome}}
               </q-item-section>
 
             </q-item>
@@ -106,7 +109,9 @@ export default {
       justificativa: '',
       showDetail: false,
       search: '',
-      reservaSelect: {}
+      reservaSelect: {},
+      time1: ['07:00', '07:50', '08:55', '09:45', '10:50', '11:40', '13:00', '13:50', '14:55', '15:45', '16:50', '17:40'],
+      time2: ['07:50', '08:40', '09:45', '10:35', '11:40', '12:30', '13:50', '14:40', '15:45', '16:35', '17:40', '18:30']
     }
   },
   methods: {
@@ -120,8 +125,19 @@ export default {
       await this.cancelReserve(this.reservaSelect)
       this.showDetail = false
       this.getReservesApproved()
+    },
+    getHours (vetor) {
+      let timeInit, timeFinal
+      for (let i = 0; i < vetor.length; i++) {
+        if (vetor[i] === 1) {
+          timeInit = this.time1[i]
+        } else if (vetor[i] === 2) {
+          timeFinal = this.time2[i]
+          break
+        }
+      }
+      return `${timeInit} - ${timeFinal}`
     }
   }
-
 }
 </script>

@@ -52,20 +52,20 @@
           icon="calendar_today"
           label="Reserva"
         >-->
-          <q-item
-            v-for="item in reserves"
-            :key="item.label"
-            @click="goTo(item.path)"
-            clickable
-          >
-            <q-item-section avatar>
-              <q-icon :name="item.icon" />
-            </q-item-section>
-            <q-item-section>
-              <q-item-label>{{item.label}}</q-item-label>
-            </q-item-section>
-          </q-item>
-       <!-- </q-expansion-item> -->
+        <q-item
+          v-for="item in reserves"
+          :key="item.label"
+          @click="goTo(item.path)"
+          clickable
+        >
+          <q-item-section avatar>
+            <q-icon :name="item.icon" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>{{item.label}}</q-item-label>
+          </q-item-section>
+        </q-item>
+        <!-- </q-expansion-item> -->
       </q-list>
     </q-drawer>
     <q-page-container>
@@ -75,7 +75,13 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
+  created () {
+    this.getReserves()
+    this.getUser()
+  },
   name: 'MyLayout',
   data () {
     return {
@@ -117,6 +123,8 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['getReserves', 'getUsers']
+    ),
     goTo (path) {
       this.$router.push(path)
     }

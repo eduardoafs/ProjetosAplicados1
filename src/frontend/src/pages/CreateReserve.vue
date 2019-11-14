@@ -81,7 +81,7 @@
       <div class="q-pa-md q-gutter-md row items-start">
         <div class="col">
           <q-input
-            v-model="reserve.data"
+            v-model="reserve.dataReserva"
             mask="##-##-####"
             stack-label
             label="Data - Início"
@@ -89,23 +89,13 @@
         </div>
         <div class="col">
           <q-select
-            class="component"
             v-model="timeInit"
             :options="time1"
             label="Hora - Início"
           />
         </div>
         <div class="col">
-          <q-input
-            v-model="reserve.dataReservaFim"
-            mask="##/##/####"
-            stack-label
-            label="Data - Término"
-          />
-        </div>
-        <div class="col">
           <q-select
-            class="component"
             v-model="timeEnd"
             :options="time2"
             label="Hora - Fim"
@@ -113,7 +103,7 @@
         </div>
       </div>
       <div class="q-pa-md row">
-        <div class="col-md-12">
+        <div class="col">
           <q-input
             v-model="reserve.justificativa"
             filled
@@ -172,7 +162,7 @@ export default {
     reserve: {
       aprovada: false,
       cancelada: false,
-      data: '',
+      dataReserva: '',
       diaSemana: [0, 0, 0, 0, 0, 0, 1],
       espaco: {},
       horarios: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -228,8 +218,8 @@ export default {
     selectHorarios () {
       this.reserve.horarios[this.mapp(this.timeInit)] = 1
       this.reserve.horarios[this.mapp(this.timeEnd)] = 2
-      this.fill()
-      this.reserve.horarios[this.mapp(this.timeEnd)] = 1 // colocando 1 novamente
+      // this.fill()
+      // this.reserve.horarios[this.mapp(this.timeEnd)] = 1 // colocando 1 novamente
       console.log(this.reserve.horarios)
     },
     fill () {
