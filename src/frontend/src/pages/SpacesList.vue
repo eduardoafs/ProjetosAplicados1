@@ -24,7 +24,6 @@
       <q-expansion-item
         icon="business"
         v-for="space in spaces"
-        v-model="space.id"
         :key="space.id"
         :label="space.nome"
       >
@@ -34,7 +33,7 @@
               <q-btn
                 color="secondary"
                 label="Reservar"
-                @click="$router.push('/create-reserve')"
+                @click="$router.push(`/create-reserve/${Number(space.id)}`)"
                 clickable
                 v-close-popup
               />

@@ -81,7 +81,7 @@
       <div class="q-pa-md q-gutter-md row items-start">
         <div class="col">
           <q-input
-            v-model="reserve.dataReserva"
+            v-model="reserve.data"
             mask="##-##-####"
             stack-label
             label="Data - Início"
@@ -157,7 +157,8 @@ export default {
   created () {
     this.getUsers()
     if (this.$route.params.id) {
-      this.reserve = this.reserves.find(r => r.id === parseInt(this.$route.params.id))
+      this.selectedSpaceId = this.$route.params.id
+      // this.reserve = this.reserves.find(r => r.id === parseInt(this.$route.params.id))
     }
   },
   computed: {
@@ -171,13 +172,14 @@ export default {
     reserve: {
       aprovada: false,
       cancelada: false,
-      dataReserva: '',
+      data: '',
       diaSemana: [0, 0, 0, 0, 0, 0, 1],
       espaco: {},
       horarios: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       justificativa: '',
       usuario: {}
     },
+    dataReservaFim: '',
     justification: '',
     timeInit: 0,
     timeEnd: 0,

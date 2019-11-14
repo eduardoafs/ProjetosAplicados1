@@ -21,6 +21,7 @@
         :data="data"
         :columns="columns"
         row-key="name"
+        :pagination.sync="pagination"
       />
     </div>
 
@@ -44,6 +45,10 @@ import { mapActions } from 'vuex'
 export default {
   data () {
     return {
+      pagination: {
+        rowsPerPage: 12
+        // rowsNumber: xx if getting data from a server
+      },
       dateFilter: new Date(),
       columns: [
         {
@@ -65,7 +70,106 @@ export default {
       ],
       data: [
         {
-          horario: '07:00 - 07:50',
+          horario: '1',
+          segunda: '',
+          terca: '',
+          quarta: '',
+          quinta: '',
+          sexta: '',
+          sabado: '',
+          domingo: ''
+        }, {
+          horario: '2',
+          segunda: '',
+          terca: '',
+          quarta: '',
+          quinta: '',
+          sexta: '',
+          sabado: '',
+          domingo: ''
+        }, {
+          horario: '3',
+          segunda: '',
+          terca: '',
+          quarta: '',
+          quinta: '',
+          sexta: '',
+          sabado: '',
+          domingo: ''
+        }, {
+          horario: '4',
+          segunda: '',
+          terca: '',
+          quarta: '',
+          quinta: '',
+          sexta: '',
+          sabado: '',
+          domingo: ''
+        }, {
+          horario: '5',
+          segunda: '',
+          terca: '',
+          quarta: '',
+          quinta: '',
+          sexta: '',
+          sabado: '',
+          domingo: ''
+        }, {
+          horario: '6',
+          segunda: '',
+          terca: '',
+          quarta: '',
+          quinta: '',
+          sexta: '',
+          sabado: '',
+          domingo: ''
+        }, {
+          horario: '7',
+          segunda: '',
+          terca: '',
+          quarta: '',
+          quinta: '',
+          sexta: '',
+          sabado: '',
+          domingo: ''
+        }, {
+          horario: '8',
+          segunda: '',
+          terca: '',
+          quarta: '',
+          quinta: '',
+          sexta: '',
+          sabado: '',
+          domingo: ''
+        }, {
+          horario: '9',
+          segunda: '',
+          terca: '',
+          quarta: '',
+          quinta: '',
+          sexta: '',
+          sabado: '',
+          domingo: ''
+        }, {
+          horario: '10',
+          segunda: '',
+          terca: '',
+          quarta: '',
+          quinta: '',
+          sexta: '',
+          sabado: '',
+          domingo: ''
+        }, {
+          horario: '11',
+          segunda: '',
+          terca: '',
+          quarta: '',
+          quinta: '',
+          sexta: '',
+          sabado: '',
+          domingo: ''
+        }, {
+          horario: '12',
           segunda: '',
           terca: '',
           quarta: '',
