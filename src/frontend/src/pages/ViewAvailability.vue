@@ -4,7 +4,14 @@
     <br>
     <center>
       <div class="disp-form">
-        <cc-form @filter="filter"> </cc-form>
+        <input
+          v-model="dateFilter"
+          type="date"
+        >
+        <q-btn
+          @click="filter(dateFilter)"
+          color="green"
+        >Buscar</q-btn>
       </div>
     </center>
 
@@ -32,13 +39,12 @@
 
 <script>
 
-import CcForm from '../components/FormDisp.vue'
 import { mapActions } from 'vuex'
 
 export default {
-  components: { CcForm },
   data () {
     return {
+      dateFilter: new Date(),
       columns: [
         {
           name: 'horario',
@@ -67,106 +73,6 @@ export default {
           sexta: '',
           sabado: '',
           domingo: ''
-        },
-        {
-          horario: '07:50 - 08:40',
-          segunda: '',
-          terca: '',
-          quarta: '',
-          quinta: '',
-          sexta: '',
-          sabado: '',
-          domingo: ''
-        },
-        {
-          horario: '08:40 - 09:30',
-          segunda: '',
-          terca: '',
-          quarta: '',
-          quinta: '',
-          sexta: '',
-          sabado: '',
-          domingo: ''
-        },
-        {
-          horario: '09:50 - 10:40',
-          segunda: '',
-          terca: '',
-          quarta: '',
-          quinta: '',
-          sexta: '',
-          sabado: '',
-          domingo: ''
-        },
-        {
-          horario: '10:40 - 11:30',
-          segunda: '',
-          terca: '',
-          quarta: '',
-          quinta: '',
-          sexta: '',
-          sabado: '',
-          domingo: ''
-        },
-        {
-          horario: '11:30 - 12:20',
-          segunda: '',
-          terca: '',
-          quarta: '',
-          quinta: '',
-          sexta: '',
-          sabado: '',
-          domingo: ''
-        },
-        {
-          horario: '13:00 - 13:50',
-          segunda: '',
-          terca: '',
-          quarta: '',
-          quinta: '',
-          sexta: '',
-          sabado: '',
-          domingo: ''
-        },
-        {
-          horario: '13:50 - 14:40',
-          segunda: '',
-          terca: '',
-          quarta: '',
-          quinta: '',
-          sexta: '',
-          sabado: '',
-          domingo: ''
-        },
-        {
-          horario: '14:55 - 15:45',
-          segunda: '',
-          terca: '',
-          quarta: '',
-          quinta: '',
-          sexta: '',
-          sabado: '',
-          domingo: ''
-        },
-        {
-          horario: '15:45 - 16:35',
-          segunda: '',
-          terca: '',
-          quarta: '',
-          quinta: '',
-          sexta: '',
-          sabado: '',
-          domingo: ''
-        },
-        {
-          horario: '16:50 - 17:40',
-          segunda: '',
-          terca: '',
-          quarta: '',
-          quinta: '',
-          sexta: '',
-          sabado: '',
-          domingo: ''
         }
       ]
     }
@@ -182,6 +88,7 @@ export default {
       console.log('reservas = ' + reservas)
     },
     dataFormatada (dataRecebida) {
+      console.log(dataRecebida)
       var data = new Date(dataRecebida),
         dia = data.getDate().toString().padStart(2, '0'),
         mes = (data.getMonth() + 1).toString().padStart(2, '0'), // +1 pois no getMonth Janeiro começa com zero.
