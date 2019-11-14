@@ -13,42 +13,27 @@ getReservesPendences()
           <br>
           <q-list>
             <q-item
-              v-for="reserve in reservesPendences"
+              v-for="reserve in reserves"
               :key="reserve.id"
             >
               <q-item-section side>
-                <q-btn
-                  color="primary"
-                  flat
-                  icon="more_vert"
-                >
-                  <q-menu>
-                    <q-list style="min-width: 100px">
-                      <q-item-label header>{{reserve.responsavel}}</q-item-label>
-                      <q-item
-                        @click="aprovar(reserve)"
-                        clickable
-                        v-close-popup
-                      >
-                        <q-item-section>Aprovar Reserva</q-item-section>
-                      </q-item>
-                      <q-item
-                        @click="aprovar(reserve)"
-                        clickable
-                        v-close-popup
-                      >
-                        <q-item-section>Negar Reserva</q-item-section>
-                      </q-item>
-                      <q-item
-                        @click="showDetail = true"
-                        clickable
-                      >
-                        <q-item-section>Detalhes da Reserva</q-item-section>
-                      </q-item>
-                      <q-separator />
-                    </q-list>
-                  </q-menu>
-                </q-btn>
+                <div class="row q-gutter-md">
+                  <q-btn
+                    round
+                    color="secondary"
+                    icon="done"
+                    @click="aprovar(reserve)"
+                    clickable
+                    v-close-popup
+                  />
+                  <q-btn
+                    round
+                    color="red"
+                    icon="close"
+                    @click="showDetail = true"
+                    clickable
+                  />
+                </div>
               </q-item-section>
               <q-item-section>
                 <b>

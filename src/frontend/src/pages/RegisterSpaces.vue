@@ -98,7 +98,7 @@ export default {
         { label: 'Não', value: false }, { label: 'Sim', value: true }
       ],
       space: {
-        computadores: true,
+        computadores: { label: 'Sim', value: true },
         desabilitado: true,
         descricao: '',
         especial: true,

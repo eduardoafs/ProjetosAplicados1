@@ -93,6 +93,11 @@ export default {
           path: '/'
         },
         {
+          label: 'Realizar Reserva',
+          icon: 'create',
+          path: '/create-reserve'
+        },
+        {
           label: 'Espaços',
           icon: 'check_box_outline_blank',
           path: '/spaces-list'
