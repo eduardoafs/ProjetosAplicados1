@@ -218,8 +218,8 @@ export default {
     selectHorarios () {
       this.reserve.horarios[this.mapp(this.timeInit)] = 1
       this.reserve.horarios[this.mapp(this.timeEnd)] = 2
-      // this.fill()
-      // this.reserve.horarios[this.mapp(this.timeEnd)] = 1 // colocando 1 novamente
+      this.fill()
+      this.reserve.horarios[this.mapp(this.timeEnd)] = 1 // colocando 1 novamente
       console.log(this.reserve.horarios)
     },
     fill () {

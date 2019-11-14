@@ -51,6 +51,10 @@ getReservesPendences()
                 </q-btn>
               </q-item-section>
               <q-item-section>
+                <b>
+                  {{new Date(reserve.data)}} -
+                  {{getHours(reserve.horarios)}}
+                </b>
                 {{reserve.espaco.nome}} -
                 {{reserve.usuario.nome}}
               </q-item-section>
@@ -162,7 +166,9 @@ export default {
       showDetail: false,
       search: '',
       date: '',
-      reservaEscolhida: {}
+      reservaEscolhida: {},
+      time1: ['07:00', '07:50', '08:55', '09:45', '10:50', '11:40', '13:00', '13:50', '14:55', '15:45', '16:50', '17:40'],
+      time2: ['07:50', '08:40', '09:45', '10:35', '11:40', '12:30', '13:50', '14:40', '15:45', '16:35', '17:40', '18:30']
     }
   },
   methods: {
@@ -186,6 +192,19 @@ export default {
       await this.cancelReserve(this.reservaEscolhida.id)
       this.showDenied = false
       this.getReservesPendences()
+    },
+    getHours (vetor) {
+      let timeInit, timeFinal
+      let i = 0
+      while (vetor[i] !== 1) {
+        i++
+      }
+      timeInit = this.time1[i]
+      while (vetor[i] !== 0 || i !== vetor.length) {
+        i++
+      }
+      timeFinal = this.time2[i - 1]
+      return `${timeInit} - ${timeFinal}`
     }
   }
 
