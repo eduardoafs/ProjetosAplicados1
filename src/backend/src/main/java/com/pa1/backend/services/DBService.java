@@ -49,11 +49,11 @@ public class DBService {
 
 		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 
-		Integer horarios1[] = {1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-		Integer horarios2[] = {0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0};
-		Integer horarios3[] = {0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0};
-		Integer horarios4[] = {0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0};
-		Integer horarios5[] = {0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0};
+		Integer horarios1[] = {1,1,0,0,0,0,0,0,0,0,0,0};
+		Integer horarios2[] = {0,0,1,1,0,0,0,0,0,0,0,0};
+		Integer horarios3[] = {0,0,0,0,1,1,0,0,0,0,0,0};
+		Integer horarios4[] = {0,0,0,0,1,1,0,0,0,0,0,0};
+		Integer horarios5[] = {0,0,0,0,1,1,0,0,0,0,0,0};
 
 		Integer diaSemana1[] = {0,1,0,0,0,0,0};
 		Integer diaSemana2[] = {0,0,0,1,0,0,0};
@@ -75,7 +75,7 @@ public class DBService {
 		
 		esp1.getReservas().addAll(Arrays.asList(r1));
 		esp2.getReservas().addAll(Arrays.asList(r2));
-		
+
 		espacoRepository.save(Arrays.asList(esp1,esp2,esp3,esp4,esp5));
 		reservaRepository.save(Arrays.asList(r1,r2,r3,r4,r5));
 
