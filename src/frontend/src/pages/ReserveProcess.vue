@@ -59,7 +59,7 @@
               <q-btn
                 label="cancelar"
                 color="red"
-                @click="$router.push('/process-reserves')"
+                @click="showApproved = false"
                 clickable
               />
               <q-btn
@@ -90,7 +90,7 @@
               <q-btn
                 label="cancelar"
                 color="red"
-                @click="$router.push('/process-reserves')"
+                @click="showDenied = false"
                 clickable
               />
               <q-btn
