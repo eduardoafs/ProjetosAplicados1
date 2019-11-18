@@ -1,6 +1,6 @@
 <template>
   <q-page padding>
-    <div class="text-h5">Lista de reservas</div>
+    <div class="text-h5">Edição de reservas</div>
     <div class="q-pa-md">
       <form class="row q-gutter-md">
         <div class="col">
@@ -32,34 +32,6 @@
                     clickable
                   />
                 </div>
-                <q-btn
-                  color="primary"
-                  flat
-                  icon="more_vert"
-                >
-                  <q-menu>
-                    <q-list style="min-width: 100px">
-                      <q-item-label header>{{
-                        reserve.responsavel
-                      }}</q-item-label>
-                      <q-item
-                        @click="$router.push('/create-reserve/' + reserve.id)"
-                        clickable
-                        v-close-popup
-                      >
-                        <q-item-section>Editar reserva</q-item-section>
-                      </q-item>
-                      <q-item
-                        @click="confirmaExcluir(reserve)"
-                        clickable
-                        v-close-popup
-                      >
-                        <q-item-section>excluir</q-item-section>
-                      </q-item>
-                      <q-separator />
-                    </q-list>
-                  </q-menu>
-                </q-btn>
               </q-item-section>
               <q-item-section>
                 <b>
