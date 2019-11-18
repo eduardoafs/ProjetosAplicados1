@@ -122,6 +122,7 @@ export default {
       this.space.desabilitado = this.options3.value
       await this.createSpace(this.space)
       this.space = {}
+      this.$router.push('/spaces-list')
     }
   }
 }
