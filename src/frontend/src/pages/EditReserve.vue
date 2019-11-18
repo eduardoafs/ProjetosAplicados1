@@ -16,6 +16,22 @@
               :key="reserve.id"
             >
               <q-item-section side>
+                <div class="row q-gutter-md">
+                  <q-btn
+                    round
+                    color="primary"
+                    icon="edit"
+                    @click="$router.push('/create-reserve/' + reserve.id)"
+                    clickable
+                  />
+                  <q-btn
+                    round
+                    color="red"
+                    icon="close"
+                    @click="confirmaExcluir(reserve)"
+                    clickable
+                  />
+                </div>
                 <q-btn
                   color="primary"
                   flat
