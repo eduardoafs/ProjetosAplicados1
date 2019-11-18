@@ -148,6 +148,7 @@ export default {
     this.getUsers()
     if (this.$route.params.id) {
       this.selectedSpaceId = this.$route.params.id
+      this.selectedSpace = this.spaces.find(r => r.id === parseInt(this.$route.params.id))
       // this.reserve = this.reserves.find(r => r.id === parseInt(this.$route.params.id))
     }
   },
