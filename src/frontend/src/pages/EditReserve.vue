@@ -8,8 +8,8 @@
             v-model="search"
             label="Busque pelo nome da reserva"
           />
-          <br>
-          <br>
+          <br />
+          <br />
           <q-list>
             <q-item
               v-for="reserve in reserves"
@@ -23,9 +23,11 @@
                 >
                   <q-menu>
                     <q-list style="min-width: 100px">
-                      <q-item-label header>{{reserve.responsavel}}</q-item-label>
+                      <q-item-label header>{{
+                        reserve.responsavel
+                      }}</q-item-label>
                       <q-item
-                        @click="$router.push('/create-reserve/'+reserve.id)"
+                        @click="$router.push('/create-reserve/' + reserve.id)"
                         clickable
                         v-close-popup
                       >
@@ -45,13 +47,12 @@
               </q-item-section>
               <q-item-section>
                 <b>
-                  {{new Date(reserve.data)}} -
-                  {{getHours(reserve.horarios)}}
+                  {{ reserve.data | dateFormat }} -
+                  {{ getHours(reserve.horarios) }}
                 </b>
-                {{reserve.espaco.nome}} -
-                {{reserve.usuario.nome}}
+                {{ reserve.espaco.nome }} -
+                {{ reserve.usuario.nome }}
               </q-item-section>
-
             </q-item>
           </q-list>
         </div>
@@ -65,7 +66,7 @@
             <center>
               <h5>Tem certeza que deseja excluir esta reserva?</h5>
             </center>
-            <br>
+            <br />
             <q-input
               v-model="justificativa"
               filled
@@ -92,8 +93,8 @@
 </template>
 
 <script>
-
 import { mapActions, mapState } from 'vuex'
+import dayjs from 'dayjs'
 
 export default {
   created () {
@@ -104,14 +105,46 @@ export default {
       reserves: state => state.reserves.list
     })
   },
+  filters: {
+    dateFormat (d) {
+      console.log(d)
+      return dayjs(new Date(d)).format('DD/MM/YY')
+    }
+  },
   data () {
     return {
       justificativa: '',
       showDetail: false,
       search: '',
       reservaSelect: {},
-      time1: ['07:00', '07:50', '08:55', '09:45', '10:50', '11:40', '13:00', '13:50', '14:55', '15:45', '16:50', '17:40'],
-      time2: ['07:50', '08:40', '09:45', '10:35', '11:40', '12:30', '13:50', '14:40', '15:45', '16:35', '17:40', '18:30']
+      time1: [
+        '07:00',
+        '07:50',
+        '08:55',
+        '09:45',
+        '10:50',
+        '11:40',
+        '13:00',
+        '13:50',
+        '14:55',
+        '15:45',
+        '16:50',
+        '17:40'
+      ],
+      time2: [
+        '07:50',
+        '08:40',
+        '09:45',
+        '10:35',
+        '11:40',
+        '12:30',
+        '13:50',
+        '14:40',
+        '15:45',
+        '16:35',
+        '17:40',
+        '18:30'
+      ]
     }
   },
   methods: {
