@@ -94,7 +94,7 @@ export default {
         },
         {
           label: 'Realizar Reserva',
-          icon: 'create',
+          icon: 'event_available',
           path: '/create-reserve'
         },
         {
@@ -121,7 +121,7 @@ export default {
         },
         {
           label: 'Editar Reservas',
-          icon: 'done_outline',
+          icon: 'edit',
           path: '/edit-reserves'
         }
       ]
