@@ -48,7 +48,7 @@
               <q-item-section>
                 <b>
                   {{ reserve.data | dateFormat }} -
-                  {{ getHours(reserve.horarios) }}
+                  {{ reserve.horarios | getHours }}
                 </b>
                 {{ reserve.espaco.nome }} -
                 {{ reserve.usuario.nome }}
@@ -94,7 +94,6 @@
 
 <script>
 import { mapActions, mapState } from 'vuex'
-import dayjs from 'dayjs'
 
 export default {
   created () {
@@ -104,12 +103,6 @@ export default {
     ...mapState({
       reserves: state => state.reserves.list
     })
-  },
-  filters: {
-    dateFormat (d) {
-      console.log(d)
-      return dayjs(new Date(d)).format('DD/MM/YY')
-    }
   },
   data () {
     return {
