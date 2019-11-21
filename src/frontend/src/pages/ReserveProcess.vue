@@ -35,7 +35,7 @@
                   <q-btn
                     round
                     color="primary"
-                    icon="more_horiz"
+                    icon="search"
                     @click="selectReserve(reserve)"
                   />
                 </div>
