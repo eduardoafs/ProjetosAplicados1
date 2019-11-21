@@ -218,10 +218,11 @@ export default {
       this.selectedUser = user
     },
     selectHorarios () {
-      this.reserve.horarios[this.mapp(this.timeInit)] = 1
-      this.reserve.horarios[this.mapp(this.timeEnd)] = 2
+      console.log(this.reserve.horarios)
+      this.reserve.horarios[this.mapp(this.timeInit, this.time1)] = 1
+      this.reserve.horarios[this.mapp(this.timeEnd, this.time2)] = 2
       this.fill()
-      this.reserve.horarios[this.mapp(this.timeEnd)] = 1 // colocando 1 novamente
+      this.reserve.horarios[this.mapp(this.timeEnd, this.time2)] = 1 // colocando 1 novamente
       console.log(this.reserve.horarios)
     },
     fill () {
@@ -231,9 +232,9 @@ export default {
         }
       }
     },
-    mapp (horario) {
+    mapp (horario, time) {
       for (let i = 0; i < 12; i++) {
-        if (horario === this.time1[i] || horario === this.time2[i]) {
+        if (horario === time[i]) {
           return i
         }
       }

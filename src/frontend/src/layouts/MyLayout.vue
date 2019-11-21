@@ -94,14 +94,6 @@ export default {
           path: '/'
         },
         {
-<<<<<<< HEAD
-=======
-          label: 'Realizar Reserva',
-          icon: 'event_available',
-          path: '/create-reserve'
-        },
-        {
->>>>>>> f61c032d174998c396b512e88a5f43a8cbfdebd9
           label: 'Espaços',
           icon: 'business',
           path: '/spaces-list'
@@ -132,14 +124,6 @@ export default {
           label: 'Processar Reservas',
           icon: 'edit',
           path: '/process-reserves'
-<<<<<<< HEAD
-=======
-        },
-        {
-          label: 'Editar Reservas',
-          icon: 'edit',
-          path: '/edit-reserves'
->>>>>>> f61c032d174998c396b512e88a5f43a8cbfdebd9
         }
       ]
     }

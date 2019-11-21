@@ -43,7 +43,7 @@
               <q-item-section>
                 <b>
                   {{reserve.data | dateFormat}} -
-                  {{reserve.horarios | getHours}}
+                  {{ getHours(reserve.horarios) }}
                 </b>
                 {{reserve.espaco.nome}} -
                 {{reserve.usuario.nome}}
@@ -111,7 +111,7 @@
       </q-card>
     </q-dialog>
     <q-dialog v-model="showDetail">
-      <q-card style="width: 700px; max-width: 80vw;">
+      <q-card style="width: 800px; max-width: 80vw;">
         <q-card-section>
           <center>
             <h5>Informações da Reserva</h5>
@@ -123,10 +123,10 @@
             />
             <div class="q-pa-md">
               <p>
-                <b>Local:</b>{{reserveSelect.espaco.nome}}<br>
-                <b>responsável:</b>{{reserveSelect.espaco.responsavel}} <br>
-                <b>Horário de Reserva:</b>{{reserveSelect.horarios}}<br>
-                <b>Justificativa para reserva:</b>{{reserveSelect.espaco.justificativa}}<br>
+                <b>Local: </b>{{reserveSelect.espaco.nome}}<br>
+                <b>Responsável: </b>{{reserveSelect.usuario.nome}} <br>
+                <b>Horário de Reserva: </b>{{getHours(reserveSelect.horarios)}}<br>
+                <b>Justificativa para reserva: </b>{{reserveSelect.justificativa}}<br>
               </p>
             </div>
           </div>
@@ -160,7 +160,16 @@ export default {
       reservaEscolhida: {},
       time1: ['07:00', '07:50', '08:55', '09:45', '10:50', '11:40', '13:00', '13:50', '14:55', '15:45', '16:50', '17:40'],
       time2: ['07:50', '08:40', '09:45', '10:35', '11:40', '12:30', '13:50', '14:40', '15:45', '16:35', '17:40', '18:30'],
-      reserveSelect: {}
+      reserveSelect: {
+        espaco: {
+          nome: ''
+        },
+        usuario: {
+          nome: ''
+        },
+        horarios: [],
+        justificativa: ''
+      }
     }
   },
   methods: {
@@ -198,8 +207,17 @@ export default {
       timeFinal = this.time2[i - 1]
       return `${timeInit} - ${timeFinal}`
     },
+    dataAtualFormatada (data) {
+      let dia = data.getDate().toString()
+      let diaF = (dia.length === 1) ? '0' + dia : dia
+      let mes = (data.getMonth() + 1).toString()
+      let mesF = (mes.length === 1) ? '0' + mes : mes
+      let anoF = data.getFullYear()
+      return anoF + '/' + mesF + '/' + diaF
+    },
     selectReserve (reserve) {
       this.reserveSelect = reserve
+      this.date = this.dataAtualFormatada(new Date(reserve.data))
       this.showDetail = true
     }
   }
