@@ -32,12 +32,18 @@
                     @click="negar(reserve)"
                     clickable
                   />
+                  <q-btn
+                    round
+                    color="primary"
+                    icon="more_horiz"
+                    @click="selectReserve(reserve)"
+                  />
                 </div>
               </q-item-section>
               <q-item-section>
                 <b>
-                  {{new Date(reserve.data)}} -
-                  {{getHours(reserve.horarios)}}
+                  {{reserve.data | dateFormat}} -
+                  {{reserve.horarios | getHours}}
                 </b>
                 {{reserve.espaco.nome}} -
                 {{reserve.usuario.nome}}
@@ -117,10 +123,10 @@
             />
             <div class="q-pa-md">
               <p>
-                <b>Local:</b> <br>
-                <b>responsável:</b> <br>
-                <b>Horário de Reserva:</b> <br>
-                <b>Justificativa para reserva:</b> <br>
+                <b>Local:</b>{{reserveSelect.espaco.nome}}<br>
+                <b>responsável:</b>{{reserveSelect.espaco.responsavel}} <br>
+                <b>Horário de Reserva:</b>{{reserveSelect.horarios}}<br>
+                <b>Justificativa para reserva:</b>{{reserveSelect.espaco.justificativa}}<br>
               </p>
             </div>
           </div>
@@ -153,7 +159,8 @@ export default {
       date: '',
       reservaEscolhida: {},
       time1: ['07:00', '07:50', '08:55', '09:45', '10:50', '11:40', '13:00', '13:50', '14:55', '15:45', '16:50', '17:40'],
-      time2: ['07:50', '08:40', '09:45', '10:35', '11:40', '12:30', '13:50', '14:40', '15:45', '16:35', '17:40', '18:30']
+      time2: ['07:50', '08:40', '09:45', '10:35', '11:40', '12:30', '13:50', '14:40', '15:45', '16:35', '17:40', '18:30'],
+      reserveSelect: {}
     }
   },
   methods: {
@@ -190,8 +197,11 @@ export default {
       }
       timeFinal = this.time2[i - 1]
       return `${timeInit} - ${timeFinal}`
+    },
+    selectReserve (reserve) {
+      this.reserveSelect = reserve
+      this.showDetail = true
     }
   }
-
 }
 </script>
