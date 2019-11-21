@@ -207,6 +207,7 @@ export default {
       this.reserve.usuario = user
       await this.createReserve(this.reserve)
       // this.reserve = {}
+      this.$router.push('/edit-reserves')
     },
     selectSpace (space) {
       this.selectedSpaceId = space.id

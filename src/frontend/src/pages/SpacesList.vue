@@ -1,6 +1,16 @@
 <template>
   <q-page padding>
-    <div class="text-h5">Lista de espaços</div>
+    <div class="flex">
+      <div class="text-h5">
+        Lista de espaços
+      </div>
+      <q-space />
+      <q-btn
+        label="Criar espaço"
+        @click="$router.push('/register-spaces')"
+        color="blue"
+      />
+    </div>
     <div class="q-pa-md">
       <form class="row q-gutter-md">
         <div class="col">

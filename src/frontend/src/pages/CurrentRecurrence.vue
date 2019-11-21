@@ -13,7 +13,7 @@
             <div class="row justify-around">
               <div class="row">
                 <q-input
-                  v-model="dateInit"
+                  v-model="reserve.dateInit"
                   mask="##/##/####"
                   stack-label
                   label="Data - Início"
@@ -21,7 +21,7 @@
               </div>
               <div class="row">
                 <q-input
-                  v-model="dataEnd"
+                  v-model="reserve.dataEnd"
                   mask="##/##/####"
                   stack-label
                   label="Data - Término"
@@ -66,12 +66,12 @@
                 v-model="nome"
               />
             </div>
-            <div class="q-pa-md q-gutter-md row justify-end">
-              <q-btn
-                label="Limpar Campos"
-                color="blue"
-              />
-            </div>
+            <q-input
+              v-model="reserve.justificativa"
+              filled
+              type="text"
+              label="Descrição"
+            />
           </div>
         </q-card>
       </div>
@@ -85,59 +85,32 @@
               <q-list>
                 <q-item
                   v-for="space in spaces"
-                  :key="space.name"
+                  :key="space.id"
                 >
                   <q-item-section side>
                     <q-checkbox
                       v-model="spaceselect"
-                      label=""
+                      :val="space.id"
+                      :label="space.nome"
                     />
-                  </q-item-section>
-                  <q-item-section>
-                    {{space.name}}
                   </q-item-section>
                 </q-item>
               </q-list>
-              <div class="q-pa-md q-gutter-md row justify-end">
-                <q-btn
-                  label="Adicionar"
-                  color="green"
-                />
-              </div>
             </div>
           </div>
         </q-card>
       </div>
     </div>
     <br />
-    <div class="col">
-      <q-card class="my-card">
-        <q-card-section class="bg-primary text-white">
-          <div class="text-h6">Selecionandos</div>
-        </q-card-section>
-        <div class="q-pa-md q-gutter-md border">
-          <q-list>
-            <q-item
-              v-for="space in spaces"
-              :key="space.name"
-            >
-              <q-item-section>
-                {{space.name}}
-              </q-item-section>
-            </q-item>
-          </q-list>
-          <div class="q-pa-md q-gutter-md row justify-end">
-            <q-btn
-              label="Cancelar"
-              color="red"
-            />
-            <q-btn
-              label="Finalizar"
-              color="green"
-            />
-          </div>
-        </div>
-      </q-card>
+    <div class="q-pa-md q-gutter-md row justify-end">
+      <q-btn
+        label="Retornar"
+        color="red"
+      />
+      <q-btn
+        label="Criar reserva"
+        color="green"
+      />
     </div>
   </q-page>
 </template>
@@ -149,9 +122,21 @@
 </style>
 
 <script>
+
+import { mapActions, mapState } from 'vuex'
+
 export default {
+  created () {
+    this.getSpaces()
+  },
+  computed: {
+    ...mapState({
+      spaces: state => state.spaces.list
+    })
+  },
   name: 'CurrentRecurrence',
   data: () => ({
+    nome: '',
     reserve: {
       dateInit: '',
       dateEnd: '',
@@ -159,34 +144,24 @@ export default {
       timeEnd: ''
     },
     shape: {
-      solicitamte: '',
+      solicitante: '',
       nomeindique: ''
     },
-    spaces: [{
-      name: 'Laboratório 1'
-    }, {
-      name: 'Laboratório 2'
-    }, {
-      name: 'Laboratório 3'
-    }, {
-      name: 'Laboratório de Redes'
-    },
-    {
-      name: 'Monitoria'
-    },
-    {
-      name: 'Sala de Estudos'
-    }],
     startTime: null,
     endTime: null,
-    time1: ['07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00'],
-    time2: ['07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00'],
+    time1: ['07:00', '07:50', '08:55', '09:45', '10:50', '11:40', '13:00', '13:50', '14:55', '15:45', '16:50', '17:40'],
+    time2: ['07:50', '08:40', '09:45', '10:35', '11:40', '12:30', '13:50', '14:40', '15:45', '16:35', '17:40', '18:30'],
     building: [{
       name: 'Prédio de Informática'
     }],
-    spaceselect: {
-
+    spaceselect: []
+  }),
+  methods: {
+    ...mapActions(['getSpaces']
+    ),
+    link (space) {
+      space.spaceSelect = !space.spaceSelect
     }
-  })
+  }
 }
 </script>

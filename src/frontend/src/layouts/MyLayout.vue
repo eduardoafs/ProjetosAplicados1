@@ -81,6 +81,7 @@ export default {
   created () {
     this.getReserves()
     this.getUser()
+    this.getSpaces()
   },
   name: 'MyLayout',
   data () {
@@ -93,22 +94,27 @@ export default {
           path: '/'
         },
         {
-          label: 'Realizar Reserva',
-          icon: 'create',
-          path: '/create-reserve'
-        },
-        {
           label: 'Espaços',
-          icon: 'check_box_outline_blank',
+          icon: 'business',
           path: '/spaces-list'
         },
         {
-          label: 'Cadastrar Espaço',
-          icon: 'meeting_room',
-          path: '/register-spaces'
+          label: 'Ver disponibilidade',
+          icon: 'search',
+          path: '/view-availability'
         }
       ],
       reserves: [
+        {
+          label: 'Reservas',
+          icon: 'format_list_bulleted',
+          path: '/edit-reserves'
+        },
+        {
+          label: 'Realizar Reserva',
+          icon: 'event',
+          path: '/create-reserve'
+        },
         {
           label: 'Reserva Recorrente',
           icon: 'date_range',
@@ -116,19 +122,14 @@ export default {
         },
         {
           label: 'Processar Reservas',
-          icon: 'done_outline',
+          icon: 'edit',
           path: '/process-reserves'
-        },
-        {
-          label: 'Editar Reservas',
-          icon: 'done_outline',
-          path: '/edit-reserves'
         }
       ]
     }
   },
   methods: {
-    ...mapActions(['getReserves', 'getUsers']
+    ...mapActions(['getReserves', 'getUsers', 'getSpaces']
     ),
     goTo (path) {
       this.$router.push(path)
