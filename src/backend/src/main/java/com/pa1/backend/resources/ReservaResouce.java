@@ -73,6 +73,26 @@ public class ReservaResouce {
         return ResponseEntity.ok().body(list);
     }
 
+    @ApiOperation("Listar Reservas pela data de um Espaço")
+    @RequestMapping(path = {"/dateEspaco"},method = RequestMethod.GET)
+    public ResponseEntity<List<Reserva>> findByDateEspaco(
+            @ApiParam("Id do Espaço")
+            @RequestParam Integer id,
+            @ApiParam("Data  no formato dd-MM-yyyy")
+            @DateTimeFormat(pattern="dd-MM-yyyy")  String date
+
+    ){
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        Date d = new Date();
+        try {
+            d = sdf.parse(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        List<Reserva> list= service.findByDateEspaco(id,d);
+        return ResponseEntity.ok().body(list);
+    }
+
     @ApiOperation("Listar Reservas Aprovadas")
     @RequestMapping(path = {"/aprovadas"},method = RequestMethod.GET)
     public ResponseEntity<List<Reserva>> findByAprovadas(){
@@ -86,6 +106,7 @@ public class ReservaResouce {
         List<Reserva> list= service.findByPendentes();
         return ResponseEntity.ok().body(list);
     }
+
 
     @ApiOperation("Listar Reservas Canceladas")
     @RequestMapping(path = {"/canceladas"},method = RequestMethod.GET)
@@ -128,7 +149,7 @@ public class ReservaResouce {
             @Valid @RequestBody ReservaDTO objDto
     ){
 
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        //SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         Reserva obj = new Reserva();
 
         try {
@@ -136,7 +157,7 @@ public class ReservaResouce {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        if(!detectaColisao(obj, obj.getData())){
+        if(!detectaColisao(obj, obj.getDataInicio())){
             service.insert(obj);
             URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                     .buildAndExpand(obj.getId())
@@ -171,7 +192,7 @@ public class ReservaResouce {
     ){
         Reserva obj = service.buscar(id);
         if(!detectaColisao(obj, data)){
-            obj.setData(data);
+            obj.setDataInicio(data);
             service.update(obj);
             return ResponseEntity.ok().build();
         }else{
@@ -193,7 +214,8 @@ public class ReservaResouce {
         List<Reserva> list = service.findByReserva(obj.getEspaco().getId(), data);
         if(!list.isEmpty()){
             for (Reserva reserva : list) {
-                for (int j = 0; j < reserva.getHorarios().length; j++) {
+                for (int j = 0; j < reserva.getHorarios().
+                        length; j++) {
                     Integer horariosobj[] = obj.getHorarios();
                     Integer horariosReserva[] = reserva.getHorarios();
                     if (horariosobj[j] == 1 && horariosReserva[j] == 1) {
