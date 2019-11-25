@@ -97,11 +97,6 @@ export default {
           label: 'Espaços',
           icon: 'business',
           path: '/spaces-list'
-        },
-        {
-          label: 'Ver disponibilidade',
-          icon: 'search',
-          path: '/view-availability'
         }
       ],
       reserves: [
