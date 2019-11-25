@@ -85,7 +85,8 @@ export const ReserveService = {
       params.id + '&justificativa=' + params.justificativa, params)
   },
   reservesByDate (params) {
-    return ApiService.query('reservas/date/?date=' + params.date, params)
+    return ApiService.query('reservas/dateEspaco/?id=' + params.idSpace +
+      '&date=' + params.date, params)
   }
 }
 

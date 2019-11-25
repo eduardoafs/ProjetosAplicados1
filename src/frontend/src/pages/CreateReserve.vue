@@ -81,7 +81,7 @@
       <div class="q-pa-md q-gutter-md row items-start">
         <div class="col">
           <q-input
-            v-model="reserve.dataReserva"
+            v-model="reserve.dataInicio"
             mask="##-##-####"
             stack-label
             label="Data - Início"
@@ -163,7 +163,8 @@ export default {
     reserve: {
       aprovada: false,
       cancelada: false,
-      dataReserva: '',
+      dataInicio: '',
+      dataFim: '',
       diaSemana: [0, 0, 0, 0, 0, 0, 1],
       espaco: {},
       horarios: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -192,6 +193,7 @@ export default {
       let space = { ...this.selectedSpace }
       let user = { ...this.selectedUser }
       this.reserve.espaco = space
+      this.reserve.dataFim = this.reserve.dataInicio
       space.id = space.id + 0
       user.perfis = user.perfis.map((it) => {
         switch (it) {

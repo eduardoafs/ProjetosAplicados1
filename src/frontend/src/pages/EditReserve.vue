@@ -35,7 +35,7 @@
               </q-item-section>
               <q-item-section>
                 <b>
-                  {{ reserve.data | dateFormat }} -
+                  {{ reserve.dataInicio | dateFormat }} -
                   {{ getHours(reserve.horarios) }}
                 </b>
                 {{ reserve.espaco.nome }} -

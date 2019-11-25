@@ -14,7 +14,7 @@ const routes = [{
     component: () => import('pages/SpacesList.vue')
   },
   {
-    path: '/view-availability',
+    path: '/view-availability/:id?',
     component: () => import('pages/ViewAvailability.vue')
   },
   {

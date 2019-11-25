@@ -50,7 +50,7 @@
               <q-btn
                 color="primary"
                 label="Ver Disponibilidade"
-                @click="$router.push('/view-availability')"
+                @click="$router.push(`/view-availability/${Number(space.id)}`)"
                 clickable
                 v-close-popup
               />

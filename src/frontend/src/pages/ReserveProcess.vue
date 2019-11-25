@@ -42,7 +42,7 @@
               </q-item-section>
               <q-item-section>
                 <b>
-                  {{reserve.data | dateFormat}} -
+                  {{reserve.dataInicio | dateFormat}} -
                   {{ getHours(reserve.horarios) }}
                 </b>
                 {{reserve.espaco.nome}} -
@@ -217,7 +217,7 @@ export default {
     },
     selectReserve (reserve) {
       this.reserveSelect = reserve
-      this.date = this.dataAtualFormatada(new Date(reserve.data))
+      this.date = this.dataAtualFormatada(new Date(reserve.dataInicio))
       this.showDetail = true
     }
   }

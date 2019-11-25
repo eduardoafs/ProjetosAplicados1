@@ -63,11 +63,11 @@ export default {
     },
     async reservesByDate ({
       commit
-    }, date) {
+    }, payload) {
       console.log('RESERVASBYDATE')
-      const result = await ReserveService.reservesByDate({
-        date
-      })
+      const result = await ReserveService.reservesByDate(
+        payload
+      )
       return result.data
     }
 

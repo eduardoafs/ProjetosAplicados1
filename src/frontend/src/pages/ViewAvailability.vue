@@ -40,11 +40,22 @@
 
 <script>
 
-import { mapActions } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 
 export default {
+  created () {
+    this.getSpaces()
+    this.idSpace = this.$route.params.id
+    console.log(this.$route.params.id)
+  },
+  computed: {
+    ...mapState({
+      spaces: state => state.spaces.list
+    })
+  },
   data () {
     return {
+      idSpace: 0,
       pagination: {
         rowsPerPage: 12
         // rowsNumber: xx if getting data from a server
@@ -182,22 +193,26 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['reservesByDate']),
+    ...mapActions(['reservesByDate', 'getSpaces']),
     filter (date) {
       date = date.replace('/', '-').replace('/', '-')
       console.log('data antes: ' + date)
-      date = this.dataFormatada(date)
+      date = this.dataAtualFormatada(date)
       console.log('data depois: ' + date)
-      let reservas = this.reservesByDate(date)
+      let payload = {
+        idSpace: 0,
+        date: ''
+      }
+      payload.idSpace = this.idSpace
+      payload.date = date
+      let reservas = this.reservesByDate(payload)
       console.log('reservas = ' + reservas)
     },
-    dataFormatada (dataRecebida) {
-      console.log(dataRecebida)
-      var data = new Date(dataRecebida),
-        dia = data.getDate().toString().padStart(2, '0'),
-        mes = (data.getMonth() + 1).toString().padStart(2, '0'), // +1 pois no getMonth Janeiro começa com zero.
-        ano = data.getFullYear()
-      return dia + '-' + mes + '-' + ano
+    dataAtualFormatada (data) {
+      let retornaData = data.split('-')
+      return retornaData[2] + '-' + retornaData[1] + '-' + retornaData[0]
+    },
+    SearchAvailability () {
     }
   }
 }
