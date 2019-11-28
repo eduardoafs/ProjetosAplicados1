@@ -1,6 +1,6 @@
 <template>
   <q-page padding>
-    <div class="text-h5">Ver disponibilidade</div>
+    <div class="text-h5">Ver disponibilidade - {{selectedSpace.nome}}</div>
     <br>
     <center>
       <div class="disp-form">
@@ -16,13 +16,36 @@
     </center>
 
     <div class="q-pa-md table-result">
-      <q-table
-        title="Horários"
-        :data="data"
-        :columns="columns"
-        row-key="name"
-        :pagination.sync="pagination"
-      />
+      <q-list bordered>
+        <q-item
+          v-for="(h, index) in horarios"
+          :key="index"
+          class="q-my-sm"
+          clickable
+          v-ripple
+        >
+          <q-item-section avatar>
+            <q-avatar
+              :color="h == 1 ? 'red' : 'green'"
+              text-color="white"
+            >
+              {{ index+1 }}
+            </q-avatar>
+          </q-item-section>
+
+          <q-item-section>
+            <q-item-label>{{ time1[index] + ' - ' + time2[index]}}</q-item-label>
+            <q-item-label
+              caption
+              lines="1"
+            >{{ h == 1 ? 'Ocupado' : 'Disponível' }}</q-item-label>
+          </q-item-section>
+
+          <q-item-section side>
+
+          </q-item-section>
+        </q-item>
+      </q-list>
     </div>
 
     <center>
@@ -42,11 +65,16 @@
 
 import { mapActions, mapState } from 'vuex'
 
+import {
+  ReserveService
+} from '../services/api.service'
+
 export default {
   created () {
     this.getSpaces()
     this.idSpace = this.$route.params.id
-    console.log(this.$route.params.id)
+    this.selectedSpace = this.spaces.find(({ id }) => parseInt(this.idSpace) === id)
+    console.log(this.selectedSpace)
   },
   computed: {
     ...mapState({
@@ -56,145 +84,22 @@ export default {
   data () {
     return {
       idSpace: 0,
+      selectedSpace: {},
       pagination: {
         rowsPerPage: 12
         // rowsNumber: xx if getting data from a server
       },
       dateFilter: new Date(),
-      columns: [
-        {
-          name: 'horario',
-          required: true,
-          label: 'Horário',
-          align: 'center',
-          field: row => row.horario,
-          format: val => `${val}`,
-          sortable: true
-        },
-        { name: 'segunda', align: 'center', label: 'Segunda', field: 'segunda' },
-        { name: 'terca', align: 'center', label: 'Terça', field: 'terca' },
-        { name: 'quarta', align: 'center', label: 'Quarta', field: 'quarta' },
-        { name: 'quinta', align: 'center', label: 'Quinta', field: 'quinta' },
-        { name: 'sexta', align: 'center', label: 'Sexta', field: 'sexta' },
-        { name: 'sabado', align: 'center', label: 'Sabádo', field: 'sabado' },
-        { name: 'domingo', align: 'center', label: 'Domingo', field: 'domingo' }
+      horarios: [
+
       ],
-      data: [
-        {
-          horario: '1',
-          segunda: '',
-          terca: '',
-          quarta: '',
-          quinta: '',
-          sexta: '',
-          sabado: '',
-          domingo: ''
-        }, {
-          horario: '2',
-          segunda: '',
-          terca: '',
-          quarta: '',
-          quinta: '',
-          sexta: '',
-          sabado: '',
-          domingo: ''
-        }, {
-          horario: '3',
-          segunda: '',
-          terca: '',
-          quarta: '',
-          quinta: '',
-          sexta: '',
-          sabado: '',
-          domingo: ''
-        }, {
-          horario: '4',
-          segunda: '',
-          terca: '',
-          quarta: '',
-          quinta: '',
-          sexta: '',
-          sabado: '',
-          domingo: ''
-        }, {
-          horario: '5',
-          segunda: '',
-          terca: '',
-          quarta: '',
-          quinta: '',
-          sexta: '',
-          sabado: '',
-          domingo: ''
-        }, {
-          horario: '6',
-          segunda: '',
-          terca: '',
-          quarta: '',
-          quinta: '',
-          sexta: '',
-          sabado: '',
-          domingo: ''
-        }, {
-          horario: '7',
-          segunda: '',
-          terca: '',
-          quarta: '',
-          quinta: '',
-          sexta: '',
-          sabado: '',
-          domingo: ''
-        }, {
-          horario: '8',
-          segunda: '',
-          terca: '',
-          quarta: '',
-          quinta: '',
-          sexta: '',
-          sabado: '',
-          domingo: ''
-        }, {
-          horario: '9',
-          segunda: '',
-          terca: '',
-          quarta: '',
-          quinta: '',
-          sexta: '',
-          sabado: '',
-          domingo: ''
-        }, {
-          horario: '10',
-          segunda: '',
-          terca: '',
-          quarta: '',
-          quinta: '',
-          sexta: '',
-          sabado: '',
-          domingo: ''
-        }, {
-          horario: '11',
-          segunda: '',
-          terca: '',
-          quarta: '',
-          quinta: '',
-          sexta: '',
-          sabado: '',
-          domingo: ''
-        }, {
-          horario: '12',
-          segunda: '',
-          terca: '',
-          quarta: '',
-          quinta: '',
-          sexta: '',
-          sabado: '',
-          domingo: ''
-        }
-      ]
+      time1: ['07:00', '07:50', '08:55', '09:45', '10:50', '11:40', '13:00', '13:50', '14:55', '15:45', '16:50', '17:40'],
+      time2: ['07:50', '08:40', '09:45', '10:35', '11:40', '12:30', '13:50', '14:40', '15:45', '16:35', '17:40', '18:30']
     }
   },
   methods: {
     ...mapActions(['reservesByDate', 'getSpaces']),
-    filter (date) {
+    async filter (date) {
       date = date.replace('/', '-').replace('/', '-')
       console.log('data antes: ' + date)
       date = this.dataAtualFormatada(date)
@@ -205,14 +110,13 @@ export default {
       }
       payload.idSpace = this.idSpace
       payload.date = date
-      let reservas = this.reservesByDate(payload)
-      console.log('reservas = ' + reservas)
+      let { data } = await ReserveService.reservesByDate(payload)
+      this.horarios = data[0].horarios
+      console.log('reservas = ', data[0].horarios)
     },
     dataAtualFormatada (data) {
       let retornaData = data.split('-')
       return retornaData[2] + '-' + retornaData[1] + '-' + retornaData[0]
-    },
-    SearchAvailability () {
     }
   }
 }
