@@ -118,8 +118,13 @@ export default {
       console.log('reservas = ', this.horarios)
     },
     dataAtualFormatada (data) {
-      let retornaData = data.split('-')
-      return retornaData[2] + '-' + retornaData[1] + '-' + retornaData[0]
+      if (typeof (data) === 'object') {
+        console.log('nulo')
+        return ''
+      } else {
+        let retornaData = data.split('-')
+        return retornaData[2] + '-' + retornaData[1] + '-' + retornaData[0]
+      }
     }
   }
 }
