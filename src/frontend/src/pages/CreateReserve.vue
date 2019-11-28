@@ -151,6 +151,9 @@ export default {
       this.selectedSpace = this.spaces.find(r => r.id === parseInt(this.$route.params.id))
       // this.reserve = this.reserves.find(r => r.id === parseInt(this.$route.params.id))
     }
+    if (this.$route.params.date) {
+      this.reserve.dataInicio = this.$route.params.date
+    }
   },
   computed: {
     ...mapState({

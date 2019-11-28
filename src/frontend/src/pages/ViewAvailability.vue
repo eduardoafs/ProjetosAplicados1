@@ -15,6 +15,16 @@
       </div>
     </center>
 
+    <center>
+      <div class="disp-form-two">
+        <q-btn
+          @click="$router.push(`/create-reserve/${Number(selectedSpace.id)}/${dataAtualFormatada(dateFilter)}`)"
+          color="secondary"
+          label="Criar Reservar"
+        />
+      </div>
+    </center>
+
     <div class="q-pa-md table-result">
       <q-list bordered>
         <q-item
@@ -47,17 +57,6 @@
         </q-item>
       </q-list>
     </div>
-
-    <center>
-      <div class="disp-form-two">
-        <q-btn
-          @click="$router.push('/create-reserve')"
-          color="secondary"
-          label="Criar Reservar"
-        />
-      </div>
-    </center>
-
   </q-page>
 </template>
 
@@ -90,9 +89,7 @@ export default {
         // rowsNumber: xx if getting data from a server
       },
       dateFilter: new Date(),
-      horarios: [
-
-      ],
+      horarios: [],
       time1: ['07:00', '07:50', '08:55', '09:45', '10:50', '11:40', '13:00', '13:50', '14:55', '15:45', '16:50', '17:40'],
       time2: ['07:50', '08:40', '09:45', '10:35', '11:40', '12:30', '13:50', '14:40', '15:45', '16:35', '17:40', '18:30']
     }
@@ -111,8 +108,14 @@ export default {
       payload.idSpace = this.idSpace
       payload.date = date
       let { data } = await ReserveService.reservesByDate(payload)
-      this.horarios = data[0].horarios
-      console.log('reservas = ', data[0].horarios)
+      const horarios = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      data.forEach(reserve => {
+        reserve.horarios.forEach((h, idx) => {
+          if (h === 1) { horarios[idx] = 1 }
+        })
+      })
+      this.horarios = horarios
+      console.log('reservas = ', this.horarios)
     },
     dataAtualFormatada (data) {
       let retornaData = data.split('-')
