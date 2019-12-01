@@ -6,13 +6,13 @@
         <div class="col">
           <q-input
             v-model="search"
-            label="Busque pelo nome da reserva"
+            label="Busque pelo nome do espaço"
           />
           <br />
           <br />
           <q-list>
             <q-item
-              v-for="reserve in reserves"
+              v-for="reserve in filteredData"
               :key="reserve.id"
             >
               <q-item-section side>
@@ -90,7 +90,10 @@ export default {
   computed: {
     ...mapState({
       reserves: state => state.reserves.list
-    })
+    }),
+    filteredData () {
+      return this.reserves.filter(reserve => reserve.espaco.nome.toLowerCase().includes(this.search.toLowerCase()))
+    }
   },
   data () {
     return {

@@ -4,11 +4,17 @@ import {
 
 export default {
   state: {
-    list: []
+    list: [],
+    filters: {
+      nome: null
+    }
   },
   mutations: {
     setReserves (state, list) {
       state.list = list
+    },
+    setFilters (state, filters) {
+      state.filters = filters
     }
   },
   actions: {
@@ -69,7 +75,13 @@ export default {
         payload
       )
       return result.data
+    },
+    setFilters ({
+      commit
+    }, filters) {
+      commit('setFilters', {
+        ...filters
+      })
     }
-
   }
 }

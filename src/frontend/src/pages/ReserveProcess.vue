@@ -6,13 +6,13 @@
         <div class="col">
           <q-input
             v-model="search"
-            label="Busque pelo nome da reserva"
+            label="Busque pelo nome do espaço"
           />
           <br>
           <br>
           <q-list>
             <q-item
-              v-for="reserve in reservesPendences"
+              v-for="reserve in filteredData"
               :key="reserve.id"
             >
               <q-item-section side>
@@ -138,7 +138,7 @@
 
 <script>
 
-import { mapActions, mapState } from 'vuex'
+import { mapActions, mapState, mapGetters } from 'vuex'
 
 export default {
   created () {
@@ -147,7 +147,11 @@ export default {
   computed: {
     ...mapState({
       reservesPendences: state => state.reserves.list
-    })
+    }),
+    ...mapGetters(['doneReserves']),
+    filteredData () {
+      return this.reservesPendences.filter(reserve => reserve.espaco.nome.toLowerCase().includes(this.search.toLowerCase()))
+    }
   },
   data () {
     return {
@@ -173,7 +177,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getReservesPendences', 'approveReserve', 'cancelReserve']
+    ...mapActions(['getReservesPendences', 'approveReserve', 'cancelReserve', 'mapGetters', 'setFilters']
     ),
     async approveReservation () {
       await this.approveReserve(this.reservaEscolhida.id)
