@@ -14,18 +14,25 @@
     <div class="q-pa-md">
       <form class="row q-gutter-md">
         <div class="col">
-          <q-select
-            v-model="filters.pessoas"
-            :options="['30 Pessoas', '40 Pessoas', '50 Pessoas']"
-            label="Pessoas"
-          />
+          <select
+            @change="setFilters(filters)"
+            v-model="filters.qtdPessoas"
+          >
+            <option :value="null">Limpar filtro</option>
+            <option :value="30">30 Pessoas</option>
+            <option :value="40">40 Pessoas</option>
+            <option :value="50">50 Pessoas</option>
+          </select>
         </div>
         <div class="col">
-          <q-select
+          <select
+            @change="setFilters(filters)"
             v-model="filters.computadores"
-            :options="['Sim', 'Não']"
-            label="Computadores"
-          />
+          >
+            <option :value="null">Limpar filtro</option>
+            <option :value="true">Sim</option>
+            <option :value="false">Não</option>
+          </select>
         </div>
       </form>
       <br>
@@ -33,7 +40,7 @@
 
       <q-expansion-item
         icon="business"
-        v-for="space in spaces"
+        v-for="space in spacesFilted"
         :key="space.id"
         :label="space.nome"
       >
@@ -96,7 +103,7 @@
 </style>
 
 <script>
-import { mapActions, mapState } from 'vuex'
+import { mapActions, mapState, mapGetters } from 'vuex'
 
 export default {
   created () {
@@ -105,21 +112,20 @@ export default {
   computed: {
     ...mapState({
       spaces: state => state.spaces.list
-    })
+    }),
+    ...mapGetters(['spacesFilted'])
   },
   data: () => ({
     showDetail: false,
     date: null,
     atual: {},
     filters: {
-      pessoas: '',
-      disponibilidade: '',
-      computadores: '',
-      setor: ''
+      qtdPessoas: null,
+      computadores: null
     }
   }),
   methods: {
-    ...mapActions(['getSpaces'])
+    ...mapActions(['getSpaces', 'setFilters'])
   }
 }
 </script>

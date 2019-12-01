@@ -4,11 +4,18 @@ import {
 
 export default {
   state: {
-    list: []
+    list: [],
+    filters: {
+      qtdPessoas: null,
+      computadores: null
+    }
   },
   mutations: {
     setSpaces (state, list) {
       state.list = list
+    },
+    setFilters (state, filters) {
+      state.filters = filters
     }
   },
   actions: {
@@ -29,6 +36,26 @@ export default {
       } catch (error) {
         console.log('Error ao criar espaco: ' + error)
       }
+    },
+    setFilters ({
+      commit
+    }, filters) {
+      commit('setFilters', {
+        ...filters
+      })
+    }
+  },
+  getters: {
+    spacesFilted: state => {
+      return state.list.filter(space => {
+        for (var key in state.filters) {
+          if (state.filters[key] === null) return true
+          if (space[key] !== state.filters[key]) {
+            return false
+          }
+        }
+        return true
+      })
     }
   }
 }
