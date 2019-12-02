@@ -1,6 +1,6 @@
 <template>
   <q-page padding>
-    <div class="text-h5">Edição de reservas</div>
+    <div class="text-h5">Reservas</div>
     <div class="q-pa-md">
       <form class="row q-gutter-md">
         <div class="col">

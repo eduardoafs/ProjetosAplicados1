@@ -24,6 +24,9 @@
 
 <script>
 export default {
-  name: 'PageIndex'
+  name: 'PageIndex',
+  created () {
+    this.$router.push('/edit-reserves')
+  }
 }
 </script>
