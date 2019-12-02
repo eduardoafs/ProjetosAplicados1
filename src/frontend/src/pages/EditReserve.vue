@@ -19,7 +19,7 @@
                 <div class="row q-gutter-md">
                   <q-btn
                     round
-                    color="primary"
+                    color="secondary"
                     icon="edit"
                     @click="$router.push('/create-reserve/' + reserve.id)"
                     clickable
@@ -29,6 +29,13 @@
                     color="red"
                     icon="close"
                     @click="confirmaExcluir(reserve)"
+                    clickable
+                  />
+                  <q-btn
+                    round
+                    color="primary"
+                    icon="search"
+                    @click="selectReserve(reserve)"
                     clickable
                   />
                 </div>
@@ -47,7 +54,7 @@
       </form>
     </div>
 
-    <q-dialog v-model="showDetail">
+    <q-dialog v-model="showDenied">
       <q-card style="width: 700px; max-width: 80vw;">
         <q-card-section>
           <div class="col">
@@ -65,13 +72,36 @@
               <q-btn
                 label="cancelar"
                 color="red"
-                @click="showDetail = false"
+                @click="showDenied = false"
               />
               <q-btn
                 label="confimar"
                 color="green"
                 @click="cancelarReserva()"
               />
+            </div>
+          </div>
+        </q-card-section>
+      </q-card>
+    </q-dialog>
+    <q-dialog v-model="showDetail">
+      <q-card style="width: 800px; max-width: 80vw;">
+        <q-card-section>
+          <center>
+            <h5>Informações da Reserva</h5>
+          </center>
+          <div class="flex">
+            <q-date
+              v-model="date"
+              minimal
+            />
+            <div class="q-pa-md">
+              <p>
+                <b>Local: </b>{{reservaSelect.espaco.nome}}<br>
+                <b>Responsável: </b>{{reservaSelect.usuario.nome}} <br>
+                <b>Horário de Reserva: </b>{{getHours(reservaSelect.horarios)}}<br>
+                <b>Justificativa para reserva: </b>{{reservaSelect.justificativa}}<br>
+              </p>
             </div>
           </div>
         </q-card-section>
@@ -98,9 +128,20 @@ export default {
   data () {
     return {
       justificativa: '',
+      showDenied: false,
       showDetail: false,
       search: '',
-      reservaSelect: {},
+      reservaSelect: {
+        espaco: {
+          nome: ''
+        },
+        usuario: {
+          nome: ''
+        },
+        horarios: [],
+        justificativa: ''
+      },
+      date: '',
       time1: [
         '07:00',
         '07:50',
@@ -136,11 +177,11 @@ export default {
     confirmaExcluir (reserva) {
       this.reservaSelect = { ...reserva }
       this.reservaSelect.justificativa = this.justificativa
-      this.showDetail = true
+      this.showDenied = true
     },
     async cancelarReserva () {
       await this.cancelReserve(this.reservaSelect)
-      this.showDetail = false
+      this.showDenied = false
       this.getReservesApproved()
     },
     getHours (vetor) {
@@ -155,6 +196,19 @@ export default {
       }
       timeFinal = this.time2[i - 1]
       return `${timeInit} - ${timeFinal}`
+    },
+    selectReserve (reserve) {
+      this.reservaSelect = reserve
+      this.date = this.dataAtualFormatada(new Date(reserve.dataInicio))
+      this.showDetail = true
+    },
+    dataAtualFormatada (data) {
+      let dia = data.getDate().toString()
+      let diaF = (dia.length === 1) ? '0' + dia : dia
+      let mes = (data.getMonth() + 1).toString()
+      let mesF = (mes.length === 1) ? '0' + mes : mes
+      let anoF = data.getFullYear()
+      return anoF + '/' + mesF + '/' + diaF
     }
   }
 }
