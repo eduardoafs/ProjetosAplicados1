@@ -91,8 +91,7 @@
               <p>
                 <b>Capacidade: </b> {{atual.qtdPessoas}} <br>
                 <b>Descrição: </b> {{atual.descricao}} <br>
-                <b>Computadores: </b><span v-if="atual.computadores"> Sim </span>
-                <span v-esle> Não </span><br />
+                <b>Computadores: </b>{{ atual.computadores ? 'Sim' : 'Não'}} <br>
                 <b>Responsável: </b> {{atual.responsavel}} <br>
               </p>
             </div>

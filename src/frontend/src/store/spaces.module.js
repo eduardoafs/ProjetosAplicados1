@@ -49,8 +49,9 @@ export default {
     spacesFilted: state => {
       return state.list.filter(space => {
         for (var key in state.filters) {
-          if (state.filters[key] === null) return true
-          if (space[key] !== state.filters[key]) {
+          // if (state.filters[key] === null) return true
+          if (state.filters[key] !== null &&
+            (Number.isInteger(space[key]) ? !(space[key] >= state.filters[key]) : !(space[key] === state.filters[key]))) {
             return false
           }
         }
