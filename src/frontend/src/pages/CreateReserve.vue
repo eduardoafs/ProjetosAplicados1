@@ -114,10 +114,6 @@
       </div>
       <div class="q-pa-md q-gutter-md row justify-end">
         <q-btn
-          label="Consultar espaço"
-          color="primary"
-        />
-        <q-btn
           label="Retornar"
           color="red"
         />

@@ -68,7 +68,8 @@ module.exports = function (ctx) {
         'QRadio',
         'QSeparator',
         'QSpace',
-        'QAvatar'
+        'QAvatar',
+        'QTooltip'
       ],
 
       directives: [

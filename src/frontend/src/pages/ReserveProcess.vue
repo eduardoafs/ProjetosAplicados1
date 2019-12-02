@@ -24,20 +24,35 @@
                     @click="aprovar(reserve)"
                     clickable
                     v-close-popup
-                  />
+                  >
+                    <q-tooltip
+                      :delay="500"
+                      :offset="[0, 10]"
+                    >Aprovar</q-tooltip>
+                  </q-btn>
                   <q-btn
                     round
                     color="red"
                     icon="close"
                     @click="negar(reserve)"
                     clickable
-                  />
+                  >
+                    <q-tooltip
+                      :delay="500"
+                      :offset="[0, 10]"
+                    >Negar</q-tooltip>
+                  </q-btn>
                   <q-btn
                     round
                     color="primary"
-                    icon="search"
+                    icon="info"
                     @click="selectReserve(reserve)"
-                  />
+                  >
+                    <q-tooltip
+                      :delay="500"
+                      :offset="[0, 10]"
+                    >Detalhes</q-tooltip>
+                  </q-btn>
                 </div>
               </q-item-section>
               <q-item-section>

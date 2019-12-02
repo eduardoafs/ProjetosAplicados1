@@ -42,42 +42,57 @@
       <br>
       <br>
 
-      <q-expansion-item
-        icon="business"
-        v-for="space in spacesFilted"
-        :key="space.id"
-        :label="space.nome"
-      >
-        <q-card>
-          <q-card-section>
-            <div class="q-gutter-sm">
+      <q-list>
+        <q-item
+          v-for="space in spacesFilted"
+          :key="space.id"
+          :label="space.nome"
+        >
+          <q-item-section side>
+            <div class="row q-gutter-md">
               <q-btn
+                round
                 color="secondary"
-                label="Reservar"
+                icon="today"
                 @click="$router.push(`/create-reserve/${Number(space.id)}`)"
                 clickable
-                v-close-popup
-              />
+              >
+                <q-tooltip
+                  :delay="500"
+                  :offset="[0, 10]"
+                >Reservar</q-tooltip>
+              </q-btn>
               <q-btn
-                color="primary"
-                label="Ver Disponibilidade"
+                round
+                color="purple"
+                icon="remove_red_eye"
                 @click="$router.push(`/view-availability/${Number(space.id)}`)"
                 clickable
-                v-close-popup
-              />
+              >
+                <q-tooltip
+                  :delay="500"
+                  :offset="[0, 10]"
+                >Ver Disponibilidade</q-tooltip>
+              </q-btn>
               <q-btn
-                color="white"
-                text-color="black"
-                label="Detalhes"
+                round
+                color="primary"
+                icon="info"
                 @click="showDetail = true, atual = space"
                 clickable
-                v-close-popup
-              />
+              >
+                <q-tooltip
+                  :delay="500"
+                  :offset="[0, 10]"
+                >Detalhes</q-tooltip>
+              </q-btn>
             </div>
-
-          </q-card-section>
-        </q-card>
-      </q-expansion-item>
+          </q-item-section>
+          <q-item-section>
+            {{space.nome}}
+          </q-item-section>
+        </q-item>
+      </q-list>
     </div>
     <q-dialog v-model="showDetail">
       <q-card style="width: 700px; max-width: 80vw;">

@@ -23,21 +23,36 @@
                     icon="edit"
                     @click="$router.push('/create-reserve/' + reserve.id)"
                     clickable
-                  />
+                  >
+                    <q-tooltip
+                      :delay="500"
+                      :offset="[0, 10]"
+                    >Editar</q-tooltip>
+                  </q-btn>
                   <q-btn
                     round
                     color="red"
                     icon="close"
                     @click="confirmaExcluir(reserve)"
                     clickable
-                  />
+                  >
+                    <q-tooltip
+                      :delay="500"
+                      :offset="[0, 10]"
+                    >Excluir</q-tooltip>
+                  </q-btn>
                   <q-btn
                     round
                     color="primary"
-                    icon="search"
+                    icon="info"
                     @click="selectReserve(reserve)"
                     clickable
-                  />
+                  >
+                    <q-tooltip
+                      :delay="500"
+                      :offset="[0, 10]"
+                    >Detalhes</q-tooltip>
+                  </q-btn>
                 </div>
               </q-item-section>
               <q-item-section>
