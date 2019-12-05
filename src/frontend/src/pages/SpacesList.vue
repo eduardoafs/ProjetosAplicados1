@@ -98,10 +98,6 @@
       <q-card style="width: 700px; max-width: 80vw;">
         <q-card-section>
           <div class="flex">
-            <q-date
-              v-model="date"
-              minimal
-            />
             <div class="q-pa-md">
               <p>
                 <b>Capacidade: </b> {{atual.qtdPessoas}} <br>
