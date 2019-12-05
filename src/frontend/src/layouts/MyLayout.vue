@@ -124,10 +124,12 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getReserves', 'getUsers', 'getSpaces']
+    ...mapActions(['getReserves', 'getSpaces']
     ),
     goTo (path) {
       this.$router.push(path)
+      this.getReserves()
+      this.getSpaces()
     }
   }
 }
